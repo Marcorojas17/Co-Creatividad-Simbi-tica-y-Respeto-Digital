@@ -1,430 +1,115 @@
 <!DOCTYPE html>
-<html lang="es-MX">
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>KRONOS ◍ LIVE 3D CIMÁTICO</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: #040a14;
-      overflow: hidden;
-      font-family: ui-monospace, monospace;
-      color: #f5f7fb;
-    }
-    #canvas { width: 100%; height: 100%; display: block; }
-
-    /* HUD */
-    #hud {
-      position: fixed;
-      top: 16px;
-      left: 16px;
-      z-index: 10;
-      background: rgba(7, 17, 31, 0.7);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(214, 168, 79, 0.18);
-      border-radius: 16px;
-      padding: 12px 18px;
-      pointer-events: none;
-      user-select: none;
-    }
-    #hud h1 { font-size: 13px; color: #d6a84f; letter-spacing: 0.08em; }
-    #hud p { font-size: 10px; color: #9aa8c2; margin-top: 4px; }
-
-    /* Controles */
-    #controls {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: center;
-      background: rgba(7, 17, 31, 0.7);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(214, 168, 79, 0.18);
-      border-radius: 20px;
-      padding: 16px 24px;
-      max-width: 90%;
-    }
-    .control-group {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      min-width: 80px;
-    }
-    .control-group label {
-      font-size: 9px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #9aa8c2;
-    }
-    .control-group input[type="range"] {
-      width: 100%;
-      height: 4px;
-      background: rgba(214, 168, 79, 0.3);
-      border-radius: 2px;
-      outline: none;
-      -webkit-appearance: none;
-      appearance: none;
-    }
-    .control-group input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: #d6a84f;
-      cursor: pointer;
-      border: none;
-    }
-    .control-group input[type="range"]::-moz-range-thumb {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: #d6a84f;
-      cursor: pointer;
-      border: none;
-    }
-    .control-group .value {
-      font-size: 10px;
-      color: #d6a84f;
-      font-weight: bold;
-    }
-
-    .btn {
-      border: 1px solid rgba(214, 168, 79, 0.3);
-      background: rgba(7, 17, 31, 0.8);
-      backdrop-filter: blur(12px);
-      color: #d6a84f;
-      padding: 8px 18px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-family: inherit;
-      cursor: pointer;
-      text-decoration: none;
-      transition: 0.25s;
-      align-self: center;
-    }
-    .btn:hover { background: #d6a84f; color: #000; border-color: #d6a84f; }
-    #mic-btn.active { background: #d6a84f; color: #000; border-color: #d6a84f; }
-
-    @media (max-width: 640px) {
-      #controls { padding: 12px 16px; gap: 10px; flex-wrap: wrap; }
-      .control-group { min-width: 60px; }
-      .control-group label { font-size: 8px; }
-      .control-group .value { font-size: 9px; }
-      .btn { font-size: 10px; padding: 6px 14px; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>KRONOS-28-ITZA | LIVE 3D 440Hz</title>
+<style>
+  :root { --bg:#07111f; --gold:#d6a84f; --gold2:#ffd479; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);overflow:hidden;font-family:JetBrains Mono,monospace;color:var(--gold)}
+  #canvas{position:absolute;inset:0;width:100%;height:100%}
+  #hud{position:absolute;top:14px;left:14px;z-index:10;background:rgba(7,17,31,.7);backdrop-filter:blur(10px);border:1px solid rgba(214,168,79,.3);padding:10px 14px;border-radius:12px}
+  #controls{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);z-index:10;display:flex;gap:12px;align-items:center;background:rgba(7,17,31,.85);border:1px solid rgba(214,168,79,.4);padding:12px 18px;border-radius:16px;backdrop-filter:blur(12px)}
+  button{background:linear-gradient(180deg,var(--gold2),var(--gold));border:none;color:#000;font-weight:800;padding:10px 18px;border-radius:999px;cursor:pointer;box-shadow:0 0 18px rgba(214,168,79,.6)}
+  input[type=range]{accent-color:var(--gold);width:140px}
+  label{font-size:11px;letter-spacing:.1em}
+  #fps{font-size:12px;opacity:.8}
+</style>
 </head>
 <body>
-  <canvas id="canvas"></canvas>
+<canvas id="canvas"></canvas>
+<div id="hud">
+  <div>KRONOS-28-ITZA • 440Hz LIVE</div>
+  <div id="fps">FPS: -- • FREQ: 440Hz</div>
+</div>
+<div id="controls">
+  <button id="micBtn">🎤 MIC OFF</button>
+  <label>GAIN <input id="gain" type="range" min="0" max="2" step="0.01" value="1"></label>
+  <label>SPEED <input id="speed" type="range" min="0.2" max="3" step="0.1" value="1.2"></label>
+  <label>WAVES <input id="waves" type="range" min="1" max="8" step="1" value="3"></label>
+</div>
 
-  <!-- HUD -->
-  <div id="hud">
-    <h1>◍ KRONOS LIVE 3D</h1>
-    <p id="fps">CIMÁTICA • 60 FPS • 440Hz</p>
-  </div>
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const fpsEl = document.getElementById('fps');
+const micBtn = document.getElementById('micBtn');
+const gainSl = document.getElementById('gain');
+const speedSl = document.getElementById('speed');
+const wavesSl = document.getElementById('waves');
 
-  <!-- CONTROLES -->
-  <div id="controls">
-    <div class="control-group">
-      <label>Frecuencia</label>
-      <input type="range" id="freq-slider" min="20" max="800" value="440" step="1">
-      <span class="value" id="freq-val">440 Hz</span>
-    </div>
-    <div class="control-group">
-      <label>Amplitud</label>
-      <input type="range" id="amp-slider" min="0.1" max="1.5" value="0.85" step="0.01">
-      <span class="value" id="amp-val">0.85</span>
-    </div>
-    <div class="control-group">
-      <label>Complejidad</label>
-      <input type="range" id="comp-slider" min="1" max="8" value="3" step="1">
-      <span class="value" id="comp-val">3</span>
-    </div>
-    <div class="control-group">
-      <label>Damping</label>
-      <input type="range" id="damp-slider" min="0" max="0.5" value="0.12" step="0.01">
-      <span class="value" id="damp-val">0.12</span>
-    </div>
-    <button class="btn" id="mic-btn">🎤 MIC</button>
-    <a class="btn" href="./index.html">← VOLVER</a>
-  </div>
+let W,H,dpr=window.devicePixelRatio||1;
+function resize(){
+  W=innerWidth; H=innerHeight;
+  canvas.width=W*dpr; canvas.height=H*dpr;
+  canvas.style.width=W+'px'; canvas.style.height=H+'px';
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+}
+window.addEventListener('resize',resize); resize();
 
-  <!-- IMPORTS -->
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
-      }
+let time=0, gain=1, speed=1.2, numWaves=3;
+gainSl.oninput=e=>gain=+e.target.value;
+speedSl.oninput=e=>speed=+e.target.value;
+wavesSl.oninput=e=>numWaves=+e.target.value;
+
+// Audio
+let audioCtx, analyser, dataArray, micActive=false;
+async function toggleMic(){
+  if(!micActive){
+    try{
+      audioCtx = new (window.AudioContext||window.webkitAudioContext)({sampleRate:48000});
+      const stream = await navigator.mediaDevices.getUserMedia({audio:true});
+      const src = audioCtx.createMediaStreamSource(stream);
+      analyser = audioCtx.createAnalyser();
+      analyser.fftSize=1024;
+      dataArray = new Uint8Array(analyser.frequencyBinCount);
+      src.connect(analyser);
+      micActive=true; micBtn.textContent='🎤 MIC ON'; micBtn.style.boxShadow='0 0 24px #d6a84f';
+    }catch(e){ alert('Mic no disponible: '+e.message); }
+  }else{
+    if(audioCtx) audioCtx.close(); micActive=false; micBtn.textContent='🎤 MIC OFF';
+  }
+}
+micBtn.onclick=toggleMic;
+
+// Render
+let last=performance.now(), frames=0, fps=0;
+function draw(now){
+  requestAnimationFrame(draw);
+  frames++; if(now-last>500){ fps=Math.round(frames*1000/(now-last)); frames=0; last=now; fpsEl.textContent=`FPS: ${fps} • FREQ: 440Hz • GAIN: ${gain.toFixed(2)}`; }
+
+  time+=0.016*speed;
+  ctx.clearRect(0,0,W,H);
+
+  // fondo grid
+  ctx.strokeStyle='rgba(214,168,79,0.06)'; ctx.lineWidth=1;
+  for(let x=0;x<W;x+=48){ ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+  for(let y=0;y<H;y+=48){ ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+
+  let audioLevel=0;
+  if(analyser && micActive){ analyser.getByteFrequencyData(dataArray); audioLevel=dataArray.reduce((a,b)=>a+b,0)/dataArray.length/255; }
+
+  // ondas 440Hz
+  for(let w=0;w<numWaves;w++){
+    ctx.beginPath();
+    ctx.strokeStyle=`hsla(${38+w*6}, 70%, ${60+w*4}%, ${0.9 - w*0.12})`;
+    ctx.lineWidth=2.5 - w*0.3;
+    ctx.shadowColor='#d6a84f'; ctx.shadowBlur=w===0?18:0;
+    for(let x=0;x<W;x+=2){
+      const freq = 440/100 * (1 + w*0.18);
+      const amp = (H*0.18 + audioLevel*H*0.3) * gain / (1+w*0.4);
+      const y = H/2 + Math.sin(x*0.012*freq + time*2.2 + w) * amp * Math.sin(time*0.6 + x*0.005) + Math.cos(x*0.008 + time)*10;
+      if(x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
     }
-  </script>
+    ctx.stroke(); ctx.shadowBlur=0;
+  }
 
-  <script type="module">
-    import * as THREE from 'three';
-    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-
-    // --- DOM refs ---
-    const canvas = document.getElementById('canvas');
-    const fpsEl = document.getElementById('fps');
-    const freqSlider = document.getElementById('freq-slider');
-    const freqVal = document.getElementById('freq-val');
-    const ampSlider = document.getElementById('amp-slider');
-    const ampVal = document.getElementById('amp-val');
-    const compSlider = document.getElementById('comp-slider');
-    const compVal = document.getElementById('comp-val');
-    const dampSlider = document.getElementById('damp-slider');
-    const dampVal = document.getElementById('damp-val');
-    const micBtn = document.getElementById('mic-btn');
-
-    // --- Three.js setup ---
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-    renderer.setSize(innerWidth, innerHeight);
-
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x040a14);
-
-    const camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 0.1, 100);
-    camera.position.set(0, 1.2, 3.2);
-
-    const controls = new OrbitControls(camera, canvas);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-
-    // --- Shader uniforms (actualizables) ---
-    const uniforms = {
-      uTime: { value: 0 },
-      uFrequency: { value: 440 },
-      uAmplitude: { value: 0.85 },
-      uComplexity: { value: 3 },
-      uDamping: { value: 0.12 },
-      uColor: { value: new THREE.Color(0xd6a84f) },
-      uAudioBoost: { value: 1.0 }
-    };
-
-    // --- Shader material (Chladni real 3,1 con parámetros) ---
-    const geometry = new THREE.PlaneGeometry(8, 8, 180, 180);
-    const material = new THREE.ShaderMaterial({
-      uniforms,
-      vertexShader: `
-        uniform float uTime;
-        uniform float uFrequency;
-        uniform float uAmplitude;
-        uniform float uComplexity;
-        uniform float uDamping;
-        uniform float uAudioBoost;
-
-        varying vec2 vUv;
-        varying float vH;
-
-        void main() {
-          vUv = uv;
-          vec3 p = position;
-          float k = uFrequency / 440.0;
-          float m = uComplexity;
-          float n = 1.0;
-
-          // Coordenadas escaladas
-          float px = p.x * k * 0.035;
-          float py = p.y * k * 0.04;
-
-          // Chladni real (m,n) con m = complexity, n = 1
-          float chladni = cos(n * 3.14159 * px) * cos(m * 3.14159 * py)
-                        - cos(m * 3.14159 * px) * cos(n * 3.14159 * py);
-
-          // Onda complementaria
-          float wave = sin((p.x*p.x + p.y*p.y) * 0.04 * k - uTime * 2.0 * uAudioBoost);
-
-          // Damping (decaimiento hacia bordes)
-          float dist = length(p.xy);
-          float damp = 1.0 - uDamping * dist * 0.8;
-
-          float elevation = (chladni * 0.7 + wave * 0.3) * uAmplitude * damp * (0.8 + 0.2 * uAudioBoost);
-          p.z += elevation * 0.85;
-          vH = elevation;
-          gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
-        }
-      `,
-      fragmentShader: `
-        uniform vec3 uColor;
-        uniform float uAmplitude;
-        varying float vH;
-
-        void main() {
-          float h = vH * 0.8 + 0.5;
-          vec3 gold1 = vec3(0.83, 0.68, 0.21);
-          vec3 gold2 = vec3(1.0, 0.92, 0.6);
-          vec3 col = mix(gold1, gold2, h * 0.7 + 0.2);
-          float glow = pow(h, 1.8) * uAmplitude * 0.8;
-          col += glow * uColor * 0.4;
-          float vignette = 1.0 - length(vUv - 0.5) * 0.4;
-          col *= vignette;
-          gl_FragColor = vec4(col, 0.92);
-        }
-      `,
-      wireframe: false,
-      transparent: false
-    });
-
-    const mesh = new THREE.Mesh(geometry, material);
-    mesh.rotation.x = -Math.PI * 0.42;
-    scene.add(mesh);
-
-    // --- Partículas doradas ---
-    const pCount = 1500;
-    const pGeom = new THREE.BufferGeometry();
-    const pPos = new Float32Array(pCount * 3);
-    const pVel = new Float32Array(pCount); // velocidad aleatoria
-    for (let i = 0; i < pCount; i++) {
-      pPos[i * 3] = (Math.random() - 0.5) * 14;
-      pPos[i * 3 + 1] = (Math.random() - 0.5) * 14;
-      pPos[i * 3 + 2] = (Math.random() - 0.5) * 6;
-      pVel[i] = 0.5 + Math.random() * 1.5;
-    }
-    pGeom.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-    const pMat = new THREE.PointsMaterial({
-      color: 0xd6a84f,
-      size: 0.025,
-      transparent: true,
-      opacity: 0.7,
-      blending: THREE.AdditiveBlending,
-    });
-    const particles = new THREE.Points(pGeom, pMat);
-    scene.add(particles);
-
-    // --- Luces ---
-    scene.add(new THREE.AmbientLight(0xffffff, 0.3));
-    const dir = new THREE.DirectionalLight(0xd6a84f, 0.5);
-    dir.position.set(2, 3, 2);
-    scene.add(dir);
-
-    // --- Audio reactivo ---
-    let audioCtx, analyser, dataArray, isMicActive = false;
-
-    async function enableMic() {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        analyser = audioCtx.createAnalyser();
-        analyser.fftSize = 256;
-        analyser.smoothingTimeConstant = 0.8;
-        const src = audioCtx.createMediaStreamSource(stream);
-        src.connect(analyser);
-        dataArray = new Uint8Array(analyser.frequencyBinCount);
-        isMicActive = true;
-        micBtn.textContent = '🎤 ON';
-        micBtn.classList.add('active');
-        // Reanudar audio context si está suspendido
-        if (audioCtx.state === 'suspended') await audioCtx.resume();
-        console.log('🎤 Micrófono activado');
-      } catch (e) {
-        alert('Permite el acceso al micrófono para activar el ritmo.');
-        console.warn('Mic error:', e);
-      }
-    }
-
-    micBtn.addEventListener('click', enableMic);
-
-    function getAudioBoost() {
-      if (!isMicActive || !analyser) return 1.0;
-      analyser.getByteFrequencyData(dataArray);
-      // Promedio de las bandas bajas (kick)
-      const bass = dataArray.slice(0, 10).reduce((a, b) => a + b, 0) / 10 / 255;
-      return 1.0 + bass * 3.0;
-    }
-
-    // --- UI Controls ---
-    freqSlider.addEventListener('input', () => {
-      const val = parseFloat(freqSlider.value);
-      freqVal.textContent = val + ' Hz';
-      uniforms.uFrequency.value = val;
-    });
-    ampSlider.addEventListener('input', () => {
-      const val = parseFloat(ampSlider.value);
-      ampVal.textContent = val.toFixed(2);
-      uniforms.uAmplitude.value = val;
-    });
-    compSlider.addEventListener('input', () => {
-      const val = parseFloat(compSlider.value);
-      compVal.textContent = val;
-      uniforms.uComplexity.value = val;
-    });
-    dampSlider.addEventListener('input', () => {
-      const val = parseFloat(dampSlider.value);
-      dampVal.textContent = val.toFixed(2);
-      uniforms.uDamping.value = val;
-    });
-
-    // --- Animación ---
-    let time = 0;
-    let frameCount = 0;
-    let lastFpsUpdate = performance.now();
-
-    function animate() {
-      requestAnimationFrame(animate);
-
-      // Audio boost
-      const boost = getAudioBoost();
-      uniforms.uAudioBoost.value = boost;
-
-      // Tiempo
-      time += 0.008 * boost;
-      uniforms.uTime.value = time;
-
-      // Movimiento de partículas (sutil, influenciado por audio)
-      const positions = particles.geometry.attributes.position.array;
-      for (let i = 0; i < pCount; i++) {
-        // Movimiento oscilatorio en Z con el audio
-        const idx = i * 3;
-        const baseZ = (i % 5) * 0.3 - 0.6;
-        positions[idx + 2] += Math.sin(time * pVel[i] + i) * 0.001 * boost;
-        // Rebound suave
-        if (positions[idx + 2] > 2.5) positions[idx + 2] = -2.5;
-        if (positions[idx + 2] < -2.5) positions[idx + 2] = 2.5;
-        // Desplazamiento en X/Y para dar vida
-        positions[idx] += Math.sin(time * 0.2 + i * 0.01) * 0.001;
-        positions[idx + 1] += Math.cos(time * 0.25 + i * 0.01) * 0.001;
-      }
-      particles.geometry.attributes.position.needsUpdate = true;
-
-      // Rotación de partículas
-      particles.rotation.y += 0.0003 * boost;
-
-      // Rotación del shader
-      mesh.rotation.z = Math.sin(time * 0.12) * 0.06;
-
-      // FPS
-      frameCount++;
-      const now = performance.now();
-      if (now - lastFpsUpdate > 1000) {
-        const fps = Math.round(frameCount / ((now - lastFpsUpdate) / 1000));
-        fpsEl.textContent = `CIMÁTICA • ${fps} FPS • ${uniforms.uFrequency.value}Hz${isMicActive ? ' 🎤' : ''}`;
-        frameCount = 0;
-        lastFpsUpdate = now;
-      }
-
-      controls.update();
-      renderer.render(scene, camera);
-    }
-    animate();
-
-    // --- Resize ---
-    window.addEventListener('resize', () => {
-      renderer.setSize(innerWidth, innerHeight);
-      camera.aspect = innerWidth / innerHeight;
-      camera.updateProjectionMatrix();
-    });
-
-    console.log('✅ KRONOS LIVE 3D CIMÁTICO cargado correctamente.');
-    console.log('🔹 Ajusta frecuencia, amplitud, complejidad y damping.');
-    console.log('🔹 Activa el micrófono para que el lienzo reaccione al sonido.');
-  </script>
+  // punto central 04:40
+  ctx.fillStyle='#ffd479'; ctx.shadowColor='#d6a84f'; ctx.shadowBlur=20;
+  ctx.beginPath(); ctx.arc(W/2, H/2, 6 + Math.sin(time*4)*2 + audioLevel*10, 0, Math.PI*2); ctx.fill(); ctx.shadowBlur=0;
+}
+draw(performance.now());
+</script>
 </body>
 </html>
