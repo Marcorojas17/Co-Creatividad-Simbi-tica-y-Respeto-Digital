@@ -1,34 +1,159 @@
 {
-  "name": "KRONOS CYMATIC GOLD",
+  "name": "KRONOS-28-ITZA | 289 PLATINUM 04:40",
   "image": "mcr.microsoft.com/devcontainers/universal:2-linux",
   "features": {
-    "ghcr.io/devcontainers/features/node:1": { "version": "20", "installYarnUsingApt": true },
-    "ghcr.io/devcontainers/features/python:1": { "version": "3.11" },
-    "ghcr.io/devcontainers/features/docker-in-docker:2": { "version": "latest", "dockerDashComposeVersion": "v2" },
-    "ghcr.io/devcontainers/features/github-cli:1": { "version": "latest" }
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20",
+      "installYarnUsingApt": false,
+      "installYarnUsingCorepack": true,
+      "nvmVersion": "latest"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.11",
+      "installTools": true,
+      "optimize": true
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "dockerDashComposeVersion": "v2",
+      "moby": true,
+      "installDockerBuildx": true,
+      "dockerDefaultAddressPool": "base=10.200.0.0/16,size=28"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest",
+      "installDirectlyFromGitHubRelease": true
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest",
+      "ppa": true
+    },
+    "ghcr.io/devcontainers/features/sshd:1": {
+      "version": "latest"
+    }
   },
   "customizations": {
     "vscode": {
       "extensions": [
-        "dbaeumer.vscode-eslint", "esbenp.prettier-vscode", "ms-vscode.vscode-typescript-next",
-        "ms-python.python", "ms-python.vscode-pylance", "ms-vscode.live-server",
-        "raczzalan.webgl-glsl-editor", "slevesque.shader", "ms-azuretools.vscode-docker",
-        "redhat.vscode-yaml", "tamasfe.even-better-toml", "GitHub.vscode-github-actions"
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-vscode.vscode-typescript-next",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.black-formatter",
+        "ms-vscode.live-server",
+        "raczzalan.webgl-glsl-editor",
+        "slevesque.shader",
+        "ms-azuretools.vscode-docker",
+        "redhat.vscode-yaml",
+        "tamasfe.even-better-toml",
+        "GitHub.vscode-github-actions",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "bradlc.vscode-tailwindcss",
+        "editorconfig.editorconfig",
+        "ms-vscode.vscode-json",
+        "christian-kohler.path-intellisense",
+        "formulahendry.auto-rename-tag",
+        "aaron-bond.better-comments",
+        "PKief.material-icon-theme"
       ],
       "settings": {
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "files.eol": "\n"
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit"
+        },
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "files.eol": "\n",
+        "files.insertFinalNewline": true,
+        "files.trimTrailingWhitespace": true,
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "workbench.colorTheme": "Default Dark+",
+        "workbench.iconTheme": "material-icon-theme",
+        "eslint.validate": ["javascript", "javascriptreact", "html"],
+        "[python]": {
+          "editor.defaultFormatter": "ms-python.black-formatter",
+          "editor.tabSize": 4
+        }
+      }
+    },
+    "codespaces": {
+      "openFiles": [
+        "README.md",
+        "PRICING.md",
+        "index.html",
+        "live3d.html",
+        "compliance/MATRIZ_CUMPLIMIENTO.md"
+      ],
+      "repositories": {
+        "Marcorojas17/Co-Creatividad-Simbiotica-y-Respeto-Digital": {
+          "permissions": {
+            "contents": "write",
+            "actions": "write",
+            "checks": "write"
+          }
+        }
       }
     }
   },
-  "forwardPorts": [3000, 4000, 5173, 8000, 5432],
-  "postCreateCommand": "npm install --no-audit --no-fund && pip install -r requirements.txt && git config --global --add safe.directory /workspaces/*",
-  "postStartCommand": "sudo chown -R node:node /workspaces",
+  "forwardPorts": [3000, 4000, 5173, 8000, 8086, 5432],
+  "portsAttributes": {
+    "3000": {
+      "label": "WEB - KRONOS 3000",
+      "onAutoForward": "notify",
+      "protocol": "http"
+    },
+    "4000": {
+      "label": "API - Fastify 4000",
+      "onAutoForward": "notify",
+      "protocol": "http"
+    },
+    "5173": {
+      "label": "VITE - live3d 5173",
+      "onAutoForward": "notify",
+      "protocol": "http"
+    },
+    "8000": {
+      "label": "PYTHON - frequency_engine 8000",
+      "onAutoForward": "silent"
+    },
+    "8086": {
+      "label": "INFLUX - 8086",
+      "onAutoForward": "silent"
+    },
+    "5432": {
+      "label": "POSTGRES - 5432",
+      "onAutoForward": "silent"
+    }
+  },
+  "postCreateCommand": "npm ci --no-audit --no-fund || npm install --no-audit --no-fund && pip install --no-cache-dir -r requirements.txt && npm run migrate --workspace=@kronos/api --if-present && git config --global --add safe.directory /workspaces/* && git config --global init.defaultBranch main && echo 'KRONOS 289 PLATINUM READY'",
+  "postStartCommand": "sudo chown -R node:node /workspaces && sudo chmod +x gpg_sign_engine.sh audit.py chladni_plate.py 2>/dev/null || true",
+  "postAttachCommand": {
+    "server": "npm run dev --if-present || python3 -m http.server 3000 --directory apps/web || true"
+  },
   "remoteUser": "node",
+  "updateRemoteUserUID": true,
+  "remoteEnv": {
+    "NODE_ENV": "development",
+    "FREQUENCY_BASE": "440",
+    "KRONOS_LEVEL": "289_PLATINUM",
+    "SEAL": "GPG-SIGN-REAL-KRONOS-289-PLATINUM"
+  },
   "mounts": [
-    "source=kronos-gpg-cache,target=/home/node/.gnupg,type=volume",
-    "source=kronos-node-modules,target=/workspaces/node_modules,type=volume"
+    "source=kronos-gpg-cache-28-itza,target=/home/node/.gnupg,type=volume",
+    "source=kronos-node-modules-28-itza,target=/workspaces/Co-Creatividad-Simbiotica-y-Respeto-Digital/node_modules,type=volume",
+    "source=kronos-python-cache,target=/home/node/.cache/pip,type=volume"
   ],
-  "runArgs": ["--init"]
+  "runArgs": ["--init", "--cap-add=SYS_PTRACE", "--security-opt=seccomp=unconfined"],
+  "overrideCommand": false,
+  "shutdownAction": "stopContainer",
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "8gb",
+    "storage": "32gb",
+    "gpu": "optional"
+  },
+  "waitFor": "postCreateCommand"
 }
