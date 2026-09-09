@@ -6,7 +6,7 @@
   <title>KRONOS — Sin Conexión</title>
   <meta name="theme-color" content="#0a0a0a" />
   <meta name="description" content="KRONOS-28-ITZA-CYMATIC-ELITE — Página offline. La autoridad tranquila incluso sin red." />
-  <link rel="manifest" href="./manifest.json" />
+  <link rel="manifest" href="./manifest.webmanifest" />
   
   <style>
     :root {
@@ -91,13 +91,6 @@
       font-size: 11px;
       color: #555;
     }
-    footer a {
-      color: var(--muted);
-      text-decoration: none;
-    }
-    footer a:hover {
-      color: var(--accent);
-    }
     #status {
       display: inline-block;
       margin-top: 16px;
@@ -154,10 +147,8 @@
       const statusEl = document.getElementById('status');
       const retryBtn = document.getElementById('retryBtn');
 
-      // Año dinámico
       yearEl.textContent = new Date().getFullYear();
 
-      // Reloj en vivo
       function updateTime() {
         const now = new Date();
         timeEl.textContent = now.toLocaleString('es-MX', {
@@ -173,7 +164,6 @@
       updateTime();
       setInterval(updateTime, 1000);
 
-      // Estado de red
       function updateNetworkStatus() {
         const online = navigator.onLine;
         statusEl.textContent = online ? '✅ Conectado' : '🌐 Sin conexión';
@@ -182,10 +172,8 @@
       }
       updateNetworkStatus();
 
-      // Eventos de red
       window.addEventListener('online', () => {
         updateNetworkStatus();
-        // Si la conexión vuelve, redirigir a la app después de 2 segundos
         statusEl.textContent = '✅ Conectado — recargando...';
         setTimeout(() => {
           if (navigator.onLine) {
@@ -195,14 +183,11 @@
       });
       window.addEventListener('offline', updateNetworkStatus);
 
-      // Botón de reintento: recarga la página con timestamp para evitar caché
       retryBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        // Forzar recarga desde el servidor añadiendo un timestamp
         location.href = window.location.href.split('?')[0] + '?t=' + Date.now();
       });
 
-      // Si el usuario llega aquí estando online, redirigir automáticamente (con un pequeño retraso)
       if (navigator.onLine) {
         statusEl.textContent = '✅ Conectado — redirigiendo...';
         setTimeout(() => {
@@ -210,10 +195,9 @@
         }, 1500);
       }
 
-      // Verificar que el manifest esté disponible (solo depuración)
-      fetch('./manifest.json')
+      fetch('./manifest.webmanifest')
         .then(r => r.ok ? console.log('📄 Manifest cargado correctamente.') : console.warn('⚠️ Manifest no encontrado.'))
-        .catch(() => console.warn('⚠️ No se pudo cargar manifest.json'));
+        .catch(() => console.warn('⚠️ No se pudo cargar manifest.webmanifest'));
 
       console.log('📡 KRONOS Offline page loaded. Network status:', navigator.onLine ? 'online' : 'offline');
     })();
