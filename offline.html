@@ -6,6 +6,7 @@
   <title>KRONOS — Sin Conexión</title>
   <meta name="theme-color" content="#0a0a0a" />
   <meta name="description" content="KRONOS-28-ITZA-CYMATIC-ELITE — Página offline. La autoridad tranquila incluso sin red." />
+  <link rel="manifest" href="./manifest.json" />
   
   <style>
     :root {
@@ -105,10 +106,12 @@
       border: 1px solid #333;
       padding: 4px 12px;
       border-radius: 20px;
+      transition: all 0.3s ease;
     }
     #status.online {
       color: #4caf50;
       border-color: #4caf50;
+      background: rgba(76, 175, 80, 0.1);
     }
     @media (max-width: 480px) {
       .card { padding: 24px 16px; }
@@ -129,7 +132,7 @@
 
     <p>El motor cimático está en pausa. El lienzo espera. La frecuencia volverá cuando regrese la red.</p>
 
-    <button class="btn" id="retryBtn" aria-label="Reintentar conexión">↻ REINTENTAR CONEXIÓN</button>
+    <button class="btn" id="retryBtn" aria-label="Reintentar conexión y recargar la página">↻ REINTENTAR CONEXIÓN</button>
 
     <div id="status" role="status" aria-live="polite">🌐 Estado: sin conexión</div>
 
@@ -146,16 +149,15 @@
     (function() {
       'use strict';
 
-      // Elementos
       const timeEl = document.getElementById('time');
       const yearEl = document.getElementById('year');
       const statusEl = document.getElementById('status');
       const retryBtn = document.getElementById('retryBtn');
 
-      // Actualizar año dinámico
+      // Año dinámico
       yearEl.textContent = new Date().getFullYear();
 
-      // Función para actualizar la hora
+      // Reloj en vivo
       function updateTime() {
         const now = new Date();
         timeEl.textContent = now.toLocaleString('es-MX', {
@@ -171,59 +173,48 @@
       updateTime();
       setInterval(updateTime, 1000);
 
-      // Función para verificar estado de red
+      // Estado de red
       function updateNetworkStatus() {
         const online = navigator.onLine;
         statusEl.textContent = online ? '✅ Conectado' : '🌐 Sin conexión';
         statusEl.className = online ? 'online' : '';
-        // Si está online, ofrecer recargar automáticamente (opcional)
-        if (online) {
-          // Podríamos recargar después de unos segundos, pero mejor que el usuario decida
-          // Solo mostramos un mensaje adicional
-          if (statusEl.textContent.includes('Conectado')) {
-            // No hacemos recarga automática para evitar ciclos, solo actualizamos el estado
-          }
-        }
+        return online;
       }
       updateNetworkStatus();
 
-      // Escuchar cambios de red
+      // Eventos de red
       window.addEventListener('online', () => {
         updateNetworkStatus();
-        // Podemos sugerir recargar con un pequeño retraso
+        // Si la conexión vuelve, redirigir a la app después de 2 segundos
+        statusEl.textContent = '✅ Conectado — recargando...';
         setTimeout(() => {
-          if (navigator.onLine && confirm('La conexión ha sido restablecida. ¿Deseas recargar la página?')) {
-            location.reload();
+          if (navigator.onLine) {
+            location.href = './index.html';
           }
-        }, 500);
+        }, 2000);
       });
       window.addEventListener('offline', updateNetworkStatus);
 
-      // Botón de reintento: recarga forzada (sin caché)
+      // Botón de reintento: recarga la página con timestamp para evitar caché
       retryBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        // Forzar recarga desde el servidor (ignorar caché)
-        location.reload(true);
+        // Forzar recarga desde el servidor añadiendo un timestamp
+        location.href = window.location.href.split('?')[0] + '?t=' + Date.now();
       });
 
-      // También permitir recarga con Ctrl+R o F5, pero eso ya es nativo
-
-      // Si el usuario llega aquí estando online (por error), redirigir a la página principal
+      // Si el usuario llega aquí estando online, redirigir automáticamente (con un pequeño retraso para que vea el mensaje)
       if (navigator.onLine) {
-        // Pero no lo hacemos automáticamente para no molestar; solo mostramos un mensaje sutil
-        // Podríamos añadir un enlace a index.html
-        const link = document.createElement('a');
-        link.href = './index.html';
-        link.textContent = 'Ir a la aplicación';
-        link.style.display = 'block';
-        link.style.marginTop = '16px';
-        link.style.color = 'var(--accent)';
-        link.style.textDecoration = 'underline';
-        const p = document.querySelector('.card p:last-of-type');
-        if (p) p.after(link);
+        statusEl.textContent = '✅ Conectado — redirigiendo...';
+        setTimeout(() => {
+          location.href = './index.html';
+        }, 1500);
       }
 
-      // Registrar en consola para depuración
+      // Verificar que el manifest esté disponible (solo para depuración)
+      fetch('./manifest.json')
+        .then(r => r.ok ? console.log('📄 Manifest cargado correctamente.') : console.warn('⚠️ Manifest no encontrado.'))
+        .catch(() => console.warn('⚠️ No se pudo cargar manifest.json'));
+
       console.log('📡 KRONOS Offline page loaded. Network status:', navigator.onLine ? 'online' : 'offline');
     })();
   </script>
