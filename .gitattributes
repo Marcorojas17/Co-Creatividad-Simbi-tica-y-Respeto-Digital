@@ -1,0 +1,37 @@
+* text=auto eol=lf
+*.html text
+*.js text
+*.css text
+*.json text
+*.webmanifest text
+*.md text
+*.txt text
+*.xml text
+*.svg text diff
+*.vert text
+*.frag text
+*.py text
+*.sh text
+*.yml text
+*.yaml text
+*.toml text
+*.editorconfig text
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.pdf binary
+*.zip binary
+*.gz binary
+*.tar binary
+*.wasm binary
+package-lock.json -diff
+yarn.lock -diff
+pnpm-lock.yaml -diff
+*.min.js -diff
+*.min.css -diff
+*.webmanifest text eol=lf
+*.vert text eol=lf linguist-language=GLSL
+*.frag text eol=lf linguist-language=GLSL
