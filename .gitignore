@@ -1,15 +1,16 @@
 # =============================================
-# KRONOS-28-ITZA 289 PLATINUM - GITIGNORE 004
-# Protege secretos, reduce tamaño, limpia repo
+# KRONOS-28-ITZA 289 PLATINUM - GITIGNORE MÁXIMO
+# 014 de 150 - Protege secretos + reduce tamaño
 # =============================================
 
-# 1. DEPENDENCIES - No subir, pesa 800MB
+# ----- DEPENDENCIAS (800MB) -----
 node_modules/
 jspm_packages/
 .pnp/
 .pnp.js
+.pnp.loader.mjs
 
-# 2. PYTHON - Cache y venvs
+# ----- PYTHON - CACHE Y VENVS -----
 __pycache__/
 *.py[cod]
 *$py.class
@@ -30,14 +31,16 @@ venv.bak/
 htmlcov/
 *.pyo
 *.pyd
+*.pyi
 
-# 3. SECRETS - CRITICO - Nunca subir
+# ----- SECRETOS - CRÍTICO -----
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 .env.production
+.env.*.local
 *.key
 *.pem
 *.gpg
@@ -46,17 +49,18 @@ htmlcov/
 secrets/
 .secrets/
 kronos-secrets.json
-# Pero si permitir ejemplos
-!.env.example
-!.env.template
+# EXCEPCIONES - Permitir estos sellos
+!SBOM.sig
+!theft_log.json.asc
+!SEALO_CALIDAD.json
 
-# 4. GPG - Solo cache, no claves privadas
+# ----- GPG - SOLO CACHE -----
 .gnupg/
 *.kbx
 *.kbx~
 private-keys-v1.d/
 
-# 5. LOGS
+# ----- LOGS -----
 logs/
 *.log
 npm-debug.log*
@@ -66,7 +70,7 @@ pnpm-debug.log*
 lerna-debug.log*
 *.log.*
 
-# 6. BUILD / DIST / COVERAGE
+# ----- BUILD / DIST / COVERAGE -----
 dist/
 build/
 out/
@@ -77,8 +81,9 @@ out/
 coverage/
 .nyc_output/
 *.tsbuildinfo
+.turbo/
 
-# 7. OS FILES
+# ----- OS FILES -----
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -97,7 +102,7 @@ Desktop.ini
 $RECYCLE.BIN/
 *.lnk
 
-# 8. IDE - Config local
+# ----- IDE - CONFIG LOCAL -----
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
@@ -115,7 +120,7 @@ $RECYCLE.BIN/
 *.sublime-project
 *.sublime-workspace
 
-# 9. DATABASES - Influx y Postgres local
+# ----- DATABASES - LOCAL -----
 influxdb/
 postgres-data/
 pgdata/
@@ -126,7 +131,7 @@ data/db/
 *.dump
 *.sql.gz
 
-# 10. TEMP / CACHE
+# ----- TEMP / CACHE -----
 tmp/
 temp/
 .tmp/
@@ -136,7 +141,7 @@ temp/
 .prettiercache
 .stylelintcache
 
-# 11. KRONOS SPECIFIC - Cymatic / Frequency engine
+# ----- KRONOS SPECIFIC -----
 frequency_cache/
 chladni_cache/
 *.wav
@@ -145,11 +150,17 @@ chladni_cache/
 seal_tmp/
 audit_tmp/
 
-# 12. VERIFICATION - No subir binarios compilados
+# ----- COMPILADOS -----
 *.exe
 *.dll
 *.so
 *.dylib
 
-# 13. GITHUB - Mantener limpio
-# Pero NO ignorar .github/
+# ----- ARCHIVOS GRANDES (LFS) -----
+*.psd
+*.ai
+*.blend
+*.tif
+
+# ----- GITHUB - NO IGNORAR .github/ -----
+# .github/ no se ignora, lo necesitamos para CI/CD
