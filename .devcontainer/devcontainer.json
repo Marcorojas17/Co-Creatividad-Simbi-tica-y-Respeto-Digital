@@ -1,0 +1,21 @@
+{
+  "name": "KRONOS-28-ITZA Dev",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {},
+    "ghcr.io/devcontainers/features/postgres:1": {}
+  },
+  "postCreateCommand": "npm install --workspaces && npm run migrate",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-azuretools.vscode-docker",
+        "ms-vscode.vscode-typescript-next"
+      ]
+    }
+  },
+  "forwardPorts": [3000, 8000, 5432],
+  "remoteUser": "node"
+}
