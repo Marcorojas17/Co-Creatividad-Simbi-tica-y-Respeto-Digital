@@ -1,0 +1,23 @@
+# =============================================
+# KRONOS-28-ITZA 289 - WORKSPACE DEFINITION
+# 007A de 150 - Donde vive cada package
+# =============================================
+packages:
+    - 'apps/*'
+    - 'packages/*'
+    - 'core-dsp'
+    - 'design-system'
+    - 'compliance'
+
+# Hoisting para compatibilidad con tooling que busca en root
+# Solo lo necesario
+public-hoist-pattern:
+    - '*eslint*'
+    - '*prettier*'
+    - '@types*'
+
+# Evita hoist accidental de libs pesadas
+# Cada app mantiene su version
+# link-workspace-packages true = usa local si existe
+link-workspace-packages: true
+prefer-workspace-packages: true
