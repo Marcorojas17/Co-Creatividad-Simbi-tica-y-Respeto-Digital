@@ -202,7 +202,7 @@
         location.href = window.location.href.split('?')[0] + '?t=' + Date.now();
       });
 
-      // Si el usuario llega aquí estando online, redirigir automáticamente (con un pequeño retraso para que vea el mensaje)
+      // Si el usuario llega aquí estando online, redirigir automáticamente (con un pequeño retraso)
       if (navigator.onLine) {
         statusEl.textContent = '✅ Conectado — redirigiendo...';
         setTimeout(() => {
@@ -210,7 +210,7 @@
         }, 1500);
       }
 
-      // Verificar que el manifest esté disponible (solo para depuración)
+      // Verificar que el manifest esté disponible (solo depuración)
       fetch('./manifest.json')
         .then(r => r.ok ? console.log('📄 Manifest cargado correctamente.') : console.warn('⚠️ Manifest no encontrado.'))
         .catch(() => console.warn('⚠️ No se pudo cargar manifest.json'));
