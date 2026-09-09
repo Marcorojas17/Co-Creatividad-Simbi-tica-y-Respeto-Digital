@@ -1,0 +1,9 @@
+{
+  "name": "KRONOS-28-ITZA 04:40",
+  "short_name": "KRONOS",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#040a14",
+  "theme_color": "#07111f",
+  "icons": []
+}
