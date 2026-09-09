@@ -1,13 +1,15 @@
-# Node.js
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
+# =============================================
+# KRONOS-28-ITZA 289 PLATINUM - GITIGNORE 004
+# Protege secretos, reduce tamaño, limpia repo
+# =============================================
 
-# Python
+# 1. DEPENDENCIES - No subir, pesa 800MB
+node_modules/
+jspm_packages/
+.pnp/
+.pnp.js
+
+# 2. PYTHON - Cache y venvs
 __pycache__/
 *.py[cod]
 *$py.class
@@ -15,55 +17,139 @@ __pycache__/
 .Python
 env/
 venv/
+.venv/
 ENV/
+env.bak/
+venv.bak/
+*.egg-info/
+*.egg
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.pyo
+*.pyd
+
+# 3. SECRETS - CRITICO - Nunca subir
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.production
+*.key
+*.pem
+*.gpg
+*.p12
+*.pfx
+secrets/
+.secrets/
+kronos-secrets.json
+# Pero si permitir ejemplos
+!.env.example
+!.env.template
+
+# 4. GPG - Solo cache, no claves privadas
+.gnupg/
+*.kbx
+*.kbx~
+private-keys-v1.d/
+
+# 5. LOGS
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.log.*
+
+# 6. BUILD / DIST / COVERAGE
 dist/
 build/
-*.egg-info/
+out/
+.next/
+.nuxt/
+.vite/
+.parcel-cache/
+coverage/
+.nyc_output/
+*.tsbuildinfo
 
-# OS / Editor
+# 7. OS FILES
 .DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
 Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# 8. IDE - Config local
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea/
 *.swp
 *.swo
 *~
-.idea/
-.vscode/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-project
+*.sublime-workspace
 
-# Build
-/dist/
-/build/
-/out/
-*.log
-*.tmp
+# 9. DATABASES - Influx y Postgres local
+influxdb/
+postgres-data/
+pgdata/
+data/db/
+*.sqlite
+*.sqlite3
+*.db
+*.dump
+*.sql.gz
 
-# Environment
-.env
-.env.local
-.env.*.local
-tokens.json
-secrets/
-!secrets/.gitkeep
+# 10. TEMP / CACHE
+tmp/
+temp/
+.tmp/
+.cache/
+.turbo/
+.eslintcache
+.prettiercache
+.stylelintcache
 
-# Security
-*.key
-*.pem
-*.crt
-*.priv
-*.secret
+# 11. KRONOS SPECIFIC - Cymatic / Frequency engine
+frequency_cache/
+chladni_cache/
+*.wav
+*.mp3
+!assets/audio/*.mp3
+seal_tmp/
+audit_tmp/
 
-# Coverage
-coverage/
-.nyc_output/
+# 12. VERIFICATION - No subir binarios compilados
+*.exe
+*.dll
+*.so
+*.dylib
 
-# Assets generados
-assets/icons/
-!assets/icons/.gitkeep
-assets/screenshots/
-!assets/screenshots/.gitkeep
-
-# Data temporal
-*.cache
-*.lock
-*.backup
-*.old
-*.orig
+# 13. GITHUB - Mantener limpio
+# Pero NO ignorar .github/
