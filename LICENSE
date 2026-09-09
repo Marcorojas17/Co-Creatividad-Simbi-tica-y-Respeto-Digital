@@ -1,6 +1,23 @@
-KRONOS LICENSE
+KRONOS-28-ITZA PROPRIETARY LICENSE v289
+Copyright (c) 2024 KRONOS-28-ITZA. All rights reserved.
 
-Uso permitido únicamente conforme a las políticas de Co-Creatividad Simbiótica. 
-La licencia completa se encuentra en licenses/KRONOS_LICENSE_SC.sol.
+PERMISSIONS:
+✓ USE - Allowed for internal use, research, and development
+✓ MODIFY - You can modify and adapt for internal projects
+✓ PRIVATE DIST - Share within your organization only
 
-© 2026 KRONOS-28-ITZA-CYMATIC-ELITE. All rights reserved.
+LIMITATIONS:
+✗ NO REDISTRIBUTION - Cannot share publicly or publish externally
+✗ NO SUBLICENSING - License is non-transferable to third parties
+✗ NO WARRANTY - Provided as-is, no liability or guarantee
+✗ NO COMMERCIAL RESALE - Cannot sell as standalone product
+
+This software includes DSP frequency processing (440Hz) and compliance
+sealing mechanisms protected under this license.
+
+For open-source components used within, see THIRD_PARTY_LICENSES.md
+
+COMPLIANCE: This project must pass compliance:seal before distribution.
+
+Contact: legal@kronos-28-itza.dev
+Seal: platinum-04:40
