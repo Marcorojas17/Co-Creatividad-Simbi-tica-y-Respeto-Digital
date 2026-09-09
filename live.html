@@ -8,68 +8,180 @@
   <meta name="theme-color" content="#0a0a0a" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <style>
-    :root { --bg:#0a0a0a; --fg:#e8e8e8; --muted:#888; --accent:#d4af37; --border:#222; }
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{
-      background:var(--bg); color:var(--fg);
-      font-family:ui-monospace,monospace;
-      min-height:100vh; display:grid; place-items:center;
-      padding:24px; text-align:center;
+    :root {
+      --bg: #0a0a0a;
+      --fg: #e8e8e8;
+      --muted: #888;
+      --accent: #d4af37;
+      --border: #222;
     }
-    .card{
-      max-width:480px; width:100%;
-      border:1px solid var(--border); border-radius:16px;
-      background:#111; padding:40px 28px;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    .dot{
-      width:10px; height:10px; background:#f44336; border-radius:50%;
-      display:inline-block; margin-right:8px;
-      animation:pulse 1.5s infinite;
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: ui-monospace, monospace;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      text-align: center;
     }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-    h1{font-size:14px; letter-spacing:0.12em; color:var(--accent); font-weight:400}
-    p{color:var(--muted); font-size:13px; line-height:1.6; margin-top:16px}
-    p strong{color:var(--fg)}
-    .actions{display:flex; gap:10px; justify-content:center; margin-top:28px; flex-wrap:wrap}
-    .btn{
-      border:1px solid var(--border); background:transparent; color:var(--fg);
-      padding:10px 18px; border-radius:999px; font-size:11px; letter-spacing:0.08em;
-      cursor:pointer; font-family:inherit; text-decoration:none;
-      transition: border-color 0.2s, background 0.2s, color 0.2s;
+    .card {
+      max-width: 480px;
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: #111;
+      padding: 40px 28px;
+      transition: border-color 0.3s ease;
     }
-    .btn-primary{border-color:var(--accent); color:var(--accent)}
+    .card:hover {
+      border-color: var(--accent);
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      background: #f44336;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 8px;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    h1 {
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      font-weight: 400;
+    }
+    p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+      margin-top: 16px;
+    }
+    p strong {
+      color: var(--fg);
+    }
+    .actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--fg);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      font-family: inherit;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.1s;
+    }
+    .btn-primary {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
     .btn-primary:hover,
-    .btn-primary:focus { background:var(--accent); color:#000; outline:none; }
-    .btn-primary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    .btn-secondary { border-color:var(--border); color:var(--muted); }
-    .btn-secondary:hover { border-color:var(--fg); color:var(--fg); }
-    .status{margin-top:20px; font-size:11px; color:#555}
-    @media (max-width:480px) {
+    .btn-primary:focus {
+      background: var(--accent);
+      color: #000;
+      outline: none;
+      transform: scale(1.02);
+    }
+    .btn-primary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .btn-secondary {
+      border-color: var(--border);
+      color: var(--muted);
+    }
+    .btn-secondary:hover,
+    .btn-secondary:focus {
+      border-color: var(--fg);
+      color: var(--fg);
+      outline: none;
+    }
+    .btn-secondary:focus-visible {
+      outline: 2px solid var(--fg);
+      outline-offset: 2px;
+    }
+    .status {
+      margin-top: 20px;
+      font-size: 11px;
+      color: #555;
+    }
+    @media (max-width: 480px) {
       .card { padding: 24px 16px; }
     }
   </style>
 </head>
 <body>
   <main class="card" role="main" aria-labelledby="title">
-    <h1 id="title"><span class="dot" aria-hidden="true"></span>KRONOS — LIVE</h1>
+    <h1 id="title">
+      <span class="dot" aria-hidden="true"></span>KRONOS — LIVE
+    </h1>
+
     <p><strong>Señal en vivo</strong> — placeholder v0.3.0</p>
     <p>Este es el canal de transmisión. Cuando el motor cimático esté en directo, aquí entra WebRTC / HLS / Audio.</p>
     <p>Por ahora redirige a la experiencia 3D.</p>
-    
+
     <div class="actions">
-      <a class="btn btn-primary" href="./live3d.html" aria-label="Abrir lienzo cimático en 3D">ABRIR LIVE 3D ◍</a>
-      <a class="btn btn-secondary" href="./index.html" aria-label="Volver al inicio">INICIO</a>
+      <a class="btn btn-primary" href="./live3d.html" aria-label="Abrir lienzo cimático en 3D">
+        ABRIR LIVE 3D ◍
+      </a>
+      <a class="btn btn-secondary" href="./index.html" aria-label="Volver al inicio">
+        INICIO
+      </a>
     </div>
 
-    <div class="status" id="status" aria-live="polite">◍ offline placeholder — v0.3.0</div>
+    <div class="status" id="status" aria-live="polite">
+      ◍ offline placeholder — v0.3.0
+    </div>
   </main>
 
   <script>
     (function() {
+      'use strict';
+
       const statusEl = document.getElementById('status');
       const online = navigator.onLine;
-      statusEl.textContent = `◍ ${online ? 'online' : 'offline'} — ${new Date().toLocaleTimeString('es-MX')} — v0.3.0`;
-      console.log('◍ KRONOS LIVE placeholder');
+      const now = new Date().toLocaleTimeString('es-MX', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      });
+
+      statusEl.textContent = `◍ ${online ? 'online' : 'offline'} — ${now} — v0.3.0`;
+
+      // Actualizar estado cada 5 segundos (por si cambia la conectividad)
+      setInterval(() => {
+        const currentOnline = navigator.onLine;
+        const currentTime = new Date().toLocaleTimeString('es-MX', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        });
+        statusEl.textContent = `◍ ${currentOnline ? 'online' : 'offline'} — ${currentTime} — v0.3.0`;
+      }, 5000);
+
+      console.log('◍ KRONOS LIVE placeholder — v0.3.0');
+      console.log(`📡 Estado de red: ${navigator.onLine ? 'online' : 'offline'}`);
     })();
   </script>
 </body>
