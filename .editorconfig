@@ -8,17 +8,105 @@ trim_trailing_whitespace = true
 indent_style = space
 indent_size = 2
 max_line_length = 100
+quote_type = double
+curly_bracket_next_line = false
+spaces_around_operators = true
+spaces_around_brackets = inside
+ij_continuation_indent_size = 2
 
 [*.py]
 indent_size = 4
+max_line_length = 100
+quote_type = double
+docstring_quotes = double
+trim_trailing_whitespace = false
 
 [*.sh]
 indent_style = space
 indent_size = 2
 end_of_line = lf
+shell_variant = bash
 
 [Makefile]
 indent_style = tab
+indent_size = 4
 
 [*.md]
 trim_trailing_whitespace = false
+max_line_length = off
+insert_final_newline = true
+
+[*.{yml,yaml}]
+indent_size = 2
+indent_style = space
+quote_type = double
+
+[*.{json,jsonc,webmanifest}]
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+quote_type = double
+
+[*.{vert,frag,glsl,wgsl}]
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{html,htm}]
+indent_size = 2
+indent_style = space
+max_line_length = 120
+quote_type = double
+
+[*.{js,ts,jsx,tsx,mjs,cjs}]
+indent_size = 2
+indent_style = space
+max_line_length = 100
+quote_type = double
+end_of_line = lf
+ij_continuation_indent_size = 2
+
+[*.{css,scss,sass,less}]
+indent_size = 2
+indent_style = space
+quote_type = double
+
+[*.toml]
+indent_size = 2
+indent_style = space
+
+[Dockerfile]
+indent_size = 2
+indent_style = space
+
+[*.{png,jpg,jpeg,gif,ico,webp,pdf,zip,gz,tar,wasm,woff,woff2,eot,ttf}]
+charset = unset
+end_of_line = unset
+insert_final_newline = false
+trim_trailing_whitespace = false
+indent_style = unset
+indent_size = unset
+
+[.devcontainer/**]
+indent_size = 2
+indent_style = space
+
+[apps/web/**]
+indent_size = 2
+indent_style = space
+
+[compliance/**]
+indent_size = 2
+indent_style = space
+max_line_length = 120
+
+[design-system/**]
+indent_size = 2
+indent_style = space
+
+[core-dsp/**]
+indent_size = 2
+indent_style = space
