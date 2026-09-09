@@ -1,166 +1,81 @@
 # =============================================
-# KRONOS-28-ITZA 289 PLATINUM - GITIGNORE MÁXIMO
-# 014 de 150 - Protege secretos + reduce tamaño
+# KRONOS-28-ITZA 289 - GITIGNORE PLATINUM
+# 014 de 150 - Seguridad + Limpieza + Performance
 # =============================================
 
-# ----- DEPENDENCIAS (800MB) -----
-node_modules/
-jspm_packages/
-.pnp/
+# ----- DEPS - Miles de archivos -----
+node_modules
+.pnp
 .pnp.js
-.pnp.loader.mjs
+.pnpm-store
 
-# ----- PYTHON - CACHE Y VENVS -----
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
-.venv/
-ENV/
-env.bak/
-venv.bak/
-*.egg-info/
-*.egg
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.coverage
-htmlcov/
-*.pyo
-*.pyd
-*.pyi
+# ----- BUILD OUTPUT - Generado -----
+dist
+build
+out
+.next
+.nuxt
+.turbo
+.cache
+.parcel-cache
 
-# ----- SECRETOS - CRÍTICO -----
+# ----- SECRETS - NUNCA COMMITEAR - CRITICO -----
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.development
 .env.production
 .env.*.local
-*.key
 *.pem
+*.key
 *.gpg
 *.p12
-*.pfx
 secrets/
-.secrets/
-kronos-secrets.json
-# EXCEPCIONES - Permitir estos sellos
-!SBOM.sig
-!theft_log.json.asc
-!SEALO_CALIDAD.json
-
-# ----- GPG - SOLO CACHE -----
-.gnupg/
-*.kbx
-*.kbx~
-private-keys-v1.d/
-
-# ----- LOGS -----
-logs/
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-*.log.*
-
-# ----- BUILD / DIST / COVERAGE -----
-dist/
-build/
-out/
-.next/
-.nuxt/
-.vite/
-.parcel-cache/
-coverage/
-.nyc_output/
-*.tsbuildinfo
-.turbo/
+.vault/
+credentials.json
 
 # ----- OS FILES -----
 .DS_Store
-.AppleDouble
-.LSOverride
-Icon
-._*
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
 Thumbs.db
-ehthumbs.db
 Desktop.ini
-$RECYCLE.BIN/
-*.lnk
+ehthumbs.db
 
-# ----- IDE - CONFIG LOCAL -----
+# ----- IDE -----
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-.idea/
+.idea
 *.swp
 *.swo
 *~
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-project
-*.sublime-workspace
 
-# ----- DATABASES - LOCAL -----
-influxdb/
-postgres-data/
-pgdata/
-data/db/
-*.sqlite
-*.sqlite3
-*.db
-*.dump
-*.sql.gz
+# ----- LOGS -----
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+logs/
+debug.log
 
-# ----- TEMP / CACHE -----
+# ----- COVERAGE + TEST -----
+coverage
+.nyc_output
+junit.xml
+.coverage
+htmlcov
+
+# ----- PYTHON - Tu motor DSP -----
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv
+venv/
+*.egg-info/
+.pytest_cache/
+
+# ----- TURBO + MISC -----
+.turbo
 tmp/
 temp/
-.tmp/
-.cache/
-.turbo/
-.eslintcache
-.prettiercache
-.stylelintcache
-
-# ----- KRONOS SPECIFIC -----
-frequency_cache/
-chladni_cache/
-*.wav
-*.mp3
-!assets/audio/*.mp3
-seal_tmp/
-audit_tmp/
-
-# ----- COMPILADOS -----
-*.exe
-*.dll
-*.so
-*.dylib
-
-# ----- ARCHIVOS GRANDES (LFS) -----
-*.psd
-*.ai
-*.blend
-*.tif
-
-# ----- GITHUB - NO IGNORAR .github/ -----
-# .github/ no se ignora, lo necesitamos para CI/CD
+*.tmp
+*.temp
