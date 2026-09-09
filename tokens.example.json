@@ -1,0 +1,10 @@
+{
+  "influx": {
+    "url": "http://localhost:8086",
+    "org": "kronos",
+    "bucket": "cymatic",
+    "token": "REPLACE_WITH_INFLUX_TOKEN"
+  },
+  "github": { "token": "REPLACE_WITH_GH_PAT" },
+  "pwa": { "vapid_public": "REPLACE", "vapid_private": "REPLACE" }
+}
