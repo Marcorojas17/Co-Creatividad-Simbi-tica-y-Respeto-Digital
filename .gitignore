@@ -1,0 +1,7 @@
+node_modules/
+.env
+*.log
+coverage/
+dist/
+secrets/audit_ed25519.key
+.DS_Store
