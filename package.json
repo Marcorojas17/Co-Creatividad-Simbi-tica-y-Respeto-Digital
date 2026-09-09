@@ -1,0 +1,66 @@
+{
+  "name": "kronos-28-itza-root",
+  "version": "0.1.0",
+  "private": true,
+  "description": "KRONOS-28-ITZA 289 PLATINUM 04:40 - Co-Creatividad Simbiotica y Respeto Digital",
+  "type": "module",
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": "20.11.0",
+    "pnpm": ">=9.0.0",
+    "npm": "please-use-pnpm",
+    "yarn": "please-use-pnpm"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "core-dsp",
+    "design-system"
+  ],
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "test:coverage": "turbo run test:coverage",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx --max-warnings=0",
+    "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "type-check": "turbo run type-check",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "compliance": "npm-run-all --parallel compliance:*",
+    "compliance:sec": "node compliance/security-scan.mjs",
+    "compliance:licenses": "license-checker --summary --production --onlyAllow 'MIT;Apache-2.0;ISC;BSD-3-Clause;BSD-2-Clause'",
+    "compliance:seal": "node compliance/seal.mjs",
+    "seal": "pnpm run compliance:sec && pnpm run compliance:licenses && pnpm run test",
+    "frequency": "node core-dsp/frequency-audit.mjs --dry-run",
+    "frequency:real": "node core-dsp/frequency-audit.mjs",
+    "prepare": "husky install",
+    "preinstall": "node compliance/preinstall-check.mjs"
+  },
+  "dependencies": {
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-security": "^2.1.1",
+    "husky": "^9.0.6",
+    "license-checker": "^25.0.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.2.4",
+    "turbo": "^2.0.4",
+    "typescript": "^5.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Co-Creatividad-Simbiotica/KRONOS-28-ITZA"
+  },
+  "author": "KRONOS-28-ITZA 289 PLATINUM",
+  "license": "UNLICENSED",
+  "keywords": ["kronos", "cymatic", "440hz", "platinum", "co-creatividad"]
+}
