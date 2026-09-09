@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KRONOS-28-ITZA ◍ 04:40</title>
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <style>
+    :root{ --bg:#07111f; --gold:#d6a84f; --gold2:#ffd479; }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:var(--bg);font-family:system-ui;overflow:hidden;color:white}
+    #gold-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+    #app{position:relative;z-index:10;display:grid;place-items:center;min-height:100vh;padding:20px}
+    .card.glass{
+      background:rgba(7,17,31,.72); backdrop-filter:blur(18px) saturate(1.4);
+      border:1px solid rgba(214,168,79,.35); border-radius:24px;
+      padding:32px; max-width:480px; width:100%;
+      box-shadow:0 0 40px rgba(214,168,79,.15), inset 0 1px 0 rgba(255,255,255,.1);
+    }
+    .kicker{font-size:10px;letter-spacing:.3em;color:var(--gold);margin-bottom:12px}
+    .title{font-size:32px;font-weight:900;letter-spacing:-.02em}
+    .title .gold{color:var(--gold); text-shadow:0 0 18px var(--gold)}
+    .copy{margin:14px 0 22px; opacity:.8; line-height:1.5; font-size:14px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{padding:12px 18px;border-radius:999px;border:1px solid rgba(214,168,79,.4);color:white;text-decoration:none;font-weight:700;font-size:13px;background:rgba(255,255,255,.06)}
+    .btn-primary{background:linear-gradient(180deg,var(--gold2),var(--gold));color:#000;box-shadow:0 0 20px rgba(214,168,79,.6);border:none}
+    .footer{margin-top:20px;display:flex;justify-content:space-between;font-size:11px;opacity:.7}
+    .dot{display:inline-block;width:8px;height:8px;background:#00ff88;border-radius:50%;box-shadow:0 0 8px #00ff88;animation:pulse 1.5s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  </style>
+</head>
+<body>
+  <canvas id="gold-canvas"></canvas>
+  <div id="app">
+    <div class="card glass">
+      <div class="kicker">◍ CO-CREATIVIDAD SIMBIÓTICA</div>
+      <div class="title">KRONOS-28-ITZA <span class="gold">04:40</span></div>
+      <div class="copy">Respeto Digital. La autoridad tranquila.<br>El lienzo late al ritmo de la señal 440Hz.</div>
+      <div class="actions">
+        <a class="btn btn-primary" href="/live3d.html">ENTRAR ◍ LIVE 3D</a>
+        <a class="btn" href="/live.html">LIVE</a>
+      </div>
+      <div class="footer">
+        <span id="status"><span class="dot"></span> ONLINE • NODO: ITZA-03 • 440Hz</span>
+        <span id="chain-status">⚡ v20.11.0</span>
+      </div>
+    </div>
+  </div>
+<script>
+// Canvas dorado 04:40
+const c=document.getElementById('gold-canvas'), x=c.getContext('2d');
+let W,H,t=0; function R(){W=innerWidth;H=innerHeight;c.width=W*devicePixelRatio;c.height=H*devicePixelRatio;c.style.width=W+'px';c.style.height=H+'px';x.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)} addEventListener('resize',R);R();
+(function D(){requestAnimationFrame(D); t+=0.008; x.clearRect(0,0,W,H); x.strokeStyle='rgba(214,168,79,0.07)'; for(let i=0;i<W;i+=50){x.beginPath();x.moveTo(i,0);x.lineTo(i,H);x.stroke()} for(let j=0;j<3;j++){x.beginPath();x.strokeStyle=`rgba(214,168,79,${0.8-j*0.2})`;x.lineWidth=2-j*0.4; x.shadowColor='#d6a84f'; x.shadowBlur=j==0?16:0; for(let k=0;k<W;k+=3){let y=H/2+Math.sin(k*0.01+j+t*1.2)* (90-j*20)*Math.sin(t*0.5); if(k==0) x.moveTo(k,y); else x.lineTo(k,y)} x.stroke(); x.shadowBlur=0 }})();
+</script>
+</body>
+</html>
