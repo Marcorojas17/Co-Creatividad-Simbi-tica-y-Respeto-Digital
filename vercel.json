@@ -1,1 +1,15 @@
-{"headers":[{"source":"/(.*)","headers":[{"key":"X-KRONOS-SEAL","value":"2607086319439-2036-GPG"}]}]}
+{
+  "buildCommand": "pnpm --filter web build",
+  "outputDirectory": "dist",
+  "framework": null,
+  "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-KRONOS-SEAL", "value": "2607086319439-2036-GPG" },
+        { "key": "X-KRONOS-NOM-151", "value": "VIGENTE-2036" }
+      ]
+    }
+  ]
+}

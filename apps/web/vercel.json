@@ -4,12 +4,8 @@
       "source": "/(.*)",
       "headers": [
         { "key": "X-KRONOS-SEAL", "value": "2607086319439-2036-GPG" },
-        { "key": "X-KRONOS-NOM-151", "value": "VIGENTE-2036" },
-        { "key": "X-KRONOS-LEGACY", "value": "0-PLATINUM-193c283" }
+        { "key": "X-KRONOS-NOM-151", "value": "VIGENTE-2036" }
       ]
     }
-  ],
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index.ts" }
   ]
 }
