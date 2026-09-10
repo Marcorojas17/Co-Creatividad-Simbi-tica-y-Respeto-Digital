@@ -1,4 +1,167 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LIVE 3D • CYMATIC</title><script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script><style>body{margin:0;background:#080808;overflow:hidden;font-family:Inter} .top{position:fixed;top:10px;left:10px;right:10px;height:44px;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,0.6);border:1px solid rgba(212,175,55,0.3);border-radius:12px;padding:0 16px;backdrop-filter:blur(10px);z-index:10} .panel{position:fixed;left:16px;top:70px;width:280px;background:rgba(0,0,0,0.7);border:1px solid rgba(212,175,55,0.2);border-radius:12px;padding:16px;color:#D4AF37;z-index:10} input{width:100%;accent-color:#D4AF37} .val{float:right;color:#fff}</style></head><body>
-<div class="top"><div><b style="color:#D4AF37">● LIVE 3D</b> <span style="color:#666;font-size:11px">CYMATIC DISPLACEMENT • WEBGL</span></div><div><a href="./index.html" style="color:#D4AF37;text-decoration:none;font-size:12px">← INDEX</a></div></div>
-<div class="panel"><div style="font-size:11px;letter-spacing:2px;margin-bottom:12px">CYMATIC CONTROLS</div>FREQUENCY <span class="val" id="vF">42.3 Hz</span><input id="f" type="range" min="10" max="440" value="42.3" step="0.1"><br><br>AMPLITUDE <span class="val" id="vA">0.78</span><input id="a" type="range" min="0" max="2" step="0.01" value="0.78"><br><br>COMPLEXITY <span class="val" id="vC">6</span><input id="c" type="range" min="1" max="10" value="6"><br><br>FPS: <span id="fps" style="color:#7CFC8A">60</span></div>
-<script type="module">import * as THREE from 'three'; const scene=new THREE.Scene(); const cam=new THREE.PerspectiveCamera(45,innerWidth/innerHeight,0.1,100); cam.position.set(0,2,3); const ren=new THREE.WebGLRenderer({antialias:true}); ren.setSize(innerWidth,innerHeight); document.body.appendChild(ren.domElement); const geo=new THREE.PlaneGeometry(4,4,128,128); const mat=new THREE.MeshStandardMaterial({color:0xD4AF37,wireframe:true}); const mesh=new THREE.Mesh(geo,mat); mesh.rotation.x=-Math.PI/2.5; scene.add(mesh); scene.add(new THREE.DirectionalLight(0xD4AF37,1)); scene.add(new THREE.AmbientLight(0x555555)); let freq=42.3, amp=0.78, comp=6; function anim(t){requestAnimationFrame(anim); const p=geo.attributes.position; for(let i=0;i<p.count;i++){const x=p.getX(i), y=p.getY(i); let z=0; for(let k=1;k<=comp;k++) z+=Math.sin(x*k*0.5+t*0.0005*freq)*Math.cos(y*k*0.5+t*0.0005*freq)*amp/k; p.setZ(i,z);} p.needsUpdate=true; geo.computeVertexNormals(); ren.render(scene,cam);} anim(0); document.getElementById('f').oninput=e=>{freq=parseFloat(e.target.value); document.getElementById('vF').textContent=freq+' Hz'}; document.getElementById('a').oninput=e=>{amp=parseFloat(e.target.value); document.getElementById('vA').textContent=amp}; document.getElementById('c').oninput=e=>{comp=parseInt(e.target.value); document.getElementById('vC').textContent=comp}; addEventListener('resize',()=>{ren.setSize(innerWidth,innerHeight); cam.aspect=innerWidth/innerHeight; cam.updateProjectionMatrix()});</script></body></html>
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FLOWER OF KIFOS • Legacy 2099</title>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
+<style>
+body{margin:0;background:#020205;overflow:hidden;font-family:'Inter',sans-serif}
+.top{position:fixed;top:0;left:0;right:0;height:48px;display:flex;justify-content:space-between;align-items:center;padding:0 20px;background:linear-gradient(180deg,rgba(0,0,0,0.8),transparent);z-index:10}
+.badge{color:#D4AF37;border:1px solid rgba(212,175,55,0.3);padding:4px 12px;border-radius:20px;font-size:10px;letter-spacing:2px}
+.hud{position:fixed;left:20px;bottom:20px;color:#D4AF37;font-size:10px;letter-spacing:1px;z-index:10;line-height:1.8}
+.hud span{color:#666}
+.legacy{position:fixed;right:24px;top:50%;transform:translateY(-50%);color:#D4AF37;font-size:11px;letter-spacing:2px;writing-mode:vertical-rl;z-index:10;opacity:0.8}
+#canvas{width:100vw;height:100vh;display:block}
+</style>
+</head><body>
+<div class="top">
+<div style="color:#D4AF37;font-weight:700;letter-spacing:3px">Co-Creatividad Simbiótica</div>
+<div class="badge">● LIVE 3D • FLOWER OF KIFOS</div>
+<div style="display:flex;gap:12px"><a href="./index.html" style="color:#888;text-decoration:none;font-size:11px">INDEX</a><a href="./history.html" style="color:#888;text-decoration:none;font-size:11px">HISTORY</a></div>
+</div>
+<div class="legacy">Flower of Kifos<br>Legacy 2099</div>
+<div class="hud">
+<span>FREQUENCY</span> 42.3 Hz • RESONANCE<br>
+<span>GEOMETRY</span> STELLATED ICOSAHEDRON<br>
+<span>SHADER</span> IRIDESCENT GLASS • PLATINUM<br>
+<span>FPS</span> <b id="fps" style="color:#7CFC8A">60</b>
+</div>
+<canvas id="canvas"></canvas>
+<script type="module">
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.Fog(0x020205, 8, 20);
+const camera = new THREE.PerspectiveCamera(35, innerWidth/innerHeight, 0.1, 100);
+camera.position.set(0,1.2,4.5);
+const renderer = new THREE.WebGLRenderer({canvas:document.getElementById('canvas'), antialias:true, alpha:true});
+renderer.setSize(innerWidth, innerHeight);
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.2;
+
+// POST-PROCESSING BLOOM
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight), 0.9, 0.4, 0.15));
+
+// 1. MERKABA - Stellated Dodecahedron iridescent
+const geo = new THREE.IcosahedronGeometry(1, 0);
+const stellatedGeo = new THREE.BufferGeometry();
+const positions = geo.attributes.position.array;
+// Extrude each face to create stellation effect - using small stellated dodecahedron approx
+const stellGeo = new THREE.DodecahedronGeometry(1.2,0);
+const mat = new THREE.MeshPhysicalMaterial({
+  color: 0xffffff,
+  metalness: 0.1,
+  roughness: 0.05,
+  transmission: 0.95,
+  thickness: 0.5,
+  ior: 1.8,
+  iridescence: 1,
+  iridescenceIOR: 1.8,
+  iridescenceThicknessRange: [100, 400],
+  clearcoat: 1,
+  clearcoatRoughness: 0.1,
+  envMapIntensity: 1.5
+});
+const merkaba = new THREE.Mesh(stellGeo, mat);
+scene.add(merkaba);
+
+// Inner core glow
+const coreGeo = new THREE.IcosahedronGeometry(0.45, 2);
+const coreMat = new THREE.MeshBasicMaterial({color: 0x66ccff, transparent:true, opacity:0.15});
+const core = new THREE.Mesh(coreGeo, coreMat);
+scene.add(core);
+
+// 2. FLOWER OF LIFE - Blue neon behind
+function createFlowerOfLife(){
+  const group = new THREE.Group();
+  const circleMat = new THREE.MeshBasicMaterial({color: 0x00aaff, transparent:true, opacity:0.35, side:THREE.DoubleSide});
+  const ringMat = new THREE.LineBasicMaterial({color: 0x00aaff, transparent:true, opacity:0.6});
+  const radius = 1.8;
+  // Create 7 circles pattern + outer
+  const positions = [[0,0],[radius,0],[-radius,0],[radius*0.5,radius*0.866],[-radius*0.5,radius*0.866],[radius*0.5,-radius*0.866],[-radius*0.5,-radius*0.866]];
+  positions.forEach(p=>{
+    const g = new THREE.RingGeometry(radius-0.02, radius, 64);
+    const m = new THREE.Mesh(g, circleMat.clone());
+    m.position.set(p[0], p[1], -2.5);
+    m.material.opacity = 0.18;
+    group.add(m);
+    const line = new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(new THREE.Path().absarc(0,0,radius,0,Math.PI*2).getPoints(64)), ringMat.clone());
+    line.position.set(p[0], p[1], -2.49);
+    group.add(line);
+  });
+  // Outer big circles for the effect in video
+  for(let i=0;i<3;i++){
+    const g = new THREE.RingGeometry(2.2+i*0.6, 2.22+i*0.6, 128);
+    const m = new THREE.Mesh(g, new THREE.MeshBasicMaterial({color:0x00aaff, transparent:true, opacity:0.25 - i*0.07, side:THREE.DoubleSide}));
+    m.position.z = -2.6 - i*0.1;
+    group.add(m);
+  }
+  return group;
+}
+const flower = createFlowerOfLife();
+scene.add(flower);
+
+// 3. GOLDEN CIRCLE FLOOR
+function createFloor(){
+  const group = new THREE.Group();
+  const goldMat = new THREE.MeshBasicMaterial({color:0xD4AF37, transparent:true, opacity:0.3});
+  const lineMat = new THREE.LineBasicMaterial({color:0xD4AF37, transparent:true, opacity:0.5});
+  for(let r=0.8;r<3.5;r+=0.4){
+    const ring = new THREE.RingGeometry(r, r+0.01, 128);
+    const mesh = new THREE.Mesh(ring, goldMat.clone());
+    mesh.rotation.x = -Math.PI/2;
+    mesh.position.y = -1.8;
+    mesh.material.opacity = Math.max(0, 0.5 - (r-0.8)*0.12);
+    group.add(mesh);
+  }
+  // Runes
+  const canvas = document.createElement('canvas'); canvas.width=1024; canvas.height=1024;
+  const ctx = canvas.getContext('2d'); ctx.strokeStyle='#D4AF37'; ctx.lineWidth=1; ctx.globalAlpha=0.3;
+  ctx.beginPath(); ctx.arc(512,512,300,0,Math.PI*2); ctx.stroke();
+  const tex = new THREE.CanvasTexture(canvas);
+  const runeMat = new THREE.MeshBasicMaterial({map:tex, transparent:true, opacity:0.25});
+  const runePlane = new THREE.Mesh(new THREE.PlaneGeometry(6,6), runeMat);
+  runePlane.rotation.x = -Math.PI/2; runePlane.position.y = -1.79;
+  group.add(runePlane);
+  return group;
+}
+const floor = createFloor();
+scene.add(floor);
+
+// Reflection plane
+const reflectGeo = new THREE.PlaneGeometry(8,8);
+const reflectMat = new THREE.MeshBasicMaterial({color:0x111122, transparent:true, opacity:0.4});
+const reflect = new THREE.Mesh(reflectGeo, reflectMat);
+reflect.rotation.x = -Math.PI/2;
+reflect.position.y = -1.85;
+scene.add(reflect);
+
+// Lights
+const light1 = new THREE.PointLight(0x00aaff, 3, 10); light1.position.set(0,0,-1); scene.add(light1);
+const light2 = new THREE.PointLight(0xD4AF37, 2, 10); light2.position.set(2,2,2); scene.add(light2);
+const light3 = new THREE.PointLight(0xffffff, 1, 10); light3.position.set(-2,1,2); scene.add(light3);
+scene.add(new THREE.AmbientLight(0x222233, 0.8));
+
+let t=0;
+function animate(){
+  requestAnimationFrame(animate);
+  t+=0.008;
+  merkaba.rotation.y = t*0.5;
+  merkaba.rotation.x = Math.sin(t*0.3)*0.15;
+  merkaba.rotation.z = t*0.1;
+  core.rotation.y = -t*0.8;
+  core.scale.setScalar(1 + Math.sin(t*2)*0.05);
+  flower.rotation.z = t*0.05;
+  floor.rotation.y = t*0.02;
+  // pulsate bloom
+  light1.intensity = 2.5 + Math.sin(t*3)*0.5;
+  composer.render();
+}
+animate();
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth,innerHeight); composer.setSize(innerWidth,innerHeight);});
+</script>
+</body></html>
