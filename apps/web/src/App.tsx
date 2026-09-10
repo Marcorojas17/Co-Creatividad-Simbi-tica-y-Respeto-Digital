@@ -1,24 +1,22 @@
-export default function App() {
-  return (
-    <div style={{fontFamily:'serif', background:'#0a0a0a', color:'#f5f5dc', minHeight:'100vh', padding:'40px', textAlign:'center'}}>
-      <h1 style={{fontSize:'48px', letterSpacing:'4px'}}>KRONOS 2099</h1>
-      <h2>Co-Creatividad Simbiótica y Respeto Digital</h2>
-      <p style={{maxWidth:'600px', margin:'30px auto', lineHeight:'1.6', opacity:0.8}}>
-        No es una app. Es un espejo de tu esencia. Elige Fuego, Agua, Aire o Tierra 
-        y co-crea con una IA que te respeta. Sin manipulación. Sin adicción. Solo verdad.
-      </p>
-      
-      <div style={{display:'flex', gap:'15px', justifyContent:'center', margin:'40px 0'}}>
-        {['FUEGO','AGUA','AIRE','TIERRA'].map(e=>(
-          <button key={e} style={{padding:'15px 30px', borderRadius:'30px', border:'none', fontWeight:'bold', background: e==='FUEGO'?'#ff6a00':e==='AGUA'?'#00c6ff':e==='AIRE'?'#a770ef':'#d4a017', cursor:'pointer'}}>{e}</button>
-        ))}
-      </div>
-
-      <a href="https://mpago.la/1hJx7jX" target="_blank" style={{display:'inline-block', background:'#fff', color:'#000', padding:'18px 50px', borderRadius:'40px', fontWeight:'bold', textDecoration:'none', fontSize:'20px', marginTop:'20px'}}>
-        DESBLOQUEAR ACCESO COMPLETO - $299 MXN
-      </a>
-      
-      <p style={{marginTop:'20px', fontSize:'12px', opacity:0.5}}>Acceso inmediato • Pago seguro con Mercado Pago • Por Marcorojas17</p>
+export default function App(){
+ const clabe = "002438701524066473";
+ return(
+  <div style={{background:'#040a14', color:'#D4AF37', minHeight:'100vh', padding:'24px', fontFamily:'serif'}}>
+    <h1>KRONOS 28 ITZA - 289 PLATINUM</h1>
+    <p>Tu familia no muere, se mintéa. Roca madre + ADN dorado + SHA-256 REAL.</p>
+    <h2 style={{marginTop:'30px'}}>ELIGE TU ESENCIA</h2>
+    <div style={{display:'flex', gap:'10px', flexWrap:'wrap'}}>
+      {['FUEGO','AGUA','AIRE','TIERRA'].map(e=> <button key={e} style={{padding:'12px 24px', borderRadius:'24px', border:'1px solid #D4AF37', background:'#111', color:'#D4AF37', fontWeight:'bold'}}>{e}</button>)}
     </div>
-  )
+
+    <div style={{marginTop:'40px', border:'1px solid #D4AF37', padding:'20px', borderRadius:'12px'}}>
+      <h3>Resguardar Legado $150K - BANAMEX</h3>
+      <p>CLABE: <b>{clabe}</b></p>
+      <p>SafeCreative: 2607086319439 | 432Hz 528Hz 963Hz</p>
+      <a href="https://mpago.la/1hJx7jX" target="_blank" style={{display:'block', background:'#D4AF37', color:'#000', padding:'16px', textAlign:'center', borderRadius:'8px', fontWeight:'bold', textDecoration:'none', marginTop:'12px'}}>PAGAR CON MERCADO PAGO $299</a>
+      <a href="https://wa.me/527225862335?text=Hola%20Marco%20quiero%20pagar%20mi%20legado%20KRONOS%20289" target="_blank" style={{display:'block', background:'#25D366', color:'#fff', padding:'16px', textAlign:'center', borderRadius:'8px', fontWeight:'bold', textDecoration:'none', marginTop:'12px'}}>WHATSAPP 7225862335</a>
+    </div>
+    <p style={{fontSize:'10px', opacity:0.6, marginTop:'30px'}}>SHA-256: 41a3683b | IPFS 100 años | Kronos 3 Hash</p>
+  </div>
+ )
 }
