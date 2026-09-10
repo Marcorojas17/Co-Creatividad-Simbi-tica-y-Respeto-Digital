@@ -2,9 +2,12 @@ import { useEffect, useState } from 'react'
 import { verifyOrigin, KRONOS_SEAL } from './kronos-guard'
 import { a11yInit } from './a11y'
 import { checkout } from './checkout'
+import Success from './Success'
 export default function App(){
   const [playing,setPlaying]=useState(false)
+  const isSuccess = window.location.pathname.includes('success') || window.location.search.includes('seal');
   useEffect(()=>{ verifyOrigin(); a11yInit(); },[])
+  if(isSuccess) return <Success />;
   const play440=()=>{
     try{
       const ctx=new (window.AudioContext||(window as any).webkitAudioContext)();
@@ -23,9 +26,9 @@ export default function App(){
   ]
   return(
     <div style={{minHeight:'100vh', background:'radial-gradient(1200px 600px at 50% -10%, #1a1500 0%, #000 70%)', color:'#fde68a', fontFamily:'Inter, system-ui'}}>
-      <header style={{display:'flex', justifyContent:'space-between', padding:'1rem 2rem', borderBottom:'1px solid rgba(253,230,138,0.12)', background:'rgba(0,0,0,0.6)', backdropFilter:'blur(20px)'}}>
+      <header style={{display:'flex', justifyContent:'space-between', padding:'1rem 2rem', borderBottom:'1px solid rgba(253,230,138,0.12)', background:'rgba(0,0,0,0.6)'}}>
         <b style={{letterSpacing:'0.3em', fontSize:'0.8rem'}}>⬢ KRONOS 2099</b>
-        <span style={{fontSize:'0.6rem', opacity:0.6}}>{KRONOS_SEAL} • LEGACY 0 • 10 AÑOS ADELANTO</span>
+        <span style={{fontSize:'0.6rem', opacity:0.6}}>{KRONOS_SEAL} • LEGACY 0</span>
       </header>
       <main style={{maxWidth:'1200px', margin:'0 auto', padding:'2.5rem 2rem'}}>
         <h1 style={{fontSize:'clamp(2.5rem,5vw,4rem)', fontWeight:900, lineHeight:0.9, margin:0}}>EL SSL DE LA VOZ HUMANA</h1>
@@ -34,20 +37,19 @@ export default function App(){
           <button onClick={()=>window.open('/api/docs','_blank')} style={{background:'transparent', border:'1px solid #fde68a', color:'#fde68a', padding:'0.8rem 1.4rem', borderRadius:'999px', cursor:'pointer'}}>API / DOCS</button>
         </div>
         <div style={{marginTop:'2.5rem'}}>
-          <div style={{fontSize:'0.7rem', letterSpacing:'0.2em', opacity:0.6, marginBottom:'1rem', textAlign:'center'}}>PRICING • SELECT YOUR TIER • VIRAL DEMAND</div>
+          <div style={{fontSize:'0.7rem', letterSpacing:'0.2em', opacity:0.6, marginBottom:'1rem', textAlign:'center'}}>PRICING VIRAL • 10 AÑOS ADELANTO</div>
           <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(180px,1fr))', gap:'1rem'}}>
             {tiers.map(t=>(
               <div key={t.id} onClick={()=>checkout(t.id)} style={{background: t.hot?'linear-gradient(135deg, rgba(253,230,138,0.2), rgba(0,0,0,0.8))':'rgba(255,255,255,0.04)', border: t.hot?'1px solid #fde68a':'1px solid rgba(255,255,255,0.08)', borderRadius:'16px', padding:'1.4rem', cursor:'pointer', position:'relative'}}>
                 {t.hot && <div style={{position:'absolute', top:'-8px', right:'10px', background:'#fde68a', color:'#000', fontSize:'0.6rem', fontWeight:800, padding:'0.2rem 0.5rem', borderRadius:'999px'}}>MÁS POPULAR</div>}
-                <div style={{fontSize:'2.2rem', fontWeight:900, color:'#fde68a'}}>{t.price}</div>
-                <div style={{fontWeight:800, fontSize:'0.85rem', marginTop:'0.2rem'}}>{t.name}</div>
-                <div style={{fontSize:'0.7rem', opacity:0.6, marginTop:'0.3rem'}}>{t.desc}</div>
-                <button style={{marginTop:'1rem', width:'100%', background:'#fff', color:'#000', border:'none', padding:'0.6rem', borderRadius:'8px', fontWeight:800, cursor:'pointer'}}>COMPRAR</button>
+                <div style={{fontSize:'2.2rem', fontWeight:900}}>{t.price}</div>
+                <div style={{fontWeight:800, fontSize:'0.85rem'}}>{t.name}</div>
+                <div style={{fontSize:'0.7rem', opacity:0.6}}>{t.desc}</div>
+                <button style={{marginTop:'1rem', width:'100%', background:'#fff', color:'#000', border:'none', padding:'0.6rem', borderRadius:'8px', fontWeight:800}}>COMPRAR</button>
               </div>
             ))}
           </div>
         </div>
-        <div style={{marginTop:'2rem', fontSize:'0.7rem', opacity:0.5, textAlign:'center'}}>NOM-024 ✓ NOM-151 ✓ ISO27001 ✓ • Sello 2607086319439 • Vigencia 2036 • 440Hz Cymatic • GPG • E2E</div>
       </main>
     </div>
   )
