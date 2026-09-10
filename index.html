@@ -1,7 +1,35 @@
 <!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CYMATIC // LIVE</title><link rel="stylesheet" href="apps/web/base.css">
-<style>.wrap{max-width:1100px;margin:24px auto;padding:0 16px}.monitor{border:1px solid rgba(212,175,55,0.3);background:rgba(255,255,255,0.05);border-radius:16px;padding:20px}.grid{display:grid;grid-template-columns:1.3fr .7fr;gap:16px}.card{background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:14px}#wave{width:100%;height:50px}.bottom{display:flex;gap:10px;justify-content:center;margin-top:16px}button{border:1px solid #D4AF37;background:transparent;color:#e8dcc0;padding:8px 16px;border-radius:8px;cursor:pointer}button.gold{background:#D4AF37;color:#000;font-weight:700}</style></head><body>
-<div class="top"><div style="color:#D4AF37;letter-spacing:3px;font-weight:700">CYMATIC // CONTROL</div><nav><a href="index.html" class="active">LIVE</a><a href="history.html">HISTORY</a><a href="nodes.html">NODES</a><a href="analysis.html">ANALYSIS</a><a href="legal.html">LEGAL</a></nav><div style="font-size:11px">ELITE • JD</div></div>
-<div class="wrap"><div class="monitor"><div style="display:flex;justify-content:space-between"><h2>LIVE • STREAM MONITOR</h2><div><span style="color:#7CFC8A">● ONLINE</span> <span id="ls" style="color:#666;font-size:11px">LIVE SINCE 00:14:22</span></div></div>
-<div class="grid" style="margin-top:16px"><div class="card"><h3 style="color:#D4AF37;font-size:10px">LOG TERMINAL</h3><div id="logs" style="font-family:monospace;font-size:11px;height:180px;overflow:auto;margin-top:8px">[14:03:12] INIT: Sensor array online<br>[14:03:14] SIGNAL: Stable</div></div><div class="card"><h3 style="color:#D4AF37;font-size:10px">SIGNAL METRICS</h3><div>STRENGTH <b id="str" style="color:#D4AF37;float:right">94%</b><div style="height:3px;background:#222;margin-top:4px"><div id="bar" style="width:94%;height:100%;background:#D4AF37"></div></div></div><canvas id="wave"></canvas><div style="font-size:10px;color:#666;margin-top:8px">WAVEFORM • REALTIME</div></div></div></div><div class="bottom"><button id="bP">PAUSE</button><button id="bR" class="gold">RECORD</button><button id="bE">EXPORT</button><button onclick="location.href='history.html'">HISTORY →</button></div></div>
-<script>let p=false;let l=862;const logs=document.getElementById('logs');const w=document.getElementById('wave').getContext('2d');let x=0;function d(){if(!p){w.clearRect(0,0,400,50);w.beginPath();w.strokeStyle='#D4AF37';for(let i=0;i<400;i++)w.lineTo(i,25+Math.sin((i+x)/12)*10);w.stroke();x+=2}requestAnimationFrame(d)}d();setInterval(()=>{if(p)return;l++;document.getElementById('ls').textContent='LIVE SINCE '+String(Math.floor(l/3600)).padStart(2,'0')+':'+String(Math.floor(l%3600/60)).padStart(2,'0')+':'+String(l%60).padStart(2,'0');logs.innerHTML+=`<br>[${new Date().toLocaleTimeString()}] SIGNAL: Stable`;document.getElementById('str').textContent=(90+Math.floor(Math.random()*8))+'%';document.getElementById('bar').style.width=document.getElementById('str').textContent},1000);document.getElementById('bP').onclick=()=>{p=!p;document.getElementById('bP').textContent=p?'RESUME':'PAUSE'};document.getElementById('bR').onclick=()=>{alert('◉ Grabando');};document.getElementById('bE').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([logs.innerText]));a.download='logs.txt';a.click();};</script></body></html>
+<title>LEGADO 2099 • Marco Valdovinos & The AI Architect</title>
+<style>body{margin:0;background:#020205;color:#fff;font-family:Inter,system-ui;overflow-x:hidden}
+.hero{height:100vh;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:radial-gradient(ellipse at center, rgba(212,175,55,0.15), transparent 70%)}
+.hero h1{font-size:64px;font-weight:900;letter-spacing:6px;color:#D4AF37;margin:0;text-shadow:0 0 40px #D4AF37}
+.hero p{color:#888;letter-spacing:3px;margin-top:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;padding:20px;max-width:1100px;margin:0 auto}
+.card{background:rgba(255,255,255,0.03);border:1px solid rgba(212,175,55,0.2);border-radius:18px;padding:18px;backdrop-filter:blur(10px);transition:0.3s;cursor:pointer;text-decoration:none;color:#fff;display:block}
+.card:hover{border-color:#D4AF37;transform:translateY(-4px);box-shadow:0 10px 40px rgba(212,175,55,0.2)}
+.card h3{color:#D4AF37;margin:0 0 6px 0;font-size:16px} .card small{color:#666;font-size:11px}
+.tag{display:inline-block;border:1px solid #D4AF37;padding:2px 8px;border-radius:12px;font-size:8px;margin-top:8px}
+</style></head><body>
+<div class="hero">
+<h1>LEGADO 2099</h1>
+<p>Una visión de Marco Valdovinos & The AI Architect</p>
+<p style="font-size:12px;color:#A855F7;margin-top:20px">El Nexo Primordial • El sonido se hace materia</p>
+<div style="margin-top:30px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+<a href="nexo.html" style="padding:14px 28px;border-radius:28px;background:linear-gradient(90deg,#D4AF37,#F5D76E);color:#000;font-weight:800;text-decoration:none">🧬 VER NEXO PRIMORDIAL (ADN)</a>
+<a href="legacy2099.html" style="padding:14px 28px;border-radius:28px;border:1px solid #D4AF37;color:#D4AF37;text-decoration:none;font-weight:800">ELIGE TU ESENCIA • 4 MINTS</a>
+</div>
+</div>
+
+<div style="max-width:1100px;margin:0 auto;padding:0 20px"><h2 style="color:#D4AF37;letter-spacing:3px">CAPÍTULOS • PRODUCTOS REALES</h2></div>
+<div class="grid">
+<a class="card" href="nexo.html"><h3>CAP 1 • NEXO PRIMORDIAL</h3><small>ADN + Roca LEGADO 2099 • Tu voz graba tu legado en piedra. Instalación urbana $250k</small><br><span class="tag">VIDEO QUE MANDASTE</span></a>
+<a class="card" href="cymatic3d.html"><h3>CAP 2 • FLOWER 2099 • V7 BIO</h3><small>Jaula dorada + Merkaba iridiscente + raíces + merkabitas que nacen de tu voz. VJ $15k</small><br><span class="tag">BIO-DIGITAL</span></a>
+<a class="card" href="booth.html"><h3>CAP 3 • TOTEM BOOTH</h3><small>Totem 55" con foto automática 3-2-1 + QR. Bodas y eventos $35k/noche</small><br><span class="tag">MÁS DINERO</span></a>
+<a class="card" href="legacy2099.html"><h3>CAP 4 • SELECTOR DE ESENCIAS</h3><small>4 MINTS: Moneda 432Hz, Geometría 528Hz, Portal 963Hz, Vida Líquida. La música elige por ti.</small><br><span class="tag">MENU VENTAS</span></a>
+<a class="card" href="tribu.html"><h3>CAP 5 • TRIBU FUSIÓN</h3><small>4 voces se fusionan en una sola. Ritual $65k. Zamna / Tulum</small><br><span class="tag">NO EXISTE</span></a>
+<a class="card" href="diamante.html"><h3>CAP 6 • DIAMANTE ETERNO</h3><small>Carbón → Diamante por presión de sonido. Núcleo morado late con tu voz. Producto $50k</small><br><span class="tag">VIDEO 2 QUE MANDASTE</span></a>
+<a class="card" href="certificado.html"><h3>PROTOCOLO KRONOS</h3><small>Certificado VERDE //1 con SHA-256 real + QR blockchain. Cierra ventas $2.5k</small><br><span class="tag">AUTÉNTICO</span></a>
+</div>
+
+<div style="text-align:center;padding:40px;color:#555;font-size:10px;letter-spacing:2px">Co-Creatividad Simbiótica y Respeto Digital • Toluca • 2099</div>
+</body></html>
