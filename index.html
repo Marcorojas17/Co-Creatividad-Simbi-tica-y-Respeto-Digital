@@ -1,45 +1,26 @@
-<!DOCTYPE html>
-<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><title>LEGADO 2099 - NEXO PRIMORDIAL</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LEGADO 2099</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;height:100%;background:#020208;overflow:hidden;font-family:'Space Grotesk',system-ui}
-canvas{position:absolute;inset:0;width:100vw;height:100vh;display:block}
-.vignette{position:absolute;inset:0;background:radial-gradient(120% 120% at 50% 40%,rgba(0,0,0,0) 40%,rgba(0,0,0,0.85) 100%);pointer-events:none;z-index:2}
-.center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;text-align:center;width:94%;max-width:1100px}
-h1{font-size:clamp(2.8rem,9vw,6.2rem);letter-spacing:0.34em;font-weight:900;color:#fff;line-height:0.9;
-background:linear-gradient(180deg,#fff 0%,#ffe9a0 45%,#d4af37 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
-filter:drop-shadow(0 0 22px rgba(255,184,0,0.8)) drop-shadow(0 0 60px rgba(255,100,0,0.4));animation:float 5s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
-.sub{margin-top:18px;color:#cbd5e1;letter-spacing:0.32em;font-size:clamp(0.65rem,1.3vw,0.9rem);opacity:0.9;font-family:'JetBrains Mono',monospace}
-.purple{margin-top:14px;color:#d8b4fe;letter-spacing:0.35em;font-size:clamp(0.6rem,1.1vw,0.75rem);text-shadow:0 0 12px #a46bff;opacity:0.9}
-.btns{margin-top:42px;display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
-.btn{padding:17px 30px;border-radius:999px;font-weight:900;font-size:0.92rem;text-decoration:none;letter-spacing:0.08em;transition:all 0.3s cubic-bezier(.175,.885,.32,1.275);backdrop-filter:blur(12px)}
-.btn-gold{background:linear-gradient(180deg,#fff7cc,#ffd86a 30%,#d4af37);color:#1a1200;box-shadow:0 0 0 1px rgba(212,175,55,0.5) inset,0 8px 32px rgba(255,215,0,0.45),0 0 80px rgba(255,165,0,0.25);border:none}
-.btn-gold:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 12px 40px rgba(255,215,0,0.6)}
-.btn-outline{background:rgba(164,107,255,0.08);color:#e9d5ff;border:1.5px solid rgba(164,107,255,0.5);box-shadow:0 0 20px rgba(164,107,255,0.2) inset}
-.btn-outline:hover{background:rgba(164,107,255,0.18);border-color:#d8b4fe;transform:translateY(-3px)}
-#hud{position:absolute;bottom:0;width:100%;padding:16px 12px;text-align:center;z-index:6;color:#5a5a6a;font-family:'JetBrains Mono',monospace;font-size:0.52rem;letter-spacing:0.32em;background:linear-gradient(0deg,rgba(0,0,0,0.8),transparent);pointer-events:none}
-#micHint{position:absolute;top:18px;right:18px;z-index:6;color:#a46bff;font-size:0.6rem;letter-spacing:0.2em;border:1px solid rgba(164,107,255,0.3);padding:8px 12px;border-radius:999px;background:rgba(0,0,0,0.4);font-family:'JetBrains Mono',monospace}
+html,body{width:100%;height:100%;background:#020208;overflow:hidden;font-family:system-ui}
+.hero{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2000') center/cover, radial-gradient(80% 80% at 50% 20%, #1a1033 0%, #020208 70%);filter:saturate(1.3) contrast(1.1)}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.2),rgba(0,0,0,0.7))}
+canvas{position:absolute;inset:0;width:100%;height:100%;z-index:2}
+.center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;text-align:center;width:95%;max-width:1000px}
+h1{font-size:clamp(3rem,10vw,6.5rem);letter-spacing:0.32em;font-weight:900;background:linear-gradient(180deg,#fff,#ffd86a,#ff8a00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 30px #ffb700);animation:float 4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-12px)}}
+.sub{color:#d1d5db;letter-spacing:0.3em;margin-top:14px;font-size:0.9rem}
+.purple{color:#d8b4fe;letter-spacing:0.3em;margin-top:10px;text-shadow:0 0 10px #a46bff}
+.btns{margin-top:40px;display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.btn{padding:16px 30px;border-radius:999px;font-weight:900;text-decoration:none;transition:0.3s}
+.btn-gold{background:linear-gradient(180deg,#fff7cc,#ffd86a,#d4af37);color:#000;box-shadow:0 0 30px rgba(255,215,0,0.5)}
+.btn-outline{background:rgba(255,255,255,0.06);border:1.5px solid #a46bff;color:#e9d5ff;backdrop-filter:blur(10px)}
+.btn:hover{transform:scale(1.05)}
 </style></head><body>
-<canvas id="bgc"></canvas><div class="vignette"></div>
-<div id="micHint">🎤 TOCA PARA AUDIO</div>
-<div class="center"><h1>LEGADO 2099</h1><div class="sub">Una visión de Marco Valdovinos & The AI Architect</div><div class="purple">EL NEXO PRIMORDIAL • EL SONIDO SE HACE MATERIA</div>
-<div class="btns"><a class="btn btn-gold" href="nexo.html">🧬 VER NEXO PRIMORDIAL</a><a class="btn btn-outline" href="legado2099.html">ELIGE TU ESENCIA • 4 MINTS</a></div></div>
-<div id="hud">SHA 41a3683b...4c3 • CLABE ****6473 • SafeCreative 2607086319439 • FUEGO 🔥 AGUA 💧 AIRE 🌬️ TIERRA 🌍</div>
+<div class="hero"></div><canvas id="c"></canvas>
+<div class="center"><h1>LEGADO 2099</h1><div class="sub">Marco Valdovinos & The AI Architect</div><div class="purple">El Nexo Primordial • El sonido se hace materia</div><div class="btns"><a class="btn btn-gold" href="nexo.html">🧬 VER NEXO</a><a class="btn btn-outline" href="legado2099.html">4 MINTS</a></div></div>
 <script>
-const c=document.getElementById('bgc'),x=c.getContext('2d');let w,h,dpr;function R(){dpr=Math.min(devicePixelRatio||1,2);w=innerWidth;h=innerHeight;c.width=w*dpr;c.height=h*dpr;c.style.width=w+'px';c.style.height=h+'px';x.setTransform(dpr,0,0,dpr,0,0)}R();addEventListener('resize',R);
-let pts=[];const N=750;for(let i=0;i<N;i++)pts.push({a:Math.random()*6.283185,y:Math.random()*1.5-0.15,s:0.4+Math.random()*1.6,hue:[28,195,280,45][Math.floor(Math.random()*4)],phase:Math.random()*6.28});
-let mic=0,an,data,vol=0;async function micOn(){try{const s=await navigator.mediaDevices.getUserMedia({audio:true});const ac=new (window.AudioContext||window.webkitAudioContext)();const src=ac.createMediaStreamSource(s);an=ac.createAnalyser();an.fftSize=512;src.connect(an);data=new Uint8Array(an.frequencyBinCount);document.getElementById('micHint').textContent='🔊 AUDIO ACTIVO';}catch(e){}}document.body.addEventListener('click',micOn,{once:true});
-function draw(t){x.fillStyle='rgba(2,2,8,0.18)';x.fillRect(0,0,w,h);if(an&&data){an.getByteFrequencyData(data);let sum=0;for(let i=0;i<40;i++)sum+=data[i];vol=sum/40/255;mic+= (vol-mic)*0.15}let time=t*0.00035;let cx=w*0.5;let cy=h*0.5;
-let grad=x.createRadialGradient(cx,cy*0.9,0,cx,cy*0.9,h*0.9);grad.addColorStop(0,'rgba(212,175,55,0.08)');grad.addColorStop(0.4,'rgba(120,40,255,0.06)');grad.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=grad;x.fillRect(0,0,w,h);
-for(let p of pts){p.a+=0.006+mic*0.04+Math.sin(p.phase)*0.002;p.y-=0.0012+mic*0.008;if(p.y<-0.25)p.y=1.25;let yy=p.y*h;let sway=Math.sin(time*0.8+p.phase)*15;let spread= (w<700? w*0.18: 280) + mic*120 + Math.sin(time+p.phase)*10;let x1=cx+Math.sin(p.a+time)*spread + sway;let x2=cx+Math.sin(p.a+Math.PI+time)*spread + sway;
-// 4 colores: 28 oro-fuego, 195 cyan-agua, 280 violeta-aire, 45 oro-tierra
-let sat=90+mic*10;let light=58+mic*22+Math.sin(p.a*2)*8;let col1=`hsl(${p.hue},${sat}%,${light}%)`;let col2=`hsl(${(p.hue+35)%360},${sat}%,65%)`;
-x.shadowBlur=14+mic*26;x.shadowColor=col1;x.fillStyle=col1;x.beginPath();x.arc(x1,yy, (p.s)*(1.6+mic*1.5),0,6.283);x.fill();
-x.shadowColor=col2;x.fillStyle=col2;x.beginPath();x.arc(x2,yy, (p.s)*(1.6+mic*1.5),0,6.283);x.fill();x.shadowBlur=0;
-if((p.a*10)%1<0.06){x.strokeStyle=`hsla(${p.hue},100%,70%,${0.12+mic*0.15})`;x.lineWidth=0.8;x.beginPath();x.moveTo(x1,yy);x.lineTo(x2,yy);x.stroke();}}
-// linea central de energia
-let eg=x.createLinearGradient(cx,0,cx,h);eg.addColorStop(0,`rgba(255,215,0,${0.04+mic*0.15})`);eg.addColorStop(0.5,`rgba(164,107,255,${0.06+mic*0.18})`);eg.addColorStop(1,`rgba(0,212,255,${0.04+mic*0.12})`);x.fillStyle=eg;x.fillRect(cx-1.2,0,2.4,h);
-requestAnimationFrame(draw)}draw(0);
+const C=document.getElementById('c'),X=C.getContext('2d');function R(){C.width=innerWidth*2;C.height=innerHeight*2;C.style.width=innerWidth+'px';C.style.height=innerHeight+'px';X.setTransform(2,0,0,2,0,0)}R();addEventListener('resize',R);
+let P=[];for(let i=0;i<800;i++)P.push({a:Math.random()*6.28,y:Math.random(),h:[28,195,280,45][i%4],s:Math.random()*1.5+0.5});
+let mic=0,an,d;async function micOn(){try{let s=await navigator.mediaDevices.getUserMedia({audio:true});let ac=new AudioContext();let src=ac.createMediaStreamSource(s);an=ac.createAnalyser();an.fftSize=256;src.connect(an);d=new Uint8Array(an.frequencyBinCount)}catch(e){}}document.body.onclick=micOn;
+function draw(t){X.fillStyle='rgba(2,2,8,0.22)';X.fillRect(0,0,innerWidth,innerHeight);if(an){an.getByteFrequencyData(d);mic=d[10]/255}let cx=innerWidth/2;for(let p of P){p.a+=0.007+mic*0.05;p.y-=0.001+mic*0.01;if(p.y<0)p.y=1;let y=p.y*innerHeight;let sp=300+mic*100;let x1=cx+Math.sin(p.a+t*0.0005)*sp,x2=cx+Math.sin(p.a+3.14+t*0.0005)*sp;X.shadowBlur=12+mic*20;X.shadowColor=`hsl(${p.h},100%,60%)`;X.fillStyle=`hsl(${p.h},100%,60%)`;X.beginPath();X.arc(x1,y,2*p.s,0,6.28);X.fill();X.beginPath();X.arc(x2,y,2*p.s,0,6.28);X.fill();X.shadowBlur=0}}requestAnimationFrame(draw);draw();
 </script></body></html>
