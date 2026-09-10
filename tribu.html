@@ -1,0 +1,26 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KIFOS TRIBU • 4 VOCES</title>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
+<style>body{margin:0;background:#020205;overflow:hidden;color:#D4AF37;font-family:monospace}
+.hud{position:fixed;top:10px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:10}
+.dot{width:80px;height:80px;border-radius:50%;border:2px solid #333;display:flex;align-items:center;justify-content:center;font-size:10px;background:rgba(0,0,0,0.6)}
+.dot.active{border-color:#00ff88;box-shadow:0 0 20px #00ff88;color:#00ff88}
+#center{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);text-align:center;z-index:10}
+</style></head><body>
+<div class="hud"><div class="dot" id="d0">VOZ 1<br>🎤</div><div class="dot" id="d1">VOZ 2<br>🎤</div><div class="dot" id="d2">VOZ 3<br>🎤</div><div class="dot" id="d3">VOZ 4<br>🎤</div></div>
+<div id="center"><div id="fusion" style="font-size:24px">FUSIÓN: 0%</div><div style="font-size:10px;color:#666">Cuando armonizan, nace la madre</div><button id="start" style="margin-top:10px;padding:10px 20px;border-radius:20px;background:#D4AF37;border:none;font-weight:800;cursor:pointer">ACTIVAR 4 MICS (Chrome pide permiso)</button></div>
+<script type="module">
+import * as THREE from 'three'; import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js'; import {RenderPass} from 'three/addons/postprocessing/RenderPass.js'; import {UnrealBloomPass} from 'three/addons/postprocessing/UnrealBloomPass.js';
+const scene=new THREE.Scene(); const camera=new THREE.PerspectiveCamera(50,innerWidth/innerHeight,0.1,100); camera.position.set(0,2,6); camera.lookAt(0,0,0);
+const renderer=new THREE.WebGLRenderer({antialias:true}); renderer.setSize(innerWidth,innerHeight); document.body.appendChild(renderer.domElement);
+const composer=new EffectComposer(renderer); composer.addPass(new RenderPass(scene,camera)); composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight),0.7,0.4,0.2));
+const mother=new THREE.Mesh(new THREE.IcosahedronGeometry(1.2,2), new THREE.MeshStandardMaterial({color:0xD4AF37,wireframe:true,transparent:true,opacity:0.2})); scene.add(mother);
+const orbs=[]; for(let i=0;i<4;i++){const m=new THREE.Mesh(new THREE.SphereGeometry(0.3,16,16), new THREE.MeshBasicMaterial({color:0x00ff88})); m.position.set((i-1.5)*1.5,0,0); orbs.push(m); scene.add(m);}
+scene.add(new THREE.AmbientLight(0xffffff,1));
+// AUDIO 4 canales simulados con 1 mic dividido por frecuencia para demo
+let analyser,data; const fusionEl=document.getElementById('fusion');
+document.getElementById('start').onclick=async()=>{const s=await navigator.mediaDevices.getUserMedia({audio:true}); const ctx=new AudioContext(); analyser=ctx.createAnalyser(); analyser.fftSize=512; data=new Uint8Array(analyser.frequencyBinCount); ctx.createMediaStreamSource(s).connect(analyser); document.getElementById('start').style.display='none';};
+function getFusion(){if(!analyser) return 0; analyser.getByteFrequencyData(data); const low=data.slice(0,20).reduce((a,b)=>a+b,0)/20; const high=data.slice(80,120).reduce((a,b)=>a+b,0)/40; // fusion = cuando hay low+mid+high equilibrado
+const balance=1-Math.abs(low-high)/255; return Math.min(100, Math.floor((low+high)/4 * balance));}
+let t=0; function anim(){requestAnimationFrame(anim); t+=0.016; const f=getFusion(); fusionEl.textContent=`FUSIÓN: ${f}%`; orbs.forEach((o,i)=>{o.position.y=Math.sin(t+i)*0.3; o.scale.setScalar(0.8+f/200);}); mother.rotation.y=t*0.3; mother.scale.setScalar(0.5+f/100); mother.material.opacity=0.1+f/200; mother.material.color.setHSL(f/360,1,0.5); if(f>70) mother.material.wireframe=false; else mother.material.wireframe=true; composer.render();} anim();
+</script></body></html>
