@@ -6,15 +6,25 @@
   <title>KRONOS-28-ITZA ◍ 04:40</title>
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="stylesheet" href="./design-system/glass.css" />
+  <style>
+    #gold-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+    #app{position:relative;z-index:2;min-height:100vh;display:grid;place-items:center;padding:20px}
+    .card.glass{padding:28px;max-width:420px;width:100%;border:1px solid rgba(214,168,79,.3)}
+    .kicker{font-size:10px;letter-spacing:.35em;opacity:.7;margin-bottom:12px}
+    .title{font-size:28px;letter-spacing:.05em;margin-bottom:12px}
+    .gold{color:#d6a84f}
+    .copy{font-size:13px;line-height:1.6;opacity:.8;margin-bottom:20px}
+    .actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{border:1px solid #d6a84f;color:#d6a84f;padding:10px 16px;text-decoration:none;font-size:12px;letter-spacing:.1em}
+    .btn-primary{background:#d6a84f;color:#040a14}
+    .footer{margin-top:20px;display:flex;justify-content:space-between;font-size:10px;opacity:.5}
+    .dot{display:inline-block;width:6px;height:6px;background:#00ff88;border-radius:50%;margin-right:6px}
+  </style>
   <script type="importmap">
-    {
-      "imports": {
-        "crypto-js": "https://cdn.jsdelivr.net/npm/crypto-js@4.2.0/index.js"
-      }
-    }
+    { "imports": { "crypto-js": "https://cdn.jsdelivr.net/npm/crypto-js@4.2.0/index.js" } }
   </script>
 </head>
-<body>
+<body style="background:#040a14;margin:0">
   <canvas id="gold-canvas"></canvas>
   <div id="app">
     <div class="card glass">
@@ -22,7 +32,7 @@
       <div class="title">KRONOS-28-ITZA <span class="gold">04:40</span></div>
       <div class="copy">Respeto Digital. La autoridad tranquila.<br>El lienzo late al ritmo de la señal.</div>
       <div class="actions">
-        <a class="btn btn-primary" href="./live3d.html">ENTRAR ◍ LIVE 3D</a>
+        <a class="btn btn-primary" href="./live3d.html?freq=440">ENTRAR ◍ LIVE 3D</a>
         <a class="btn" href="./live.html">LIVE</a>
       </div>
       <div class="footer">
@@ -32,5 +42,5 @@
     </div>
   </div>
   <script type="module" src="./apps/web/index.js"></script>
-</body>
-</html>
+  <script>
+    //
