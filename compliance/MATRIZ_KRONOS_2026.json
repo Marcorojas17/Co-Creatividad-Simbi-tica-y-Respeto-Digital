@@ -1,0 +1,1082 @@
+[
+  {
+    "file": "security/trace.js",
+    "rank": 100,
+    "score": "\u2b22 KRONOS"
+  },
+  {
+    "file": "security/crypto_seal.js",
+    "rank": 100,
+    "score": "\u2b22 KRONOS"
+  },
+  {
+    "file": "compliance/MATRIZ_KRONOS_2026.json",
+    "rank": 100,
+    "score": "\u2b22 KRONOS"
+  },
+  {
+    "file": "apps/web/public/kronos-matrix.svg",
+    "rank": 100,
+    "score": "\u2b22 KRONOS"
+  },
+  {
+    "file": "apps/web/src/App.tsx",
+    "rank": 100,
+    "score": "\u2b22 KRONOS"
+  },
+  {
+    "file": "apps/web/src/security/trace.js",
+    "rank": 100,
+    "score": "\u2b22 KRONOS"
+  },
+  {
+    "file": "apps/web/src/security/crypto_seal.js",
+    "rank": 100,
+    "score": "\u2b22 KRONOS"
+  },
+  {
+    "file": ".env.example",
+    "rank": 85,
+    "score": "\ud83d\udc8e DIAMOND"
+  },
+  {
+    "file": "requirements.txt",
+    "rank": 85,
+    "score": "\ud83d\udc8e DIAMOND"
+  },
+  {
+    "file": "Dockerfile",
+    "rank": 85,
+    "score": "\ud83d\udc8e DIAMOND"
+  },
+  {
+    "file": "CHANGELOG.md",
+    "rank": 85,
+    "score": "\ud83d\udc8e DIAMOND"
+  },
+  {
+    "file": "LICENSE",
+    "rank": 85,
+    "score": "\ud83d\udc8e DIAMOND"
+  },
+  {
+    "file": "PRICING.md",
+    "rank": 85,
+    "score": "\ud83d\udc8e DIAMOND"
+  },
+  {
+    "file": "verify-150.sh",
+    "rank": 85,
+    "score": "\ud83d\udc8e DIAMOND"
+  },
+  {
+    "file": "audit-kronos.py",
+    "rank": 85,
+    "score": "\ud83d\udc8e DIAMOND"
+  },
+  {
+    "file": "core-dsp/frequency_engine.py",
+    "rank": 85,
+    "score": "\ud83d\udc8e DIAMOND"
+  },
+  {
+    "file": "core-dsp/frequency-audit.mjs",
+    "rank": 85,
+    "score": "\ud83d\udc8e DIAMOND"
+  },
+  {
+    "file": "core-dsp/timeseries.py",
+    "rank": 85,
+    "score": "\ud83d\udc8e DIAMOND"
+  },
+  {
+    "file": "packages/live.py",
+    "rank": 85,
+    "score": "\ud83d\udc8e DIAMOND"
+  },
+  {
+    "file": "docs/10_RANGO_KRONOS.md",
+    "rank": 85,
+    "score": "\ud83d\udc8e DIAMOND"
+  },
+  {
+    "file": "apps/api/openapi.yaml",
+    "rank": 85,
+    "score": "\ud83d\udc8e DIAMOND"
+  },
+  {
+    "file": "apps/api/openapi.json",
+    "rank": 85,
+    "score": "\ud83d\udc8e DIAMOND"
+  },
+  {
+    "file": "apps/api/public/openapi.yaml",
+    "rank": 85,
+    "score": "\ud83d\udc8e DIAMOND"
+  },
+  {
+    "file": "apps/web/public/index.html",
+    "rank": 85,
+    "score": "\ud83d\udc8e DIAMOND"
+  },
+  {
+    "file": "apps/web/public/live3d.html",
+    "rank": 85,
+    "score": "\ud83d\udc8e DIAMOND"
+  },
+  {
+    "file": "apps/web/src/components/ChladniVerifier.tsx",
+    "rank": 85,
+    "score": "\ud83d\udc8e DIAMOND"
+  },
+  {
+    "file": "apps/web/src/components/SealSafeCreative.tsx",
+    "rank": 85,
+    "score": "\ud83d\udc8e DIAMOND"
+  },
+  {
+    "file": "design-system/tokens/kronos-rank.json",
+    "rank": 85,
+    "score": "\ud83d\udc8e DIAMOND"
+  },
+  {
+    "file": "tokens.example.json",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "docker-compose.yml",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "commitlint.config.cjs",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "openapi.yaml",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "AUTHORS.md",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "verify-101-150.sh",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "gpg_sign_engine.sh",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "turbo.json",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "Makefile",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "CONTRIBUTING.md",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "examples/live.html",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "examples/live3d.html",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "tests/test_api.py",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "legal/aviso-privacidad.html",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "legal/terminos.html",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "security/steganography.js",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "security/nom151_chain.json",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "core-dsp/package.json",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "core-dsp/chladni_plate.py",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "core-dsp/frequency_engine.js",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "dsp/cymatic_math.py",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "dsp/processor.py",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "compliance/LICENSES.md",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "compliance/CHECKLIST.md",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "compliance/package.json",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "compliance/SBOM.md",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "compliance/AUDITORIA.md",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "compliance/AVISO_PRIVACIDAD.md",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "compliance/seal.mjs",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "packages/influx.py",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "data/theft_log.json.asc",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "data/hardware_log.jsonl",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "data/timeseries.js",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "data/metrics.json",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "data/theft_log.json",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "docs/05_MANUAL_USUARIO.md",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "docs/architecture/architecture.svg",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "apps/web/offline.html",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "apps/web/index.html",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "apps/web/sw.js",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "apps/web/package.json",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "apps/web/glass.css",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "apps/web/cymatic3d.html",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "apps/web/history.html",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "apps/web/manifest.webmanifest",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "apps/api/src/routes/stripe-webhook.js",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "apps/api/src/modules/audit/chain.js",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "apps/web/public/manifest.json",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "apps/web/security/trace.js",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "apps/web/src/components/LiveMicE2E.tsx",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "apps/web/src/components/CompliancePack.tsx",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": "core-dsp/src/index.ts",
+    "rank": 70,
+    "score": "\ud83d\udcbf PLATINUM 289"
+  },
+  {
+    "file": ".prettierrc",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": ".dockerignore",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "THIRD_PARTY_LICENSES.md",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "README.md",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "sw.js",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "package.json",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "fix-pages.sh",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "verify-kronos.sh",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "tsconfig.json",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "KRONOS_README_borrador_tecnico.pdf",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "theme.json",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "tokens.json",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "manifest.webmanifest",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "examples/offline.html",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "examples/diamante.html",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "examples/kronos.html",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "examples/tribu.html",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "examples/404.html",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "examples/history.html",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "examples/certificado.html",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "examples/booth.html",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "design-system/package.json",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "licenses/KRONOS_LICENSE_SC.sol",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": ".devcontainer/devcontainer.json",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "tests/test_cymatic.py",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "infrastructure/docker-compose.prod.yml",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "infrastructure/k8s-service.yaml",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "infrastructure/k8s-hpa.yaml",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "security/integrity.json",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "security/license_check.js",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "scripts/generate-icons.js",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "core-dsp/tsconfig.json",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "dsp/__init__.py",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "api/index.js",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "compliance/preinstall-check.mjs",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "compliance/MATRIZ_CUMPLIMIENTO.md",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "packages/influx_bridge.py",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "packages/metrics.py",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "docs/02_POLITICA_CALIDAD_ISO9001.md",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "docs/03_POLITICA_SEGURIDAD_ISO27001.md",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "docs/09_MATEMATICAS_CYMATIC.md",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "docs/06_MANUAL_TECNICO_E2E.md",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "docs/00_MANIFIESTO_CO-CREATIVIDAD.md",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "docs/architecture/audit-chain.md",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/web/Dockerfile",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/web/vite.config.ts",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/web/postcss.config.js",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/web/.env.local",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/web/tsconfig.tsbuildinfo",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/web/nexo.html",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/web/base.css",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/web/index.js",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/web/tsconfig.json",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/web/gold.js",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/web/tailwind.config.js",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/package.json",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/src/index.js",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/src/config/env.js",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/worker/src/batch-worker.js",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/web/shaders/gold.frag",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/web/shaders/gold.vert",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/web/src/index.css",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/web/src/main.tsx",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/web/src/shaders/gold.frag",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/web/src/shaders/gold.vert",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/web/src/security/license_check.js",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/web/src/config/payments.js",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "packages/dsp/package.json",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "packages/utils/package.json",
+    "rank": 55,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "MATRIZ_KRONOS.md",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "vercel.json",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "PRIVACY.md",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": ".lintstagedrc.json",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": ".lintstagedrc",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "lint-staged.config.cjs",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "log",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "CODE_OF_CONDUCT.md",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": ".prettierignore",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": ".prettierrc.json",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": ".editorconfig",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": ".nvmrc",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "tsconfig.base.json",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": ".pre-commit-config.yaml",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "pnpm-workspace.yaml",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "MATRIZ_CUMPLIMIENTO.md",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "sbom.json",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "AVISO_PRIVACIDAD.md",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": ".eslintrc.cjs",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "ACCESSIBILITY.md",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "SECURITY.md",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "examples/legado2099.html",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "examples/nexo.html",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "examples/cymatic3d.html",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "design-system/glass.css",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "secrets/audit_ed25519.key",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "tests/test_pwa.py",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "docs/01_MISION_VISION.md",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "docs/04_AVISO_PRIVACIDAD_NOM024.md",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "docs/08_CODIGO_ETICA.md",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/worker/Dockerfile",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/vercel.json",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/Dockerfile",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/test/batch.test.js",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/test/concurrency.test.js",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/test/restore.test.js",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/test/tamper.test.js",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/src/swagger.ts",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/migrations/001_initial.sql",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/migrations/004_audit_chain_compatible.sql",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/migrations/003_audit_chain.sql",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/migrations/002_admins.sql",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/migrations/seed_anchor.js",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/src/db/pool.js",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/src/middleware/security.js",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/src/middleware/authInternal.js",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/src/routes/api.routes.js",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/src/modules/audit/hmac.js",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/src/modules/audit/audit.service.js",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/src/modules/audit/batch-verifier.js",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/src/modules/audit/audit.routes.js",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/src/modules/audit/batch-signer.js",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/src/modules/audit/hash-chain.js",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/src/modules/audit/audit.repository.js",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "apps/api/src/modules/audit/batch-builder.js",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "packages/core-dsp/src/secureIngest.ts - ISO 27001",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "examples/legacy-root/offline.html",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "examples/legacy-root/index.html",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "examples/legacy-root/live.html",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "examples/legacy-root/index.js",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "examples/legacy-root/live3d.html",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "examples/legacy-root/gold.js",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "examples/legacy-root/theme.js",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "examples/legacy-root/cymaticFrequency.js",
+    "rank": 40,
+    "score": "\ud83d\udcbf PLATINUM"
+  },
+  {
+    "file": "examples/legacy-root/sw.js",
+    "rank": 25,
+    "score": "\ud83e\udd47 GOLD"
+  },
+  {
+    "file": "examples/legacy-root/404.html",
+    "rank": 25,
+    "score": "\ud83e\udd47 GOLD"
+  },
+  {
+    "file": "examples/legacy-root/guardianes.html",
+    "rank": 25,
+    "score": "\ud83e\udd47 GOLD"
+  }
+]
