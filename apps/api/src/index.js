@@ -12,7 +12,9 @@ async function build() {
 
   const openapiPath = path.join(__dirname, '../openapi.yaml')
   let openapiDoc = {}
-  try { openapiDoc = yaml.load(fs.readFileSync(openapiPath, 'utf8')) } catch(e){}
+  try { 
+    openapiDoc = yaml.load(fs.readFileSync(openapiPath, 'utf8')) 
+  } catch(e){}
 
   app.get('/', async () => ({
     name: "KRONOS 28 ITZA 289 PLATINUM API",
@@ -26,29 +28,38 @@ async function build() {
   app.get('/openapi.yaml', async (req, reply) => {
     try {
       const file = fs.readFileSync(openapiPath, 'utf8')
-      reply.type('text/yaml').send(file)
-    } catch(e){ reply.code(404).send({error:"no yaml"}) }
+      return reply.type('text/yaml').send(file)
+    } catch(e){ 
+      return reply.code(404).send({error:"no yaml"}) 
+    }
   })
 
   app.get('/openapi.json', async () => openapiDoc)
 
   app.get('/docs', async (req, reply) => {
-    reply.type('text/html').send(`<!doctype html><html><head><title>KRONOS 289 Docs</title><link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css"/></head><body><div id="swagger-ui"></div><script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js"></script><script>window.onload=()=>{SwaggerUIBundle({url:'/openapi.yaml',dom_id:'#swagger-ui'})}</script></body></html>`)
+    const html = '<!doctype html><html><head><title>KRONOS 289 Docs</title><link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css"/></head><body><div id="swagger-ui"></div><script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js"></script><script>window.onload=()=>{SwaggerUIBundle({url:"/openapi.yaml",dom_id:"#swagger-ui"})}</script></body></html>'
+    return reply.type('text/html').send(html)
   })
 
-  // tus rutas
   try {
     const apiRoutes = require('./routes/api.routes.js')
-    const { securityMiddleware } = require('./middleware/security.js')
-    app.addHook('onRequest', securityMiddleware)
+    const security = require('./middleware/security.js')
+    if (security.securityMiddleware) {
+      app.addHook('onRequest', security.securityMiddleware)
+    }
     app.register(apiRoutes, { prefix: '/v1' })
-  } catch(e){ console.log("routes load error", e.message) }
+  } catch(e){ 
+    console.log('routes load error', e.message) 
+  }
 
   return app
 }
 
-if (require.main === module) {
-  build().then(a => a.listen({ port: process.env.PORT || 3000, host: '0.0.0.0' }))
-}
+const appPromise = build()
+appPromise.then(a => {
+  if (require.main === module) {
+    a.listen({ port: process.env.PORT || 3000, host: '0.0.0.0' })
+  }
+})
 
-module.exports = build()
+module.exports = appPromise
