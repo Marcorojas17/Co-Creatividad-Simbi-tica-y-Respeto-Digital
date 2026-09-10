@@ -1,0 +1,10 @@
+import express from 'express';
+import { checkoutHandler } from './routes/checkout';
+const app = express();
+app.use(express.json());
+app.post('/api/checkout', checkoutHandler);
+app.get('/api/docs', (req,res)=>res.json({kronos:"2099", seal:"2607086319439", pricing:{starter:1, operator:9, sentinel:29, platinum:149, sovereign:350}}));
+app.get('/api', (req,res)=>res.json({status:"KRONOS ONLINE 2036"}));
+export default app;
+const port = process.env.PORT || 3000;
+app.listen(port, ()=>console.log(`KRONOS API ${port}`));
