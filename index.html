@@ -1,225 +1,45 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>LEGADO 2099 - NEXO PRIMORDIAL</title>
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><title>LEGADO 2099 • SoundDance 2.0 Música AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600&family=Inter:wght@400;600;700;900&family=Space+Mono&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;height:100%;background:#020208;overflow:hidden;font-family:system-ui,-apple-system,sans-serif;cursor:crosshair}
-canvas{position:fixed;inset:0;width:100vw!important;height:100vh!important;display:block;z-index:1}
-
-/* Viñeta radial */
-.vignette{position:fixed;inset:0;z-index:5;pointer-events:none;
-  background:radial-gradient(ellipse at center, transparent 0%, transparent 40%, rgba(2,2,8,0.55) 80%, rgba(2,2,8,0.95) 100%)}
-
-/* Centro */
-.center{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;width:100%;text-align:center;pointer-events:none;padding:0 20px}
-
-h1{font:900 clamp(2.4rem,8vw,7rem) system-ui;letter-spacing:0.28em;white-space:nowrap;
-  color:#ffe9a0;line-height:1;margin-left:0.28em;
-  text-shadow:0 0 18px #ffb700,0 0 50px #ff6a00,0 0 100px rgba(255,0,170,0.35);
-  animation:titleGlow 4s ease-in-out infinite, titleIn 1.6s cubic-bezier(0.16,1,0.3,1) both}
-@keyframes titleGlow{
-  0%,100%{text-shadow:0 0 18px #ffb700,0 0 50px #ff6a00,0 0 100px rgba(255,0,170,0.35)}
-  50%{text-shadow:0 0 28px #ffd86a,0 0 80px #ff8c1a,0 0 140px rgba(255,0,170,0.55)}
-}
-@keyframes titleIn{from{opacity:0;letter-spacing:0.9em;filter:blur(20px)} to{opacity:1;letter-spacing:0.28em;filter:blur(0)}}
-
-.sub{margin-top:18px;color:#cbd5e1;letter-spacing:0.34em;font-size:clamp(0.6rem,1.15vw,0.9rem);
-  font-family:ui-monospace,monospace;opacity:0;animation:fadeUp 1s 0.5s cubic-bezier(0.16,1,0.3,1) forwards}
-
-.purple{margin-top:12px;color:#d8b4fe;letter-spacing:0.32em;font-size:clamp(0.52rem,1vw,0.75rem);
-  font-family:ui-monospace,monospace;text-shadow:0 0 12px #a46bff;opacity:0;
-  animation:fadeUp 1s 0.8s cubic-bezier(0.16,1,0.3,1) forwards}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)}}
-
-.btns{margin-top:42px;display:flex;gap:18px;justify-content:center;pointer-events:auto;flex-wrap:wrap;
-  opacity:0;animation:fadeUp 1s 1.15s cubic-bezier(0.16,1,0.3,1) forwards}
-
-.btn{position:relative;padding:15px 30px;border-radius:999px;font-weight:900;font-size:0.9rem;
-  text-decoration:none;letter-spacing:0.06em;transition:all 0.3s cubic-bezier(0.16,1,0.3,1);overflow:hidden}
-.btn::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.35),transparent);
-  transition:left 0.6s ease}
-.btn:hover::after{left:100%}
-
-.btn-gold{background:linear-gradient(180deg,#fff7cc,#ffd86a 40%,#d4af37);color:#0a0a0a;
-  box-shadow:0 0 28px rgba(255,215,0,0.5),0 0 60px rgba(255,140,26,0.25),inset 0 1px 0 rgba(255,255,255,0.6)}
-.btn-gold:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 0 40px rgba(255,215,0,0.8),0 0 90px rgba(255,140,26,0.4)}
-
-.btn-dark{background:rgba(30,10,60,0.55);border:1.5px solid rgba(164,107,255,0.8);color:#e9d5ff;
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 0 20px rgba(164,107,255,0.25)}
-.btn-dark:hover{transform:translateY(-3px) scale(1.05);border-color:#c9a8ff;
-  box-shadow:0 0 35px rgba(164,107,255,0.5),inset 0 0 20px rgba(164,107,255,0.15)}
-
-/* Hint mic */
-.michint{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:10;
-  color:#7c6f9a;font-size:0.65rem;letter-spacing:0.28em;font-family:ui-monospace,monospace;
-  opacity:0;animation:fadeUp 1s 1.8s forwards}
-@media(hover:none){.michint{display:none}}
+:root{--bg:#050508;--gold:#ffd52e;--purple:#a855f7;--cyan:#22d3ee}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg)}body{color:#fff;font-family:Inter,sans-serif;overflow:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:14px 24px;background:linear-gradient(180deg,rgba(0,0,0,0.9),transparent);backdrop-filter:blur(6px)}
+.logo{font-family:Fraunces;font-size:1.35rem;font-weight:600}.logo b{color:var(--gold)}
+.links{display:flex;gap:22px;font-size:0.82rem;align-items:center}.links a{color:#fff;text-decoration:none;opacity:0.85;position:relative}.links a:hover{opacity:1}
+.badge{position:absolute;top:-13px;right:-26px;background:#d4ff32;color:#000;font-size:0.5rem;font-weight:900;padding:2px 5px;border-radius:6px}
+.hero{position:relative;min-height:100svh;display:grid;place-items:center;padding:24px;isolation:isolate;background:radial-gradient(circle at 50% 45%, rgba(91,31,127,.18), transparent 35%),radial-gradient(circle at 20% 70%, rgba(34,211,238,.08), transparent 28%),var(--bg)}
+#helix{position:absolute;inset:0;width:100%;height:100%;z-index:-1;opacity:.92}
+.noise{position:absolute;inset:0;z-index:-1;opacity:.12;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E")}
+.content{max-width:980px;text-align:center;padding:96px 16px 48px}
+.eyebrow,.credits,.tagline{font-family:"Space Mono",monospace;text-transform:uppercase;letter-spacing:.16em}
+.eyebrow{color:rgba(255,255,255,.6);font-size:.68rem;margin-bottom:20px}
+h1{margin:0;font-family:Fraunces;font-size:clamp(2.8rem,8vw,5.2rem);line-height:.9;font-weight:300;letter-spacing:-0.02em;color:var(--gold);text-shadow:0 0 10px rgba(255,213,46,.85),0 0 34px rgba(255,180,0,.55)}h1 b{font-weight:600;color:#fff}
+h1 span{display:block;font-family:Inter;font-size:.42em;letter-spacing:.23em;margin:.28em 0 0 .23em;font-weight:900}
+.credits{margin:28px 0 10px;font-size:clamp(.62rem,1.4vw,.82rem);color:rgba(255,255,255,.88)}
+.tagline{margin:0 auto;max-width:620px;font-size:clamp(.58rem,1.2vw,.78rem);color:rgba(255,255,255,.6);line-height:1.5;text-transform:none;letter-spacing:0.02em}
+.actions{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-top:32px}
+.button{min-height:52px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:0 25px;border-radius:999px;font-size:.78rem;font-weight:800;letter-spacing:.08em;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease}
+.button:hover{transform:translateY(-3px)}.primary{color:#100b00;background:linear-gradient(135deg,#fff176,var(--gold) 55%,#f6a900);box-shadow:0 0 24px rgba(255,213,46,.35)}.secondary{color:white;border:1px solid rgba(192,132,252,.8);background:rgba(88,28,135,.2);box-shadow:inset 0 0 20px rgba(168,85,247,.1),0 0 18px rgba(168,85,247,.18)}
+.footer{position:absolute;bottom:max(18px,env(safe-area-inset-bottom));left:24px;right:24px;display:flex;justify-content:space-between;gap:16px;color:rgba(255,255,255,.3);font:.56rem "Space Mono",monospace;letter-spacing:.1em}
+@media(max-width:720px){.links{display:none}.content{padding-top:72px}.actions{flex-direction:column;align-items:stretch}.button{width:100%}.footer{justify-content:center}.footer span:last-child{display:none}}
 </style></head><body>
-<canvas id="c"></canvas>
-<div class="vignette"></div>
-<div class="center">
-  <h1>LEGADO&nbsp;2099</h1>
-  <div class="sub">Marco Valdovinos &amp; The AI Architect</div>
-  <div class="purple">El Nexo Primordial • El sonido se hace materia</div>
-  <div class="btns">
-    <a class="btn btn-gold" href="nexo.html">🧬 VER NEXO</a>
-    <a class="btn btn-dark" href="legado2099.html">4 MINTS</a>
-  </div>
-</div>
-<div class="michint">· HAZ CLIC PARA ACTIVAR LA FRECUENCIA ·</div>
-
+<nav><div class="logo">🧬 LEGADO <b>2099</b> <small style="font-size:.55rem;opacity:.6">AI</small></div><div class="links"><a href="legado2099.html">Imagen IA ▾</a><a href="nexo.html">Video IA ▾</a><a href="nexo.html?m=musica">SoundDance 2.5 <span class="badge">NEW</span></a><a href="#">MiniMax H3 <span class="badge">NEW</span></a><a href="#">Estudio de música <span class="badge">NEW</span></a><a href="#">Precios</a></div></nav>
+<main class="hero"><canvas id="helix"></canvas><div class="noise"></div>
+<section class="content"><div class="eyebrow">SoundDance 2.0 • Generador de Música AI</div>
+<h1>SoundDance 2.0 <span>Generador de Música</span></h1>
+<p class="credits">Marco Valdovinos & The AI Architect</p>
+<p class="tagline">Experimente la verdadera creación de música AI multimodal. Combine voz, ritmo, instrumentos y texto para generar contenido cinematográfico con referencia precisa, extensión perfecta y control de lenguaje natural. Tu ADN se hace sonido.</p>
+<div class="actions"><a class="button primary" href="nexo.html?mode=musica">✨ Comienza gratis ahora</a><a class="button secondary" href="legado2099.html">4 MINTS • ESENCIAS</a></div>
+</section><footer class="footer"><span>LEGADO 2099 • NEXO PRIMORDIAL</span><span>© 2099 • ALL SYSTEMS ONLINE</span></footer></main>
 <script>
-const C=document.getElementById('c'),X=C.getContext('2d');
-let DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
-function resize(){
-  W=innerWidth;H=innerHeight;
-  C.width=W*DPR;C.height=H*DPR;C.style.width=W+'px';C.style.height=H+'px';
-  X.setTransform(DPR,0,0,DPR,0,0);
-  initStars();
-}
-addEventListener('resize',resize);
-
-/* ==== ESTRELLAS DE FONDO (profundidad) ==== */
-let stars=[];
-function initStars(){
-  stars=[];
-  const n=Math.floor((W*H)/9000);
-  for(let i=0;i<n;i++){
-    stars.push({
-      x:Math.random()*W, y:Math.random()*H,
-      z:Math.random(),                          // 0 lejos, 1 cerca
-      tw:Math.random()*Math.PI*2                 // fase de parpadeo
-    });
-  }
-}
-
-/* ==== HÉLICE 3D ==== */
-const N=520;
-let helix=[];
-for(let i=0;i<N;i++){
-  const t=i/N;
-  helix.push({
-    t,                                          // posición a lo largo del eje Y (0..1)
-    phase:Math.random()*0.08,                   // pequeño offset orgánico
-    hue:[35,195,280,45][i%4],
-    size:0.6+Math.random()*0.9,
-    baseR:0.55+Math.random()*0.25,              // radio de la hélice (relativo)
-    ySpeed:0.0015+Math.random()*0.0015,
-    spin:0.55+Math.random()*0.35                // velocidad angular
-  });
-}
-
-/* ==== MIC ==== */
-let mic=0,micTarget=0,an,da;
-async function enableMic(){
-  try{
-    const s=await navigator.mediaDevices.getUserMedia({audio:true});
-    const ac=new (window.AudioContext||window.webkitAudioContext)();
-    const src=ac.createMediaStreamSource(s);
-    an=ac.createAnalyser();an.fftSize=256;an.smoothingTimeConstant=0.75;
-    src.connect(an);
-    da=new Uint8Array(an.frequencyBinCount);
-    document.querySelector('.michint').style.opacity='0';
-  }catch(e){/* silencio */}
-}
-document.body.addEventListener('click',enableMic,{once:true});
-
-/* ==== LOOP ==== */
-let last=performance.now(),time=0;
-function frame(now){
-  const dt=Math.min(40,now-last);last=now;time+=dt*0.001;
-
-  // Persistencia sutil (trail)
-  X.fillStyle='rgba(2,2,8,0.32)';
-  X.fillRect(0,0,W,H);
-
-  // Nebulosa radial cacheada (no recrear cada frame)
-  if(!frame._neb){
-    const g=X.createRadialGradient(W/2,H*0.5,0,W/2,H*0.5,Math.max(W,H)*0.75);
-    g.addColorStop(0,'rgba(60,20,120,0.14)');
-    g.addColorStop(0.6,'rgba(30,10,60,0.06)');
-    g.addColorStop(1,'rgba(2,2,8,0)');
-    frame._neb=g;
-  }
-  X.fillStyle=frame._neb;X.fillRect(0,0,W,H);
-
-  // Mic suavizado doble
-  if(an&&da){
-    an.getByteFrequencyData(da);
-    let sum=0;for(let i=2;i<40;i++)sum+=da[i];
-    micTarget=(sum/38)/255;
-  }else{
-    // respiración autónoma cuando no hay mic
-    micTarget=0.25+Math.sin(time*0.7)*0.06;
-  }
-  mic+=(micTarget-mic)*0.08;
-
-  // ==== ESTRELLAS ====
-  for(const s of stars){
-    s.tw+=0.03;
-    const a=(0.15+s.z*0.55)*(0.6+Math.sin(s.tw)*0.4);
-    const r=0.4+s.z*1.4;
-    X.fillStyle=`rgba(200,210,255,${a})`;
-    X.fillRect(s.x,s.y,r,r);
-  }
-
-  // ==== HÉLICE 3D ====
-  const cx=W/2;
-  const yTop=-H*0.08, yBot=H*1.08;
-  const axisX=cx;
-  const spread=Math.min(W*0.42,H*0.55)+mic*90;   // radio máximo
-  const rotY=time*0.35;                            // rotación global sobre Y
-  const tiltX=0.18+Math.sin(time*0.4)*0.05;        // ligera inclinación
-
-  // Ordenar por z para que lo lejano se dibuje primero
-  const draw=[];
-  for(const p of helix){
-    // posición sobre el eje Y (sube y baja)
-    p.t-=p.ySpeed*dt/16;
-    if(p.t<-0.05)p.t=1.05;
-    const y=yTop+(yBot-yTop)*p.t;
-
-    // ángulo sobre la hélice
-    const ang=p.t*Math.PI*6+p.spin*time*1.2+p.phase;
-    // punto A y punto B (opuestos por PI)
-    for(const off of [0,Math.PI]){
-      const a=ang+off+rotY;
-      // 3D
-      const xr=Math.cos(a)*spread*p.baseR;
-      const zr=Math.sin(a)*spread*p.baseR;
-      // inclinación
-      const yy=y+Math.sin(a)*spread*0.06*tiltX*3;
-      draw.push({x:axisX+xr, y:yy, z:zr, h:p.hue, s:p.size, a:1-Math.abs(zr)/(spread*1.5)});
-    }
-  }
-  // ordenar por z (mayor z = más lejos primero si queremos pintar de atrás hacia adelante)
-  draw.sort((a,b)=>a.z-b.z);
-
-  for(const d of draw){
-    const depth=1-(d.z/(spread+1));  // 0 lejos, 1 cerca
-    const r=(1.6+depth*2.4)*d.s*(1+mic*0.6);
-    const alpha=0.35+depth*0.65;
-    const light=55+depth*25+mic*15;
-    const col=`hsla(${d.h},100%,${light}%,${alpha})`;
-    X.shadowBlur=10+depth*18+mic*14;
-    X.shadowColor=`hsl(${d.h},100%,65%)`;
-    X.fillStyle=col;
-    X.beginPath();
-    X.arc(d.x,d.y,r,0,6.283);
-    X.fill();
-  }
-  X.shadowBlur=0;
-
-  // ==== BARRA DE CONEXIÓN CENTRAL ====
-  X.strokeStyle=`hsla(45,100%,70%,${0.06+mic*0.08})`;
-  X.lineWidth=1;
-  X.beginPath();
-  X.moveTo(axisX,yTop);
-  X.lineTo(axisX,yBot);
-  X.stroke();
-
-  requestAnimationFrame(frame);
-}
-resize();
-requestAnimationFrame(frame);
+const canvas=document.querySelector("#helix");const ctx=canvas.getContext("2d");let w,h,dpr;
+function resize(){dpr=Math.min(devicePixelRatio||1,2);w=innerWidth;h=innerHeight;canvas.width=w*dpr;canvas.height=h*dpr;canvas.style.width=w+"px";canvas.style.height=h+"px";ctx.setTransform(dpr,0,0,dpr,0,0)}
+function draw(time){ctx.clearRect(0,0,w,h);const centerX=w/2;const centerY=h/2;const scale=Math.min(w,h)*0.22;
+for(let i=0;i<260;i++){const t=i*0.18+time*0.00055;const depth=Math.sin(i*0.09+time*0.0004);const y=centerY+(i-130)*4.8;const spread=scale*(0.55+Math.cos(i*0.045)*0.3);
+const x1=centerX+Math.sin(t)*spread;const x2=centerX-Math.sin(t)*spread;const radius=1+(depth+1)*1.8;
+const colors=["#ffd52e","#a855f7","#22d3ee","#ff5ea8"];const color=colors[i%colors.length];
+ctx.fillStyle=color;ctx.shadowBlur=13;ctx.shadowColor=color;ctx.beginPath();ctx.arc(x1,y,radius,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(x2,y,radius,0,Math.PI*2);ctx.fill();
+if(i%4===0){ctx.strokeStyle=color+"55";ctx.lineWidth=0.6;ctx.beginPath();ctx.moveTo(x1,y);ctx.lineTo(x2,y);ctx.stroke();}}ctx.shadowBlur=0;requestAnimationFrame(draw)}
+resize();addEventListener("resize",resize);requestAnimationFrame(draw);
 </script></body></html>
