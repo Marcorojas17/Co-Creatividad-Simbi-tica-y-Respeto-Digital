@@ -35,5 +35,9 @@
     "terser": "^5.51.2",
     "turbo": "^2.0.0",
     "typescript": "^5.5.0"
+  },
+  "dependencies": {
+    "@stripe/stripe-js": "^9.16.0",
+    "stripe": "^22.6.2"
   }
 }
