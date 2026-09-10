@@ -1,0 +1,5 @@
+:root{--gold:#D4AF37;--green:#7CFC8A;--bg:#080808}*{margin:0;box-sizing:border-box}
+body{background:#080808;color:#e8dcc0;font-family:Inter,system-ui}
+.top{height:56px;display:flex;justify-content:space-between;align-items:center;padding:0 24px;border-bottom:1px solid rgba(212,175,55,0.2);background:rgba(0,0,0,0.8);backdrop-filter:blur(12px);position:sticky;top:0;z-index:10}
+.top a{margin:0 8px;color:#666;text-decoration:none;font-size:11px;letter-spacing:2px;padding-bottom:4px}
+.top a.active{color:var(--gold);border-bottom:2px solid var(--gold)}
