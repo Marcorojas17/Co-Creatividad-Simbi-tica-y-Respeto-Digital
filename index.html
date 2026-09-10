@@ -6,41 +6,80 @@
   <title>KRONOS-28-ITZA ◍ 04:40</title>
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="stylesheet" href="./design-system/glass.css" />
-  <style>
-    #gold-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0}
-    #app{position:relative;z-index:2;min-height:100vh;display:grid;place-items:center;padding:20px}
-    .card.glass{padding:28px;max-width:420px;width:100%;border:1px solid rgba(214,168,79,.3)}
-    .kicker{font-size:10px;letter-spacing:.35em;opacity:.7;margin-bottom:12px}
-    .title{font-size:28px;letter-spacing:.05em;margin-bottom:12px}
-    .gold{color:#d6a84f}
-    .copy{font-size:13px;line-height:1.6;opacity:.8;margin-bottom:20px}
-    .actions{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{border:1px solid #d6a84f;color:#d6a84f;padding:10px 16px;text-decoration:none;font-size:12px;letter-spacing:.1em}
-    .btn-primary{background:#d6a84f;color:#040a14}
-    .footer{margin-top:20px;display:flex;justify-content:space-between;font-size:10px;opacity:.5}
-    .dot{display:inline-block;width:6px;height:6px;background:#00ff88;border-radius:50%;margin-right:6px}
-  </style>
   <script type="importmap">
     { "imports": { "crypto-js": "https://cdn.jsdelivr.net/npm/crypto-js@4.2.0/index.js" } }
   </script>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#040a14;color:#e8e8e8;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;min-height:100vh}
+    #gold-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;opacity:.7}
+    #app{position:relative;z-index:1;min-height:100vh;display:grid;place-items:center;padding:18px}
+    .card.glass{
+      width:100%;max-width:380px;padding:24px 20px 20px;border-radius:24px;text-align:center;
+      background: rgba(16,24,40,0.55) !important;
+      backdrop-filter: blur(24px) !important;
+      -webkit-backdrop-filter: blur(24px) !important;
+      border:1px solid rgba(214,168,79,.38) !important;
+      box-shadow: 0 0 80px rgba(214,168,79,.18), inset 0 1px 0 rgba(255,255,255,.06);
+    }
+    .kicker{font-size:10px;letter-spacing:.35em;color:#d6a84f;opacity:.9;margin-bottom:16px}
+    .title{font-size:26px;line-height:1.1;letter-spacing:.02em;font-weight:600}
+    .title .gold{color:#d6a84f;display:block;font-size:22px;margin-top:6px;letter-spacing:.12em}
+    .copy{font-size:13px;line-height:1.7;opacity:.75;margin:16px 0 22px;white-space:pre-line}
+    .actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    .btn{border:1px solid rgba(214,168,79,.5);color:#c9c9c9;background:rgba(0,0,0,.25);padding:11px 18px;border-radius:999px;text-decoration:none;font-size:11px;letter-spacing:.14em;cursor:pointer}
+    .btn-primary{background:#d6a84f !important;color:#0a0e18 !important;border-color:#d6a84f !important;font-weight:700;box-shadow:0 6px 20px rgba(214,168,79,.35)}
+    .footer{margin-top:22px;display:flex;flex-direction:column;gap:8px;align-items:center;font-size:10px;letter-spacing:.12em;opacity:.7}
+    .footer-row{display:flex;gap:8px;align-items:center}
+    .dot{width:7px;height:7px;background:#22ff88;border-radius:50%;box-shadow:0 0 8px #22ff88;display:inline-block}
+  </style>
 </head>
-<body style="background:#040a14;margin:0">
+<body>
   <canvas id="gold-canvas"></canvas>
   <div id="app">
     <div class="card glass">
       <div class="kicker">◍ CO-CREATIVIDAD SIMBIÓTICA</div>
       <div class="title">KRONOS-28-ITZA <span class="gold">04:40</span></div>
-      <div class="copy">Respeto Digital. La autoridad tranquila.<br>El lienzo late al ritmo de la señal.</div>
+      <div class="copy">Respeto Digital. La autoridad tranquila.
+El lienzo late al ritmo de la señal.</div>
       <div class="actions">
         <a class="btn btn-primary" href="./live3d.html?freq=440">ENTRAR ◍ LIVE 3D</a>
         <a class="btn" href="./live.html">LIVE</a>
       </div>
+      <div class="actions" style="margin-top:12px">
+        <button class="btn" id="btn-sync">◍ SINCRONIZAR</button>
+      </div>
       <div class="footer">
-        <span id="status"><span class="dot"></span> ONLINE • NODO: ITZA-03 • 440Hz</span>
-        <span id="chain-status">⚡</span>
+        <div class="footer-row"><span class="dot"></span> ONLINE • NODO: ITZA-03 • 440Hz</div>
+        <div id="chain-status" style="opacity:.6">◍ Esperando sincronización...</div>
       </div>
     </div>
   </div>
   <script type="module" src="./apps/web/index.js"></script>
   <script>
-    //
+    // Canvas dorado visible en móvil
+    const c=document.getElementById('gold-canvas'), ctx=c.getContext('2d');
+    function resize(){ c.width=innerWidth*devicePixelRatio; c.height=innerHeight*devicePixelRatio; c.style.width=innerWidth+'px'; c.style.height=innerHeight+'px'; }
+    resize(); addEventListener('resize', resize);
+    let t=0;
+    (function draw(){
+      t+=0.008;
+      const w=c.width, h=c.height;
+      ctx.fillStyle='#040a14'; ctx.fillRect(0,0,w,h);
+      ctx.strokeStyle='rgba(214,168,79,0.22)'; ctx.lineWidth=1*devicePixelRatio;
+      for(let k=0;k<3;k++){
+        ctx.beginPath();
+        for(let x=0;x<w;x+=8){
+          const y = h/2 + Math.sin(x*0.003 + t + k)* (40 + k*20) + Math.cos(x*0.0015 + k)*30;
+          if(x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+        }
+        ctx.stroke();
+      }
+      // particulas doradas
+      ctx.fillStyle='rgba(214,168,79,0.5)';
+      for(let i=0;i<3;i++){ const px=(Math.sin(t*0.5+i)*0.5+0.5)*w; const py=h/2+Math.cos(t*0.7+i)*120; ctx.beginPath(); ctx.arc(px,py,1.5*devicePixelRatio,0,Math.PI*2); ctx.fill(); }
+      requestAnimationFrame(draw);
+    })();
+  </script>
+</body>
+</html>
