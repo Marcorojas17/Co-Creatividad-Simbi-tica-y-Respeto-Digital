@@ -1,37 +1,46 @@
-<!DOCTYPE html>
-<html lang="es-MX">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KRONOS-28-ITZA ◍ 04:40</title>
-  <link rel="manifest" href="./manifest.webmanifest" />
-  <link rel="stylesheet" href="./glass.css" />
-  <script type="importmap">
-    {
-      "imports": {
-        "crypto-js": "https://cdn.jsdelivr.net/npm/crypto-js@4.2.0/index.js"
-      }
-    }
-  </script>
-</head>
-<body>
-  <canvas id="gold-canvas"></canvas>
-  <div id="app">
-    <div class="card glass">
-      <div class="kicker">◍ PROTOTIPO TÉCNICO • INTEGRIDAD VERIFICABLE</div>
-      <div class="title">KRONOS-28-ITZA <span class="gold">04:40</span></div>
-      <div class="copy">Respeto Digital. La autoridad tranquila.<br>SEÑAL DE REFERENCIA • BENCHMARK PENDIENTE</div>
-      <div class="actions">
-        <a class="btn btn-primary" href="./live3d.html">ENTRAR ◍ LIVE 3D</a>
-        <a class="btn" href="./live.html">LIVE</a>
-      </div>
-      <div class="footer">
-        <span id="status"><span class="dot"></span> PROTOTIPO • NODO: ITZA-03</span>
-        <span id="fps">--ms</span>
-        <span id="chain-status">⚡</span>
-      </div>
-    </div>
-  </div>
-  <script type="module" src="./index.js"></script>
-</body>
-</html>
+<!DOCTYPE html><html lang="es-MX"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>KRONOS 28 ITZA - 440Hz Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{margin:0;background:#040a14;color:#e8e0d0;font-family:system-ui}
+.header{position:fixed;top:0;width:100%;background:rgba(4,10,20,.8);backdrop-filter:blur(20px);border-bottom:1px solid #d6a84f;padding:12px 24px;display:flex;justify-content:space-between;z-index:10}
+.logo{color:#d6a84f;letter-spacing:3px;font-weight:700}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:80px 20px 20px}
+.card{background:rgba(16,24,40,.6);border:1px solid rgba(214,168,79,.3);border-radius:28px;padding:20px;backdrop-filter:blur(20px)}
+.card h3{color:#d6a84f;margin:0 0 12px;font-size:12px;letter-spacing:2px}
+canvas#cymatic{width:100%;height:300px;border-radius:16px}
+.freq{font-size:42px;color:#d6a84f;font-weight:800}
+.nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(16,24,40,.8);border:1px solid #d6a84f;padding:8px;border-radius:28px;display:flex;gap:8px}
+.nav a{color:#d6a84f;text-decoration:none;padding:8px 16px;border:1px solid #d6a84f;border-radius:20px;font-size:11px}
+</style></head><body>
+<div class="header"><div class="logo">KRONOS 28 ITZA - 04:40 PLATINUM</div><div style="color:#d6a84f">440Hz • 289</div></div>
+
+<div class="grid">
+  <div class="card"><h3>● ONDA CIMATICA TIEMPO REAL</h3><canvas id="cymatic"></canvas><div style="display:flex;justify-content:space-between;margin-top:10px"><span>Frecuencia: <b id="freq" class="freq" style="font-size:18px">440Hz</b></span><span id="fps">60 FPS</span></div></div>
+  <div class="card"><h3>● METRICAS INFLUXDB</h3><canvas id="chartMetrics"></canvas></div>
+  <div class="card"><h3>● PLATO CHLADNI (n=4,m=2)</h3><canvas id="chladni"></canvas></div>
+  <div class="card"><h3>● SERIES TEMPORALES</h3><canvas id="chartTime"></canvas></div>
+</div>
+
+<div class="nav"><a href="index.html">INDEX</a><a href="live.html">LIVE</a><a href="live3d.html">LIVE 3D</a><a href="../legal/terminos.html">LEGAL</a></div>
+
+<script type="module">
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
+// 1. CIMATICA GOLD
+const canvas=document.getElementById('cymatic');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true});renderer.setSize(canvas.clientWidth,300);
+const scene=new THREE.Scene();const cam=new THREE.OrthographicCamera(-1,1,1,-1,0,1);
+const geo=new THREE.PlaneGeometry(2,2);
+const mat=new THREE.ShaderMaterial({uniforms:{uTime:{value:0},uFreq:{value:440}},vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,fragmentShader:`precision highp float;uniform float uTime;uniform float uFreq;varying vec2 vUv;void main(){float d=distance(vUv,vec2(0.5));float f=uFreq/440.0;float w=sin(d*18.0*f-uTime*2.0)*0.5+0.5;float ring=smoothstep(0.2,0.21,d)*smoothstep(0.5,0.49,d);vec3 gold=vec3(0.84,0.66,0.31);vec3 dark=vec3(0.04,0.04,0.08);vec3 col=mix(dark,gold,w*ring*exp(-d*2.0)*2.0);gl_FragColor=vec4(col*(1.0-d*0.7),1.0);}`});
+scene.add(new THREE.Mesh(geo,mat));
+(function anim(t){mat.uniforms.uTime.value=t*0.001;renderer.render(scene,cam);requestAnimationFrame(anim)})(0);
+
+// 2. METRICAS CHART
+new Chart(document.getElementById('chartMetrics'),{type:'line',data:{labels:['-60s','-45s','-30s','-15s','Ahora'],datasets:[{label:'440Hz Estable',data:[439.8,440.1,440.0,439.9,440],borderColor:'#d6a84f',backgroundColor:'rgba(214,168,79,.1)',tension:0.4}]},options:{plugins:{legend:{display:false}},scales:{y:{min:438,max:442,grid:{color:'rgba(214,168,79,.1)'}}}}});
+
+// 3. CHLADNI
+const c2=document.getElementById('chladni');const ctx=c2.getContext('2d');c2.width=300;c2.height=300;
+function drawChladni(t){ctx.clearRect(0,0,300,300);for(let x=0;x<300;x+=3){for(let y=0;y<300;y+=3){let nx=4*Math.PI*x/300, ny=2*Math.PI*y/300;let v=Math.cos(nx)*Math.cos(ny)-Math.cos(2*Math.PI*x/300)*Math.cos(4*Math.PI*y/300);let intensity=Math.abs(Math.sin(v*3+t*0.002));ctx.fillStyle=`rgba(214,168,79,${intensity*0.8})`;if(intensity>0.6)ctx.fillRect(x,y,2,2)}}requestAnimationFrame(drawChladni)}drawChladni(0);
+
+// 4. TIMESERIES
+new Chart(document.getElementById('chartTime'),{type:'bar',data:{labels:['DSP','Influx','Crypto','Trace','Gold'],datasets:[{label:'Señal',data:[95,88,100,92,98],backgroundColor:['#d6a84f','#c19b4a','#e8c874','#a0823a','#d6a84f']}]},options:{plugins:{legend:{display:false}}}});
+</script></body></html>
