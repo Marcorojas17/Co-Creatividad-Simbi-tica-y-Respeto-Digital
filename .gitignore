@@ -80,3 +80,9 @@ temp/
 *.tmp
 *.temp
 dist
+# SECRETS - CRITICAL
+secrets/
+*.key
+tokens.json
+.env
+audit_ed25519.key
