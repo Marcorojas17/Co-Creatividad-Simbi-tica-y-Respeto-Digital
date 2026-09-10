@@ -1,4 +1,1 @@
-// KRONOS-28-ITZA 289 PLATINUM - Preinstall Check
-console.log('✅ KRONOS-28-ITZA preinstall check: OK');
-console.log(`🔹 Node: ${process.version}`);
-console.log(`🔹 Platform: ${process.platform}`);
+if (!process.env.npm_config_user_agent?.includes('pnpm')) { console.error("Use pnpm!"); process.exit(1); }

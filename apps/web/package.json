@@ -1,9 +1,7 @@
 {
   "name": "@kronos/web",
   "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "npx serve src -l 3000",
-    "build": "mkdir -p ../../dist && cp -r src/* ../../dist/ && cp -r src/* . && echo 'build platinum OK'"
-  }
+  "type": "module",
+  "scripts": { "dev": "vite", "build": "vite build", "type-check": "tsc --noEmit" },
+  "dependencies": { "three": "^0.160.0", "react": "^18.2.0", "react-dom": "^18.2.0" }
 }

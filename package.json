@@ -35,7 +35,7 @@
     "seal": "pnpm run compliance:sec && pnpm run compliance:licenses && pnpm run test",
     "frequency": "node core-dsp/frequency-audit.mjs --dry-run",
     "frequency:real": "node core-dsp/frequency-audit.mjs",
-    "prepare": "husky install",
+    "prepare": "husky",
     "preinstall": "node compliance/preinstall-check.mjs"
   },
   "dependencies": {
@@ -62,5 +62,11 @@
   },
   "author": "KRONOS-28-ITZA 289 PLATINUM",
   "license": "UNLICENSED",
-  "keywords": ["kronos", "cymatic", "440hz", "platinum", "co-creatividad"]
+  "keywords": [
+    "kronos",
+    "cymatic",
+    "440hz",
+    "platinum",
+    "co-creatividad"
+  ]
 }
