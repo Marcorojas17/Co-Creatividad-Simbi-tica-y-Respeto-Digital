@@ -1,46 +1,67 @@
-<!DOCTYPE html><html lang="es-MX"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>KRONOS 28 ITZA - 440Hz Dashboard</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CYMATIC // CONTROL - ELITE PLATINUM</title>
 <style>
-body{margin:0;background:#040a14;color:#e8e0d0;font-family:system-ui}
-.header{position:fixed;top:0;width:100%;background:rgba(4,10,20,.8);backdrop-filter:blur(20px);border-bottom:1px solid #d6a84f;padding:12px 24px;display:flex;justify-content:space-between;z-index:10}
-.logo{color:#d6a84f;letter-spacing:3px;font-weight:700}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:80px 20px 20px}
-.card{background:rgba(16,24,40,.6);border:1px solid rgba(214,168,79,.3);border-radius:28px;padding:20px;backdrop-filter:blur(20px)}
-.card h3{color:#d6a84f;margin:0 0 12px;font-size:12px;letter-spacing:2px}
-canvas#cymatic{width:100%;height:300px;border-radius:16px}
-.freq{font-size:42px;color:#d6a84f;font-weight:800}
-.nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(16,24,40,.8);border:1px solid #d6a84f;padding:8px;border-radius:28px;display:flex;gap:8px}
-.nav a{color:#d6a84f;text-decoration:none;padding:8px 16px;border:1px solid #d6a84f;border-radius:20px;font-size:11px}
-</style></head><body>
-<div class="header"><div class="logo">KRONOS 28 ITZA - 04:40 PLATINUM</div><div style="color:#d6a84f">440Hz • 289</div></div>
-
+:root{--gold:#D4AF37;--gold2:#F5D76E;--bg:#080808}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#080808;color:#e8dcc0;font-family:Inter,system-ui;min-height:100vh}
+.top{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(0,0,0,0.6);border-bottom:1px solid rgba(212,175,55,0.15)}
+.brand{color:#D4AF37;letter-spacing:3px;font-weight:600}
+nav a{margin:0 12px;color:#888;letter-spacing:2px;font-size:13px}
+nav a.active{color:#D4AF37;border-bottom:2px solid #D4AF37;padding-bottom:4px}
+.wrap{max-width:1200px;margin:30px auto;padding:0 20px}
+.monitor{border:1px solid rgba(212,175,55,0.3);background:rgba(255,255,255,0.06);backdrop-filter:blur(24px);border-radius:20px;padding:24px;box-shadow:0 0 80px rgba(212,175,55,0.15)}
+.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.head h1{letter-spacing:2px}
+.status{color:#7CFC8A;display:flex;align-items:center;gap:10px}
+.dot{width:8px;height:8px;background:#7CFC8A;border-radius:50%;box-shadow:0 0 8px #7CFC8A}
+.grid{display:grid;grid-template-columns:1.4fr 0.8fr;gap:20px}
+.card{background:rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px}
+.card h3{color:#D4AF37;font-size:12px;letter-spacing:1.5px;margin-bottom:12px}
+.term{font-family:monospace;font-size:12px;line-height:22px;color:#c8c8c8}
+.term .green{color:#7CFC8A}
+.bar{height:4px;background:rgba(255,255,255,0.1);border-radius:2px;margin:6px 0}
+.bar div{height:100%;background:#D4AF37}
+#wave{width:100%;height:50px;margin-top:10px}
+.bottom{margin-top:20px;display:flex;gap:12px;justify-content:center}
+.bottom button{background:transparent;border:1px solid #D4AF37;color:#e8dcc0;padding:10px 22px;border-radius:8px}
+.bottom button.gold{background:linear-gradient(90deg,#D4AF37,#F5D76E);color:#000;font-weight:700}
+</style>
+</head>
+<body>
+<div class="top"><div class="brand">CYMATIC // CONTROL</div><nav><a>OVERVIEW</a><a class="active">LIVE</a><a>HISTORY</a><a>NODES</a><a>ANALYSIS</a></nav><div>ELITE • SESSION JD</div></div>
+<div class="wrap">
+<div class="monitor">
+<div class="head"><h1>LIVE • STREAM MONITOR</h1><div class="status"><span class="dot"></span> ONLINE <span style="color:#888;margin-left:10px">LIVE SINCE 00:14:22</span></div></div>
 <div class="grid">
-  <div class="card"><h3>● ONDA CIMATICA TIEMPO REAL</h3><canvas id="cymatic"></canvas><div style="display:flex;justify-content:space-between;margin-top:10px"><span>Frecuencia: <b id="freq" class="freq" style="font-size:18px">440Hz</b></span><span id="fps">60 FPS</span></div></div>
-  <div class="card"><h3>● METRICAS INFLUXDB</h3><canvas id="chartMetrics"></canvas></div>
-  <div class="card"><h3>● PLATO CHLADNI (n=4,m=2)</h3><canvas id="chladni"></canvas></div>
-  <div class="card"><h3>● SERIES TEMPORALES</h3><canvas id="chartTime"></canvas></div>
+<div class="card"><h3>LOG TERMINAL</h3><div class="term" id="logs">
+[2025-11-22 14:03:12] INIT: Sensor array online<br>
+[2025-11-22 14:03:13] CAL: Calibration complete - bias null<br>
+<span class="green">[2025-11-22 14:03:14] SIGNAL: Stable</span><br>
+[2025-11-22 14:03:15] SNR: 42.3dB • Noise floor -96dB<br>
+[2025-11-22 14:03:16] PATH: Node-07 → Node-12 active<br>
+<span class="green">[2025-11-22 14:03:17] SIGNAL: Stable</span>
+</div></div>
+<div class="card"><h3>SIGNAL METRICS</h3>
+<div>SIGNAL STRENGTH <b style="color:#D4AF37;float:right">94%</b><div class="bar"><div style="width:94%"></div></div></div><br>
+<div>STABILITY <b style="color:#7CFC8A;float:right">STABLE</b><div class="bar"><div style="width:100%"></div></div></div><br>
+<div>LATENCY <b style="float:right">12ms</b> <span style="color:#7CFC8A;font-size:11px">— optimal</span></div><br>
+<div style="font-size:10px;color:#888">WAVEFORM • REALTIME</div>
+<canvas id="wave"></canvas>
 </div>
-
-<div class="nav"><a href="index.html">INDEX</a><a href="live.html">LIVE</a><a href="live3d.html">LIVE 3D</a><a href="../legal/terminos.html">LEGAL</a></div>
-
-<script type="module">
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
-// 1. CIMATICA GOLD
-const canvas=document.getElementById('cymatic');
-const renderer=new THREE.WebGLRenderer({canvas,antialias:true});renderer.setSize(canvas.clientWidth,300);
-const scene=new THREE.Scene();const cam=new THREE.OrthographicCamera(-1,1,1,-1,0,1);
-const geo=new THREE.PlaneGeometry(2,2);
-const mat=new THREE.ShaderMaterial({uniforms:{uTime:{value:0},uFreq:{value:440}},vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,fragmentShader:`precision highp float;uniform float uTime;uniform float uFreq;varying vec2 vUv;void main(){float d=distance(vUv,vec2(0.5));float f=uFreq/440.0;float w=sin(d*18.0*f-uTime*2.0)*0.5+0.5;float ring=smoothstep(0.2,0.21,d)*smoothstep(0.5,0.49,d);vec3 gold=vec3(0.84,0.66,0.31);vec3 dark=vec3(0.04,0.04,0.08);vec3 col=mix(dark,gold,w*ring*exp(-d*2.0)*2.0);gl_FragColor=vec4(col*(1.0-d*0.7),1.0);}`});
-scene.add(new THREE.Mesh(geo,mat));
-(function anim(t){mat.uniforms.uTime.value=t*0.001;renderer.render(scene,cam);requestAnimationFrame(anim)})(0);
-
-// 2. METRICAS CHART
-new Chart(document.getElementById('chartMetrics'),{type:'line',data:{labels:['-60s','-45s','-30s','-15s','Ahora'],datasets:[{label:'440Hz Estable',data:[439.8,440.1,440.0,439.9,440],borderColor:'#d6a84f',backgroundColor:'rgba(214,168,79,.1)',tension:0.4}]},options:{plugins:{legend:{display:false}},scales:{y:{min:438,max:442,grid:{color:'rgba(214,168,79,.1)'}}}}});
-
-// 3. CHLADNI
-const c2=document.getElementById('chladni');const ctx=c2.getContext('2d');c2.width=300;c2.height=300;
-function drawChladni(t){ctx.clearRect(0,0,300,300);for(let x=0;x<300;x+=3){for(let y=0;y<300;y+=3){let nx=4*Math.PI*x/300, ny=2*Math.PI*y/300;let v=Math.cos(nx)*Math.cos(ny)-Math.cos(2*Math.PI*x/300)*Math.cos(4*Math.PI*y/300);let intensity=Math.abs(Math.sin(v*3+t*0.002));ctx.fillStyle=`rgba(214,168,79,${intensity*0.8})`;if(intensity>0.6)ctx.fillRect(x,y,2,2)}}requestAnimationFrame(drawChladni)}drawChladni(0);
-
-// 4. TIMESERIES
-new Chart(document.getElementById('chartTime'),{type:'bar',data:{labels:['DSP','Influx','Crypto','Trace','Gold'],datasets:[{label:'Señal',data:[95,88,100,92,98],backgroundColor:['#d6a84f','#c19b4a','#e8c874','#a0823a','#d6a84f']}]},options:{plugins:{legend:{display:false}}}});
-</script></body></html>
+</div>
+</div>
+<div class="bottom"><button>PAUSE</button><button class="gold">RECORD</button><button>EXPORT LOGS</button><button>SETTINGS</button></div>
+</div>
+<script>
+const c=document.getElementById('wave').getContext('2d'); let x=0;
+setInterval(()=>{c.clearRect(0,0,400,50); c.beginPath(); c.strokeStyle='#D4AF37'; c.lineWidth=1;
+for(let i=0;i<400;i++){c.lineTo(i,25+Math.sin((i+x)/12)*10+Math.random()*3)} c.stroke(); x+=2;},40);
+const logs=document.getElementById('logs');
+setInterval(()=>{const n=new Date(); const t=n.toLocaleTimeString(); logs.innerHTML+=`<br>[${t}] SIGNAL: Stable`; logs.scrollTop=logs.scrollHeight;},3000);
+</script>
+</body>
+</html>
