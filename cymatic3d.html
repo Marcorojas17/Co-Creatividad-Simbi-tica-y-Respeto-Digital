@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LIVE 3D • CYMATIC</title>
+<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+<style>body{margin:0;background:#080808;color:#D4AF37;font-family:Inter;overflow:hidden} .top{position:absolute;top:10px;left:10px;right:10px;height:44px;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,0.6);border:1px solid rgba(212,175,55,0.3);border-radius:12px;padding:0 16px;backdrop-filter:blur(10px)} .panel{position:absolute;left:16px;top:70px;width:280px;background:rgba(0,0,0,0.7);border:1px solid rgba(212,175,55,0.2);border-radius:12px;padding:16px;backdrop-filter:blur(12px)} input[type=range]{width:100%;accent-color:#D4AF37} .val{float:right;color:#fff} .bottom{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:12px;background:rgba(0,0,0,0.6);border:1px solid rgba(212,175,55,0.2);border-radius:30px;padding:8px 16px}</style>
+</head><body>
+<div class="top"><div><b style="color:#D4AF37">● LIVE 3D</b> <span style="color:#666;font-size:11px;margin-left:12px">THREE.JS • CYMATIC DISPLACEMENT SHADER • WEBGL</span></div><div><a href="index.html" style="color:#D4AF37;text-decoration:none;font-size:12px">INDEX</a></div></div>
+<div class="panel">
+<div style="font-size:12px;letter-spacing:2px;margin-bottom:12px">CYMATIC CONTROLS</div>
+<div>DISPLACEMENT WAVE</div>
+<div style="margin:12px 0">FREQUENCY <span class="val" id="vF">42.3 Hz</span><input id="f" type="range" min="10" max="440" value="42.3" step="0.1"></div>
+<div style="margin:12px 0">AMPLITUDE <span class="val" id="vA">0.78</span><input id="a" type="range" min="0" max="2" step="0.01" value="0.78"></div>
+<div style="margin:12px 0">COMPLEXITY <span class="val" id="vC">6</span><input id="c" type="range" min="1" max="10" value="6" step="1"></div>
+<div style="margin:12px 0">DAMPING <span class="val" id="vD">0.12</span><input id="d" type="range" min="0" max="1" step="0.01" value="0.12"></div>
+<div style="margin-top:20px">PARTICLES <span style="float:right;background:#D4AF37;color:#000;padding:2px 8px;border-radius:10px;font-size:10px">ON</span></div>
+<div style="font-size:10px;color:#888;margin-top:8px">COUNT: 1200 • SIZE: 0.8 • WIND: 0.15</div>
+<div style="margin-top:16px">FPS: <span id="fps" style="color:#7CFC8A">60</span> • MEM: 128MB</div>
+</div>
+<div class="bottom"><span style="font-size:11px;color:#888">VIEW 03/03</span><button style="border:1px solid #D4AF37;background:#D4AF37;color:#000;padding:6px 18px;border-radius:20px;margin:0 12px">INDEX</button><span style="font-size:11px;color:#888">EXPORT PLY</span></div>
+<script>
+const scene=new THREE.Scene(); const cam=new THREE.PerspectiveCamera(45,innerWidth/innerHeight,0.1,100); cam.position.set(0,2,3);
+const ren=new THREE.WebGLRenderer({antialias:true}); ren.setSize(innerWidth,innerHeight); document.body.appendChild(ren.domElement);
+const geo=new THREE.PlaneGeometry(4,4,128,128); const mat=new THREE.MeshStandardMaterial({color:0xD4AF37,wireframe:true});
+const mesh=new THREE.Mesh(geo,mat); mesh.rotation.x=-Math.PI/2.5; scene.add(mesh);
+scene.add(new THREE.DirectionalLight(0xD4AF37,1).position.set(1,2,1)); scene.add(new THREE.AmbientLight(0x444444));
+let freq=42.3, amp=0.78, comp=6;
+function animate(t){ requestAnimationFrame(animate); const pos=geo.attributes.position; for(let i=0;i<pos.count;i++){ const x=pos.getX(i), y=pos.getY(i); let z=0; for(let k=1;k<=comp;k++) z+= Math.sin(x*k*0.5+ t*0.001*freq*0.1)*Math.cos(y*k*0.5+ t*0.001*freq*0.1)*amp/k; pos.setZ(i,z);} pos.needsUpdate=true; geo.computeVertexNormals(); ren.render(scene,cam);}
+animate(0);
+document.getElementById('f').oninput=e=>{freq=parseFloat(e.target.value); document.getElementById('vF').textContent=freq+' Hz'}; 
+document.getElementById('a').oninput=e=>{amp=parseFloat(e.target.value); document.getElementById('vA').textContent=amp};
+document.getElementById('c').oninput=e=>{comp=parseInt(e.target.value); document.getElementById('vC').textContent=comp};
+window.onresize=()=>{ren.setSize(innerWidth,innerHeight); cam.aspect=innerWidth/innerHeight; cam.updateProjectionMatrix()};
+</script></body></html>
