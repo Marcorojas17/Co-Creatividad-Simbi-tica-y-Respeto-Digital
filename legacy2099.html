@@ -1,104 +1,158 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Legacy 2099 • Capítulo 4 - Elige tu Esencia</title>
-<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<style>
-body{margin:0;background:#020205;color:#fff;font-family:Inter,system-ui;overflow:hidden}
-.top{position:fixed;top:0;left:0;right:0;height:48px;display:flex;justify-content:space-between;align-items:center;padding:0 14px;background:rgba(0,0,0,0.8);border-bottom:1px solid rgba(212,175,55,0.2);z-index:20}
-.grid{position:fixed;inset:52px 0 0 0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:2px;background:#111;z-index:1}
-.cell{position:relative;background:#000;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;padding:14px;transition:0.3s}
-.cell:hover{filter:brightness(1.3);box-shadow:inset 0 0 40px rgba(212,175,55,0.3)}
-.label{font-size:10px;letter-spacing:2px;color:#D4AF37;display:flex;justify-content:space-between}
-.title{font-size:18px;font-weight:700;letter-spacing:1px}
-.freq{font-size:10px;color:#00aaff;margin-top:4px}
-.desc{font-size:9px;color:#888;margin-top:6px;line-height:1.4}
-.badge{position:absolute;top:12px;right:12px;border:1px solid rgba(212,175,55,0.4);padding:3px 8px;border-radius:12px;font-size:8px;color:#D4AF37}
-#player{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.85);border:1px solid rgba(212,175,55,0.3);border-radius:30px;padding:8px 14px;display:flex;gap:10px;align-items:center;z-index:30;backdrop-filter:blur(12px)}
-.btn{padding:8px 14px;border-radius:20px;border:1px solid #D4AF37;background:linear-gradient(90deg,#D4AF37,#F5D76E);color:#000;font-weight:800;font-size:11px;cursor:pointer}
-canvas{position:absolute;inset:0;width:100%;height:100%}
-</style></head><body>
-<div class="top">
-<div style="color:#D4AF37;font-weight:800;letter-spacing:3px">Legacy 2099 • Cap.04</div>
-<div style="font-size:10px;color:#00aaff;border:1px solid #00aaff;padding:4px 10px;border-radius:20px">The evolution of the Architect • Elige tu esencia</div>
-<div style="font-size:10px;color:#888">Co-Creatividad Simbiótica</div>
-</div>
+cat > apps/web/src/legado-2099.html << 'EOF'
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LEGADO 2099 — KRONOS-28-ITZA</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #000; color: #fff; font-family: ui-monospace, monospace; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: radial-gradient(ellipse at center, #1a1a0a 0%, #000 70%);
+      border-bottom: 2px solid #D4AF37; position: relative; overflow: hidden; padding: 40px 20px;
+    }
+    .hero .top-label { position: absolute; top: 10%; font-size: 12px; letter-spacing: 8px; color: #D4AF37; text-align: center; width: 100%; padding: 0 20px; }
+    .hero h1 {
+      font-size: clamp(48px, 10vw, 72px); font-weight: 900;
+      background: linear-gradient(180deg, #D4AF37 0%, #8B6914 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; text-align: center; line-height: 0.9;
+    }
+    .hero .sub { margin-top: 20px; font-size: 14px; letter-spacing: 4px; color: #666; text-align: center; }
+    .circle-outer {
+      margin-top: 40px; width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle, #D4AF37 0%, #000 70%);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 80px rgba(212,175,55,0.5);
+      animation: pulse 3s infinite;
+      max-width: 80vw; max-height: 80vw;
+    }
+    .circle-inner { width: 66%; height: 66%; border-radius: 50%; background: #000; display: flex; align-items: center; justify-content: center; font-size: 80px; }
+    .hero .desc { margin-top: 30px; max-width: 600px; text-align: center; color: #999; font-size: 13px; line-height: 1.6; padding: 0 20px; }
+    .btn-gold {
+      margin-top: 30px; padding: 16px 48px; background: #D4AF37; color: #000;
+      border: none; font-weight: 900; letter-spacing: 3px; cursor: pointer; font-size: 14px;
+      transition: 0.2s;
+    }
+    .btn-gold:hover { background: #f2d18a; transform: scale(1.02); }
+    .section { padding: 80px 40px; max-width: 1200px; margin: 0 auto; }
+    .section h2 { font-size: 12px; letter-spacing: 6px; color: #D4AF37; margin-bottom: 40px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .card { background: #111; padding: 24px; border: 1px solid #222; position: relative; transition: 0.3s; }
+    .card:hover { transform: translateY(-4px); }
+    .card .cap { font-size: 10px; }
+    .card h3 { margin-top: 10px; font-size: 18px; color: #fff; }
+    .card p { margin-top: 8px; font-size: 12px; color: #666; }
+    .card .bottom { margin-top: 20px; display: flex; justify-content: space-between; align-items: center; }
+    .card .bottom .price { font-weight: 900; }
+    .card .bottom button { background: transparent; padding: 6px 12px; font-size: 10px; cursor: pointer; transition: 0.2s; }
+    .stack-section { background: #0a0a0a; padding: 60px 40px; border-top: 1px solid #222; }
+    .stack-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+    .stack-grid h3 { color: #D4AF37; font-size: 12px; letter-spacing: 4px; }
+    .stack-grid ul { margin-top: 20px; list-style: none; padding: 0; font-size: 12px; color: #666; line-height: 2; }
+    .stack-grid p { margin-top: 20px; font-size: 12px; color: #999; line-height: 1.8; }
+    .stack-grid p strong { color: #fff; }
+    footer { text-align: center; padding: 40px 20px; font-size: 10px; color: #333; letter-spacing: 6px; }
+    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+    @media (max-width: 768px) {
+      .stack-grid { grid-template-columns: 1fr; gap: 40px; }
+      .section { padding: 40px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="top-label">KRONOS-28-ITZA // 289 PLATINUM // 04:40</div>
+    <h1>LEGADO<br>2099</h1>
+    <p class="sub">CO-CREATIVIDAD SIMBIÓTICA Y RESPETO DIGITAL</p>
+    <div class="circle-outer">
+      <div class="circle-inner">🪨</div>
+    </div>
+    <p class="desc">
+      Resguardo familiar con ADN digital + roca madre + diamante eterno.<br>
+      SHA-256 real. No es NFT. Es memoria inmutable.
+    </p>
+    <button class="btn-gold" onclick="alert('¡Bienvenido al LEGADO 2099!')">
+      ADQUIRIR 289 PLATINUM → $150K MXN
+    </button>
+  </section>
 
-<div class="grid">
-<div class="cell" id="min1" onclick="selectEssence(1)">
-<canvas id="c1"></canvas>
-<div class="label"><span>MIN1 • MONEDA</span><span style="color:#00ff88">● DISPONIBLE</span></div>
-<div><div class="title" style="color:#D4AF37">CAPSULE AI • LEGADO</div><div class="freq">432Hz • Tierra • Raíces • Dinero consciente</div><div class="desc">Tu voz grave crea moneda. Cada Om acuña tu token dorado. Para los que vienen a materializar.</div></div>
-<div class="badge">VERDE //1</div>
-</div>
+  <!-- GRID 4 MINTS -->
+  <section class="section">
+    <h2>4 MINTS // 6 CAPÍTULOS</h2>
+    <div class="grid">
+      <div class="card" style="border-color:#D4AF37;">
+        <div class="cap" style="color:#D4AF37;">CAP 1</div>
+        <h3>NEXO PRIMORDIAL</h3>
+        <p>ADN dorado + roca madre. Origen.</p>
+        <div class="bottom">
+          <span class="price" style="color:#D4AF37;">289 PLATINUM</span>
+          <button style="border:1px solid #D4AF37; color:#D4AF37;">VER →</button>
+        </div>
+      </div>
+      <div class="card" style="border-color:#9D00FF;">
+        <div class="cap" style="color:#9D00FF;">CAP 6</div>
+        <h3>DIAMANTE ETERNO</h3>
+        <p>SHA-256 + familia. Inmutable.</p>
+        <div class="bottom">
+          <span class="price" style="color:#9D00FF;">289 PLATINUM</span>
+          <button style="border:1px solid #9D00FF; color:#9D00FF;">VER →</button>
+        </div>
+      </div>
+      <div class="card" style="border-color:#00FF9D;">
+        <div class="cap" style="color:#00FF9D;">CAP 3</div>
+        <h3>BOOTH INTERACTIVO</h3>
+        <p>Experiencia física Zamna. QR + Cymatics.</p>
+        <div class="bottom">
+          <span class="price" style="color:#00FF9D;">500K PLATINUM</span>
+          <button style="border:1px solid #00FF9D; color:#00FF9D;">VER →</button>
+        </div>
+      </div>
+      <div class="card" style="border-color:#FF3B3B;">
+        <div class="cap" style="color:#FF3B3B;">CAP 4</div>
+        <h3>SELECTOR 4 MINTS</h3>
+        <p>Netflix de legados. 4 familias.</p>
+        <div class="bottom">
+          <span class="price" style="color:#FF3B3B;">150K PLATINUM</span>
+          <button style="border:1px solid #FF3B3B; color:#FF3B3B;">VER →</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="cell" id="min2" onclick="selectEssence(2)">
-<canvas id="c2"></canvas>
-<div class="label"><span>MIN2 • GEOMETRÍA</span><span style="color:#00aaff">● BLUEPRINT</span></div>
-<div><div class="title" style="color:#00aaff">THE ARCHITECT</div><div class="freq">528Hz • Corazón • Geometría • Sanación</div><div class="desc">Frecuencia del amor. Tu voz media dibuja la Merkaba perfecta. Para sanadores y arquitectos.</div></div>
-<div class="badge">FLOWER 2099</div>
-</div>
+  <!-- TECH STACK -->
+  <section class="stack-section">
+    <div class="stack-grid">
+      <div>
+        <h3>STACK KRONOS-28-ITZA</h3>
+        <ul>
+          <li>✓ Turbo monorepo cache 85%</li>
+          <li>✓ Type-check 100% verde</li>
+          <li>✓ Vite build 131ms / 46.7kb gzipped</li>
+          <li>✓ core-dsp 432Hz / 528Hz / 963Hz audit</li>
+          <li>✓ SHA-256 real + compliance/seal.mjs</li>
+          <li>✓ Husky + lint-staged + pre-commit seal</li>
+        </ul>
+      </div>
+      <div>
+        <h3>PARA ZAMNA / GOBIERNO</h3>
+        <p>
+          No es arte generativo. Es infraestructura de memoria.<br><br>
+          Cada roca escaneada = hash SHA-256 + audio 3D + video familia.<br>
+          Deploy en Vercel Edge + IPFS. Resguardo 100 años.<br><br>
+          <strong>Ticket promedio: $150K - $500K MXN por legado familiar.</strong>
+        </p>
+      </div>
+    </div>
+  </section>
 
-<div class="cell" id="min3" onclick="selectEssence(3)">
-<canvas id="c3"></canvas>
-<div class="label"><span>MIN3 • PORTAL</span><span style="color:#00aaff">● TÚNEL</span></div>
-<div><div class="title" style="color:#00ffff">TÚNEL CUÁNTICO</div><div class="freq">963Hz • Corona • Portal • Visión</div><div class="desc">Agudos que abren el túnel. Tu voz se vuelve viaje interestelar. Para DJs y visionarios.</div></div>
-<div class="badge">360° DOME</div>
-</div>
-
-<div class="cell" id="min4" onclick="selectEssence(4)">
-<canvas id="c4"></canvas>
-<div class="label"><span>MIN4 • VIDA LÍQUIDA</span><span style="color:#fff">● BIO</span></div>
-<div><div class="title" style="color:#fff">MERCURIO VIVO</div><div class="freq">174Hz + 963Hz • Todo • Vida • Nacimiento</div><div class="desc">La música manifiesta sola. Graves + agudos = pare merkabitas vivas. Para los que crean tribu.</div></div>
-<div class="badge">NO EXISTE</div>
-</div>
-</div>
-
-<div id="player">
-<button class="btn" id="micBtn">🎤 QUE TU MÚSICA ELIJA POR TI</button>
-<audio id="audio" controls style="width:200px;display:none"></audio>
-<label class="btn" style="background:transparent;color:#D4AF37">📁 SUBE TU MP3<input type="file" id="file" accept=".mp3,.wav,.ogg,.m4a" style="display:none"></label>
-<div style="font-size:9px;color:#888">Esencia: <b id="ess" style="color:#D4AF37">Esperando música...</b></div>
-</div>
-
-<script type="module">
-import * as THREE from 'three';
-const cells=[1,2,3,4].map(i=>document.getElementById(`c${i}`));
-const scenes=[];
-cells.forEach((canvas,i)=>{
- const scene=new THREE.Scene(); const camera=new THREE.PerspectiveCamera(40,1,0.1,10); camera.position.z=2.2;
- const renderer=new THREE.WebGLRenderer({canvas, alpha:true, antialias:true}); renderer.setSize(canvas.clientWidth, canvas.clientHeight);
- const geo=i==0? new THREE.CylinderGeometry(0.6,0.6,0.1,32): i==1? new THREE.IcosahedronGeometry(0.7,1): i==2? new THREE.TorusGeometry(0.5,0.15,16,64): new THREE.IcosahedronGeometry(0.5,0);
- const mat=new THREE.MeshStandardMaterial({color: i==0?0xD4AF37: i==1?0x00aaff: i==2?0x00ffff: 0xffffff, wireframe: i!=0, metalness:0.7, roughness:0.2, emissive: i==0?0x332200:0x001122, emissiveIntensity:0.3});
- const mesh=new THREE.Mesh(geo,mat); scene.add(mesh); scene.add(new THREE.AmbientLight(0xffffff,1.2));
- scenes.push({scene,camera,renderer,mesh, i});
-});
-function animate(){ requestAnimationFrame(animate); scenes.forEach(s=>{ s.mesh.rotation.y+=0.01+s.i*0.002; s.mesh.rotation.x+=0.005; s.renderer.render(s.scene,s.camera); }); } animate();
-
-// LÓGICA DE ESENCIA POR MÚSICA
-let audioCtx, analyser, data; const audioEl=document.getElementById('audio'); const essEl=document.getElementById('ess');
-async function initAudio(src){
- audioCtx=new (window.AudioContext||window.webkitAudioContext)(); analyser=audioCtx.createAnalyser(); analyser.fftSize=512; data=new Uint8Array(analyser.frequencyBinCount);
- let source= src.mediaStream? audioCtx.createMediaStreamSource(src.mediaStream): audioCtx.createMediaElementSource(src); if(!src.mediaStream) src.play();
- source.connect(analyser); analyser.connect(audioCtx.destination); detectLoop();
-}
-function detectLoop(){
- if(!analyser) return; requestAnimationFrame(detectLoop); analyser.getByteFrequencyData(data);
- const low=data.slice(0,15).reduce((a,b)=>a+b,0)/15, mid=data.slice(15,60).reduce((a,b)=>a+b,0)/45, high=data.slice(60,120).reduce((a,b)=>a+b,0)/60;
- let essence=1; if(mid>low && mid>high) essence=2; if(high>low && high>mid) essence=3; if(low>30 && high>30) essence=4;
- highlight(essence, low, mid, high);
-}
-function highlight(n, l,m,h){
- document.querySelectorAll('.cell').forEach(c=>{c.style.border='none'; c.style.opacity='0.6';});
- const sel=document.getElementById(`min${n}`); sel.style.border='2px solid #D4AF37'; sel.style.opacity='1';
- const names=['','MONEDA (432Hz - materializador)','GEOMETRÍA (528Hz - sanador)','PORTAL (963Hz - visionario)','VIDA LÍQUIDA (bio - creador de tribu)'];
- essEl.textContent=names[n] + ` • L:${Math.floor(l)} M:${Math.floor(m)} H:${Math.floor(h)}`;
-}
-
-window.selectEssence=(n)=>{
- const links=['','certificado.html','cymatic3d.html','booth.html','tribu.html'];
- location.href=links[n];
-};
-
-document.getElementById('micBtn').onclick=async()=>{ const s=await navigator.mediaDevices.getUserMedia({audio:true}); await initAudio({mediaStream:s}); document.getElementById('micBtn').textContent='● ESCUCHANDO TU ESENCIA'; document.getElementById('audio').style.display='none'; };
-document.getElementById('file').onchange=e=>{ const f=e.target.files[0]; if(!f) return; audioEl.src=URL.createObjectURL(f); audioEl.style.display='block'; audioEl.onplay=async()=>{ if(!audioCtx) await initAudio(audioEl); }; audioEl.play(); };
-addEventListener('resize',()=>{ cells.forEach((c,i)=>{ const s=scenes[i]; s.camera.aspect=c.clientWidth/c.clientHeight; s.camera.updateProjectionMatrix(); s.renderer.setSize(c.clientWidth,c.clientHeight); }); });
-</script></body></html>
+  <footer>
+    KRONOS-28-ITZA 289 PLATINUM © 2099 // MARCO ROJAS // CO-CREATIVIDAD SIMBIÓTICA
+  </footer>
+</body>
+</html>
+EOF
