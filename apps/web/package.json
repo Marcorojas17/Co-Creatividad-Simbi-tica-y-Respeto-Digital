@@ -1,1 +1,9 @@
-{ "name": "@kronos/web", "version": "0.1.0", "private": true, "scripts": { "dev": "serve src -l 3000", "build": "echo building" } }
+{
+  "name": "@kronos/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve src -l 3000",
+    "build": "mkdir -p ../../dist && cp -r src/* ../../dist/ && cp -r src/* . && echo 'build platinum OK'"
+  }
+}

@@ -1,37 +1,78 @@
 <!DOCTYPE html>
 <html lang="es-MX">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LIVE 3D ◍ KRONOS</title><link rel="manifest" href="./manifest.webmanifest"><link rel="stylesheet" href="./design-system/glass.css">
-<style>body{background:#07111f;margin:0;overflow:hidden}canvas{display:block}</style>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+<title>KRONOS ◍ LIVE 3D 440Hz</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#040a14;overflow:hidden;font-family:monospace;color:#fff}
+#canvas{position:fixed;inset:0;width:100%;height:100%;display:block}
+#hud{position:fixed;top:16px;left:16px;z-index:10;background:rgba(7,17,31,.7);backdrop-filter:blur(18px);border:1px solid rgba(214,168,79,.18);border-radius:16px;padding:12px 18px}
+#hud h1{font-size:13px;color:#d6a84f}
+#hud p{font-size:10px;color:#9aa8c2;margin-top:4px}
+#controls{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);z-index:10;display:flex;gap:14px;flex-wrap:wrap;justify-content:center;background:rgba(7,17,31,.75);backdrop-filter:blur(18px);border:1px solid rgba(214,168,79,.18);border-radius:20px;padding:14px 20px;max-width:95%}
+.group{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:75px}
+.group label{font-size:8px;text-transform:uppercase;color:#9aa8c2;letter-spacing:.08em}
+.group input{width:90px;height:4px;background:rgba(214,168,79,.3);border-radius:2px;appearance:none;-webkit-appearance:none}
+.group input::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:#d6a84f;cursor:pointer}
+.value{font-size:10px;color:#d6a84f;font-weight:bold}
+.btn{border:1px solid rgba(214,168,79,.3);background:rgba(7,17,31,.8);color:#d6a84f;padding:8px 16px;border-radius:999px;font-size:11px;cursor:pointer;text-decoration:none}
+.btn:hover{background:#d6a84f;color:#000}
+#mic-btn.on{background:#d6a84f;color:#000}
+</style>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
 </head>
-<body><canvas id="c"></canvas>
-<div id="ui" style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:10;background:rgba(7,17,31,0.62);backdrop-filter:blur(18px);border:1px solid rgba(214,168,79,0.18);border-radius:999px;padding:8px 16px;display:flex;gap:10px">
-  <a href="./index.html" style="color:#d6a84f;text-decoration:none;padding:8px 16px;border:1px solid #d6a84f;border-radius:999px">INDEX</a>
-  <a href="./live.html" style="color:#aaa;text-decoration:none;padding:8px 16px;border:1px solid #333;border-radius:999px">LIVE</a>
+<body>
+<canvas id="canvas"></canvas>
+<div id="hud"><h1>◍ KRONOS LIVE 3D</h1><p id="fps">CIMATICA • 440Hz • Cargando...</p></div>
+<div id="controls">
+<div class="group"><label>Frecuencia</label><input type="range" id="freq" min="20" max="800" value="440"><span class="value" id="freqV">440 Hz</span></div>
+<div class="group"><label>Amplitud</label><input type="range" id="amp" min="0.1" max="1.5" value="0.85" step="0.01"><span class="value" id="ampV">0.85</span></div>
+<div class="group"><label>Complejidad</label><input type="range" id="comp" min="1" max="8" value="3" step="1"><span class="value" id="compV">3</span></div>
+<div class="group"><label>Damping</label><input type="range" id="damp" min="0" max="0.5" value="0.12" step="0.01"><span class="value" id="dampV">0.12</span></div>
+<button class="btn" id="mic-btn">🎤 MIC OFF</button><a class="btn" href="/">VOLVER</a>
 </div>
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
 <script type="module">
 import * as THREE from 'three';
-const canvas=document.getElementById('c');
-const renderer=new THREE.WebGLRenderer({canvas,antialias:true});
-renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-renderer.setSize(innerWidth,innerHeight);
-const scene=new THREE.Scene();
-scene.background=new THREE.Color(0x07111f);
-const camera=new THREE.PerspectiveCamera(45,innerWidth/innerHeight,0.1,100);
-camera.position.set(0,1.2,3.2);
-camera.lookAt(0,0,0);
-const geo=new THREE.PlaneGeometry(8,8,128,128);
-const mat=new THREE.ShaderMaterial({
-  uniforms:{uTime:{value:0},uColor:{value:new THREE.Color(0xd6a84f)}},
-  vertexShader:`uniform float uTime; varying vec2 vUv; varying float vH; void main(){vUv=uv; vec3 p=position; float d=length(p.xy); p.z+=sin(d*3.0-uTime*1.2)*0.25+sin(d*6.0-uTime*2.0+p.x*1.5)*0.12+cos(d*2.0+uTime*0.8)*0.18*exp(-d*0.6); vH=p.z; gl_Position=projectionMatrix*modelViewMatrix*vec4(p,1.0);}`,
-  fragmentShader:`uniform vec3 uColor; varying float vH; void main(){float h=clamp(vH*1.5+0.5,0.0,1.0); vec3 col=mix(vec3(0.03),uColor,h*0.7+0.1); gl_FragColor=vec4(col,0.85);}`
-});
-const mesh=new THREE.Mesh(geo,mat);
-mesh.rotation.x=-0.42;
-scene.add(mesh);
-let t=0;
-function animate(){t+=0.008; mat.uniforms.uTime.value=t; mesh.rotation.z=Math.sin(t*0.15)*0.08; camera.position.x=Math.sin(t*0.12)*0.15; camera.lookAt(0,0,0); renderer.render(scene,camera); requestAnimationFrame(animate);}
-animate();
-addEventListener('resize',()=>{renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();});
-</script></body>
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+const canvas=document.getElementById('canvas'), fpsEl=document.getElementById('fps');
+const freqS=document.getElementById('freq'), freqV=document.getElementById('freqV');
+const ampS=document.getElementById('amp'), ampV=document.getElementById('ampV');
+const compS=document.getElementById('comp'), compV=document.getElementById('compV');
+const dampS=document.getElementById('damp'), dampV=document.getElementById('dampV');
+const micBtn=document.getElementById('mic-btn');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true}); renderer.setPixelRatio(Math.min(devicePixelRatio,2)); renderer.setSize(innerWidth,innerHeight);
+const scene=new THREE.Scene(); scene.background=new THREE.Color(0x040a14);
+const camera=new THREE.PerspectiveCamera(45,innerWidth/innerHeight,0.1,100); camera.position.set(0,1.2,3.2);
+const controls=new OrbitControls(camera,canvas); controls.enableDamping=true; controls.dampingFactor=0.05;
+const uniforms={uTime:{value:0},uFreq:{value:440},uAmp:{value:0.85},uComp:{value:3},uDamp:{value:0.12},uBoost:{value:1}};
+const geo=new THREE.PlaneGeometry(8,8,180,180);
+const mat=new THREE.ShaderMaterial({uniforms,
+vertexShader:`uniform float uTime,uFreq,uAmp,uComp,uDamp,uBoost; varying vec2 vUv; varying float vH;
+void main(){vUv=uv; vec3 p=position; float k=uFreq/440.0; float m=uComp; float n=1.0; float px=p.x*k*0.035; float py=p.y*k*0.04;
+float chladni=cos(n*3.14*px)*cos(m*3.14*py)-cos(m*3.14*px)*cos(n*3.14*py); float wave=sin((p.x*p.x+p.y*p.y)*0.04*k-uTime*2.0*uBoost);
+float d=length(p.xy); float damp=1.0-uDamp*d*0.8; float e=(chladni*0.7+wave*0.3)*uAmp*damp*(0.8+0.2*uBoost); p.z+=e*0.85; vH=e; gl_Position=projectionMatrix*modelViewMatrix*vec4(p,1.0);}`,
+fragmentShader:`varying float vH; varying vec2 vUv; void main(){float h=vH*0.8+0.5; vec3 g1=vec3(0.83,0.68,0.21); vec3 g2=vec3(1.0,0.92,0.6); vec3 col=mix(g1,g2,h*0.7+0.2); float glow=pow(h,1.8)*0.8; col+=glow*vec3(0.83,0.68,0.21)*0.4; float vig=1.0-length(vUv-0.5)*0.4; col*=vig; gl_FragColor=vec4(col,0.92);}`});
+const mesh=new THREE.Mesh(geo,mat); mesh.rotation.x=-Math.PI*0.42; scene.add(mesh);
+const pCount=1500, pG=new THREE.BufferGeometry(), pP=new Float32Array(pCount*3), pV=new Float32Array(pCount);
+for(let i=0;i<pCount;i++){pP[i*3]=(Math.random()-0.5)*14; pP[i*3+1]=(Math.random()-0.5)*14; pP[i*3+2]=(Math.random()-0.5)*6; pV[i]=0.5+Math.random()*1.5;}
+pG.setAttribute('position',new THREE.BufferAttribute(pP,3));
+const pM=new THREE.PointsMaterial({color:0xd6a84f,size:0.025,transparent:true,opacity:0.7,blending:THREE.AdditiveBlending}); const pts=new THREE.Points(pG,pM); scene.add(pts);
+scene.add(new THREE.AmbientLight(0xffffff,0.3)); const dir=new THREE.DirectionalLight(0xd6a84f,0.5); dir.position.set(2,3,2); scene.add(dir);
+let aCtx,analyser,data,isMic=false;
+async function micOn(){try{const s=await navigator.mediaDevices.getUserMedia({audio:true}); aCtx=new(window.AudioContext||window.webkitAudioContext)(); analyser=aCtx.createAnalyser(); analyser.fftSize=256; const src=aCtx.createMediaStreamSource(s); src.connect(analyser); data=new Uint8Array(analyser.frequencyBinCount); isMic=true; micBtn.textContent='🎤 ON'; micBtn.classList.add('on'); if(aCtx.state==='suspended') await aCtx.resume();}catch(e){alert('Permite microfono');}}
+micBtn.onclick=micOn;
+function boost(){if(!isMic||!analyser) return 1; analyser.getByteFrequencyData(data); const b=data.slice(0,10).reduce((a,c)=>a+c,0)/10/255; return 1+b*3;}
+freqS.oninput=()=>{freqV.textContent=freqS.value+' Hz'; uniforms.uFreq.value=+freqS.value;};
+ampS.oninput=()=>{ampV.textContent=(+ampS.value).toFixed(2); uniforms.uAmp.value=+ampS.value;};
+compS.oninput=()=>{compV.textContent=compS.value; uniforms.uComp.value=+compS.value;};
+dampS.oninput=()=>{dampV.textContent=(+dampS.value).toFixed(2); uniforms.uDamp.value=+dampS.value;};
+let t=0,fc=0,last=performance.now();
+function anim(){requestAnimationFrame(anim); const b=boost(); uniforms.uBoost.value=b; t+=0.008*b; uniforms.uTime.value=t;
+const pos=pts.geometry.attributes.position.array; for(let i=0;i<pCount;i++){const id=i*3; pos[id+2]+=Math.sin(t*pV[i]+i)*0.001*b; if(pos[id+2]>2.5) pos[id+2]=-2.5; if(pos[id+2]<-2.5) pos[id+2]=2.5; pos[id]+=Math.sin(t*0.2+i*0.01)*0.001; pos[id+1]+=Math.cos(t*0.25+i*0.01)*0.001;} pts.geometry.attributes.position.needsUpdate=true; pts.rotation.y+=0.0003*b; mesh.rotation.z=Math.sin(t*0.12)*0.06;
+fc++; const now=performance.now(); if(now-last>1000){fpsEl.textContent=`CIMATICA • ${Math.round(fc*1000/(now-last))} FPS • ${uniforms.uFreq.value}Hz${isMic?' 🎤':''}`; fc=0; last=now;} controls.update(); renderer.render(scene,camera);} anim();
+addEventListener('resize',()=>{renderer.setSize(innerWidth,innerHeight); camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix();});
+</script>
+</body>
 </html>
