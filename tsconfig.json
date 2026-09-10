@@ -1,19 +1,10 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "lib": ["ES2022", "DOM", "DOM.Iterable", "WebWorker"],
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "strict": true,
-    "strictNullChecks": true,
-    "strictBindCallApply": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "isolatedModules": true,
@@ -21,27 +12,20 @@
     "resolveJsonModule": true,
     "allowJs": false,
     "declaration": true,
-    "declarationMap": true,
     "sourceMap": true,
     "composite": true,
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./packages/*", "./apps/*/src/*"],
-      "@kronos/*": ["./packages/kronos/*", "./core-dsp/*"],
-      "@design/*": ["./design-system/*"],
-      "@compliance/*": ["./compliance/*"]
+      "@/*": ["./packages/dsp/src/*", "./apps/web/src/*"],
+      "@kronos/*": ["./core-dsp/*"],
+      "@design/*": ["./design-system/src/*"]
     },
-    "types": ["node", "vite/client"]
+    "types": ["node"]
   },
   "references": [
     { "path": "./apps/web" },
-    { "path": "./apps/api" },
-    { "path": "./packages/dsp" },
-    { "path": "./packages/utils" },
-    { "path": "./design-system" },
-    { "path": "./core-dsp" },
-    { "path": "./compliance" }
+    { "path": "./core-dsp" }
   ],
-  "exclude": ["node_modules", "dist", "build", ".next", "coverage", "apps/*/dist", "packages/*/dist"]
+  "exclude": ["node_modules", "dist", "build", ".next", "coverage"]
 }
