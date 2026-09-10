@@ -1,8 +1,1 @@
-{
-  "name": "KRONOS PLATINUM",
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
-  "features": {
-    "ghcr.io/devcontainers/features/python:1": { "version": "3.11" },
-    "ghcr.io/devcontainers/features/github-cli:1": {}
-  }
-}
+{"name":"KRONOS 2099 PLATINUM","image":"mcr.microsoft.com/devcontainers/javascript-node:20","features":{"ghcr.io/devcontainers/features/github-cli:1":{}},"postStartCommand":"pnpm install"}
