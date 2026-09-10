@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-<<<<<<< Updated upstream
 import App from './App.tsx'
 import { theme } from './tema.js'
 
@@ -81,7 +80,6 @@ if ('performance' in window) {
     }, 0)
   })
 }
-=======
 import App from './App'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -89,4 +87,3 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <App />
   </React.StrictMode>
 )
->>>>>>> Stashed changes
