@@ -1,22 +1,21 @@
-export default function Indice() {
+import { useState } from 'react'
+import { PAYMENTS } from '../config/payments'
+
+export default function Home(){
   return (
-    <main style={{
-      minHeight:'100vh', display:'grid', placeItems:'center',
-      background:'radial-gradient(circle at 50% 40%, rgba(91,31,127,.2), transparent 35%), #050508',
-      color:'#fff', textAlign:'center', padding:24
-    }}>
-      <div>
-        <div style={{fontFamily:'monospace', fontSize:12, opacity:0.6, letterSpacing:'0.16em'}}>NEXO SONORO 2099 / EXPERIENCIA AI</div>
-        <h1 style={{fontSize:'clamp(3rem,10vw,6rem)', color:'#ffd52e', margin:'16px 0', textShadow:'0 0 20px rgba(255,213,46,.8)'}}>
-          LEGADO <span style={{display:'block', fontSize:'0.42em', letterSpacing:'0.23em'}}>2099</span>
-        </h1>
-        <p style={{opacity:0.8}}>Marco Valdovinos & The AI Architect</p>
-        <p style={{opacity:0.5, fontSize:12, marginTop:8}}>El Nexo Primordial · El sonido se hace materia</p>
-        <div style={{display:'flex', gap:12, justifyContent:'center', marginTop:28}}>
-          <a href="/nexo" style={{background:'linear-gradient(135deg,#fff176,#ffd52e)', color:'#100b00', padding:'12px 22px', borderRadius:999, fontWeight:800, textDecoration:'none'}}>🧬 VER NEXO</a>
-          <a href="/esencias" style={{border:'1px solid #a855f7', color:'#fff', padding:'12px 22px', borderRadius:999, textDecoration:'none'}}>4 MINTS</a>
+    <div style={{background:'#050507',color:'#fff',minHeight:'100vh',fontFamily:'monospace'}}>
+      <div style={{textAlign:'center',padding:'60px 20px'}}>
+        <h1 style={{color:'#FFD700',fontSize:'42px'}}>KRONOS 2099</h1>
+        <p>El SSL de la Voz Humana - Detecta Deepfakes con Física Chladni</p>
+        <div style={{marginTop:'30px',display:'flex',gap:'15px',justifyContent:'center',flexWrap:'wrap'}}>
+          <a href="/src/pages/detector.html" style={{background:'#FFD700',color:'#000',padding:'15px 30px',borderRadius:'10px',textDecoration:'none',fontWeight:'bold'}}>🧪 PROBAR DETECTOR GRATIS</a>
+          <a href={PAYMENTS.mercadopago.gancho} style={{background:'#00b1ea',color:'#fff',padding:'15px 30px',borderRadius:'10px',textDecoration:'none',fontWeight:'bold'}}>🇲🇽 Pagar $20 MXN OXXO</a>
         </div>
       </div>
-    </main>
+
+      <iframe src="/src/pages/pricing-carousel.html" style={{width:'100%',height:'700px',border:'none'}}></iframe>
+
+      <div dangerouslySetInnerHTML={{__html: `<div style="background:#050507;color:#FFD700;padding:20px;text-align:center"><h2>💰 Paga como quieras - 100% para michis</h2><div style="display:flex;gap:15px;justify-content:center;margin-top:20px;flex-wrap:wrap"><a href="${PAYMENTS.stripe.pro}" style="background:#635bff;color:#fff;padding:15px 25px;border-radius:10px;text-decoration:none">💳 Stripe Internacional $1/$9/$29 USD</a><a href="${PAYMENTS.mercadopago.pro}" style="background:#00b1ea;color:#fff;padding:15px 25px;border-radius:10px;text-decoration:none">🇲🇽 Mercado Pago OXXO/Tarjeta/SPEI</a></div></div>`}} />
+    </div>
   )
 }
