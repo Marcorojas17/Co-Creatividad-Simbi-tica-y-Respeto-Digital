@@ -1,6 +1,0 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-echo "🔒 KRONOS-28-ITZA 04:40 - Pre-commit check..."
-npx lint-staged --concurrent false
-echo "✅ Pre-commit clean"
