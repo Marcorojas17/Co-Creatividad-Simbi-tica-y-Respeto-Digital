@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 # BORRA EL VIEJO Y PEGA ESTE NUEVO
 cat > apps/web/src/pages/index.tsx <<'TSX'
 import { useEffect, useRef, useState } from 'react'
@@ -203,6 +204,14 @@ export default function Indice() {
       </div>
     </div>
   )
+=======
+import dynamic from 'next/dynamic'
+
+const LegacySelector = dynamic(() => import('./LegacySelector'), { ssr: false })
+
+export default function Home() {
+  return <LegacySelector />
+>>>>>>> Stashed changes
 }
 TSX
 
