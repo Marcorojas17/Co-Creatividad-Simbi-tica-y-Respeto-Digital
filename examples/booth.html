@@ -1,0 +1,28 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KIFOS BOOTH • TOTEM</title>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
+<style>body{margin:0;background:#000;overflow:hidden;font-family:Inter}
+#count{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:180px;color:#D4AF37;font-weight:900;z-index:20;display:none;text-shadow:0 0 40px #D4AF37}
+#btn{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);padding:16px 40px;border-radius:30px;border:none;background:linear-gradient(90deg,#D4AF37,#F5D76E);font-weight:900;font-size:16px;z-index:10;cursor:pointer}
+#qr{position:fixed;right:20px;bottom:20px;width:140px;background:#fff;padding:8px;border-radius:12px;display:none;z-index:10;text-align:center}
+#qr canvas{width:100%}</style></head><body>
+<div id="count"></div>
+<button id="btn">🎤 TOCA PARA CREAR TU FRECUENCIA</button>
+<div id="qr"><canvas id="qrCanvas"></canvas><div style="font-size:9px;color:#000">ESCANEA TU GEOMETRÍA</div></div>
+<script type="module">
+import * as THREE from 'three'; import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js'; import {RenderPass} from 'three/addons/postprocessing/RenderPass.js'; import {UnrealBloomPass} from 'three/addons/postprocessing/UnrealBloomPass.js';
+// COPIA TU V7 BIO AQUÍ - resumido para booth
+const scene=new THREE.Scene(); const camera=new THREE.PerspectiveCamera(40,innerWidth/innerHeight,0.1,100); camera.position.set(0,0.8,3.5);
+const renderer=new THREE.WebGLRenderer({antialias:true}); renderer.setSize(innerWidth,innerHeight); document.body.appendChild(renderer.domElement);
+const composer=new EffectComposer(renderer); composer.addPass(new RenderPass(scene,camera)); composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight),0.6,0.3,0.2));
+const core=new THREE.Mesh(new THREE.IcosahedronGeometry(0.9,3), new THREE.MeshStandardMaterial({color:0xD4AF37,wireframe:true})); scene.add(core);
+scene.add(new THREE.AmbientLight(0xffffff,1)); let audioCtx,analyser,data; let t=0;
+async function init(){ const s=await navigator.mediaDevices.getUserMedia({audio:true}); audioCtx=new AudioContext(); analyser=audioCtx.createAnalyser(); analyser.fftSize=256; data=new Uint8Array(analyser.frequencyBinCount); audioCtx.createMediaStreamSource(s).connect(analyser); }
+function anim(){ requestAnimationFrame(anim); t+=0.016; if(analyser){ analyser.getByteFrequencyData(data); let l=data.slice(0,8).reduce((a,b)=>a+b,0)/8/255; core.rotation.y=t*0.5+l; core.scale.setScalar(1+l*0.5); } composer.render(); } anim();
+const btn=document.getElementById('btn'); const countEl=document.getElementById('count');
+btn.onclick=async()=>{ await init(); btn.style.display='none'; let c=3; countEl.style.display='block'; countEl.textContent=c; const iv=setInterval(()=>{c--; if(c>0){countEl.textContent=c;}else{clearInterval(iv); countEl.style.display='none'; takePhoto();}},1000); };
+function takePhoto(){ renderer.render(scene,camera); const img=renderer.domElement.toDataURL('image/png'); const a=document.createElement('a'); a.href=img; a.download=`KIFOS-${Date.now()}.png`; a.click(); document.getElementById('qr').style.display='block'; btn.textContent='✨ OTRA VEZ'; btn.style.display='block'; }
+// Simple QR fake
+const canvas=document.getElementById('qrCanvas'); canvas.width=200; canvas.height=200; const ctx=canvas.getContext('2d'); ctx.fillStyle='#000'; ctx.fillRect(0,0,200,200); ctx.fillStyle='#D4AF37'; ctx.fillRect(20,20,40,40); ctx.fillRect(140,20,40,40); ctx.fillRect(20,140,40,40);
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth,innerHeight); composer.setSize(innerWidth,innerHeight);});
+</script></body></html>

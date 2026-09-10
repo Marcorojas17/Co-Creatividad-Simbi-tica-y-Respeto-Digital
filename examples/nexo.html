@@ -1,0 +1,64 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEXO PRIMORDIAL • LEGADO 2099</title>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
+<style>body{margin:0;background:#020205;overflow:hidden;font-family:Inter;color:#D4AF37}
+.top{position:fixed;top:0;left:0;right:0;height:44px;display:flex;justify-content:space-between;align-items:center;padding:0 12px;background:rgba(0,0,0,0.7);border-bottom:1px solid rgba(212,175,55,0.2);z-index:10;backdrop-filter:blur(10px)}
+#hint{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.8);border:1px solid #D4AF37;border-radius:20px;padding:8px 16px;font-size:10px;z-index:10}
+.btn{padding:6px 12px;border-radius:20px;border:1px solid #D4AF37;background:linear-gradient(90deg,#D4AF37,#F5D76E);color:#000;font-weight:800;font-size:10px;cursor:pointer}
+.bar{width:60px;height:3px;background:#111;border-radius:2px;overflow:hidden;display:inline-block;margin-left:6px} .bar div{height:100%;width:0%;background:#D4AF37}
+</style></head><body>
+<div class="top">
+<div style="font-weight:800;letter-spacing:2px">LEGADO 2099 • NEXO PRIMORDIAL</div>
+<div><span style="font-size:9px">ROCA + ADN = LEGADO</span><span class="bar"><div id="lvl"></div></span></div>
+<div><button class="btn" id="mic">🎤 ACTIVA TU LEGADO</button> <a href="legacy2099.html" style="color:#888;text-decoration:none;font-size:10px;margin-left:8px">← CAP 4</a></div>
+</div>
+<div id="hint">Grave = ADN se hace roca • Agudo = ADN se hace luz iridiscente • Tu voz graba LEGADO 2099 en la piedra</div>
+<script type="module">
+import * as THREE from 'three'; import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js'; import { RenderPass } from 'three/addons/postprocessing/RenderPass.js'; import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+const scene=new THREE.Scene(); scene.fog=new THREE.Fog(0x020205,6,14);
+const camera=new THREE.PerspectiveCamera(38,innerWidth/innerHeight,0.1,100); camera.position.set(0,1.5,5);
+const renderer=new THREE.WebGLRenderer({antialias:true}); renderer.setSize(innerWidth,innerHeight); renderer.setPixelRatio(Math.min(devicePixelRatio,1.5)); renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=0.9; document.body.appendChild(renderer.domElement);
+const composer=new EffectComposer(renderer); composer.addPass(new RenderPass(scene,camera)); composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight),0.55,0.3,0.25));
+
+// City cyberpunk bg
+const city=new THREE.Group(); for(let i=0;i<20;i++){const b=new THREE.Mesh(new THREE.BoxGeometry(0.6+Math.random()*0.8,2+Math.random()*4,0.6), new THREE.MeshStandardMaterial({color:0x111122,emissive:0x0a0a1a})); b.position.set((Math.random()-0.5)*12,0,(Math.random()-0.5)*8-2); city.add(b);} scene.add(city);
+scene.add(new THREE.PointLight(0x00aaff,2,10).position.set(-3,3,2)); scene.add(new THREE.PointLight(0xD4AF37,2,10).position.set(3,3,-2)); scene.add(new THREE.AmbientLight(0x222233,0.7));
+
+// DNA HELIX
+const helix=new THREE.Group(); scene.add(helix);
+function createStrand(offset){
+ const pts=[]; for(let y=-2.5;y<=2.5;y+=0.08){const ang=y*1.8+offset; pts.push(new THREE.Vector3(Math.cos(ang)*0.45, y, Math.sin(ang)*0.45));}
+ const curve=new THREE.CatmullRomCurve3(pts); const geo=new THREE.TubeGeometry(curve,120,0.04,8,false);
+ const mat=new THREE.MeshPhysicalMaterial({color:0xffffff,metalness:0.2,roughness:0.1,transmission:0.8,iridescence:1,iridescenceIOR:1.8,emissive:0xD4AF37,emissiveIntensity:0.3});
+ return new THREE.Mesh(geo,mat);
+}
+const strand1=createStrand(0); const strand2=createStrand(Math.PI); helix.add(strand1,strand2);
+// rungs
+for(let y=-2.2;y<2.2;y+=0.25){const rung=new THREE.Mesh(new THREE.CylinderGeometry(0.012,0.012,0.9,6), new THREE.MeshBasicMaterial({color:0xD4AF37})); rung.position.y=y; rung.lookAt(0,y+1,0); helix.add(rung);}
+
+// ROCK LEGADO 2099
+const rockGeo=new THREE.DodecahedronGeometry(0.9,0); const rockMat=new THREE.MeshStandardMaterial({color:0xC2B280,roughness:0.9,metalness:0.1,emissive:0xD4AF37,emissiveIntensity:0.25}); const rock=new THREE.Mesh(rockGeo,rockMat); rock.position.y=3.1; rock.rotation.set(0.2,0.5,0); helix.add(rock);
+// Text as canvas texture
+function makeTextTexture(){const c=document.createElement('canvas'); c.width=512;c.height=256; const ctx=c.getContext('2d'); ctx.fillStyle='#000'; ctx.fillRect(0,0,512,256); ctx.fillStyle='#FFD700'; ctx.font='bold 80px monospace'; ctx.fillText('LEGADO',100,100); ctx.fillText('2099',110,190); ctx.shadowColor='#FFD700'; ctx.shadowBlur=20; ctx.fillText('LEGADO',100,100); return new THREE.CanvasTexture(c);}
+const textPlane=new THREE.Mesh(new THREE.PlaneGeometry(1.2,0.6), new THREE.MeshBasicMaterial({map:makeTextTexture(),transparent:true})); textPlane.position.set(0,0,0.7); rock.add(textPlane);
+
+// PARTICLES rising to rock
+const partGeo=new THREE.BufferGeometry(); const partCount=120; const pos=new Float32Array(partCount*3); for(let i=0;i<partCount;i++){pos[i*3]=(Math.random()-0.5)*0.5; pos[i*3+1]=-2+Math.random()*4; pos[i*3+2]=(Math.random()-0.5)*0.5;} partGeo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+const partMat=new THREE.PointsMaterial({color:0xD4AF37,size:0.04,transparent:true,opacity:0.8}); const points=new THREE.Points(partGeo,partMat); helix.add(points);
+
+// AUDIO
+let analyser,data, audioCtx; const lvl=document.getElementById('lvl');
+document.getElementById('mic').onclick=async()=>{
+ const s=await navigator.mediaDevices.getUserMedia({audio:true}); audioCtx=new AudioContext(); analyser=audioCtx.createAnalyser(); analyser.fftSize=512; data=new Uint8Array(analyser.frequencyBinCount); audioCtx.createMediaStreamSource(s).connect(analyser); document.getElementById('mic').textContent='● TU LEGADO VIVO';
+};
+function getBands(){if(!analyser) return {l:0,m:0,h:0}; analyser.getByteFrequencyData(data); return {l:data.slice(0,12).reduce((a,b)=>a+b,0)/12/255, m:data.slice(12,60).reduce((a,b)=>a+b,0)/48/255, h:data.slice(60,150).reduce((a,b)=>a+b,0)/90/255};}
+let t=0;
+function anim(){ requestAnimationFrame(anim); t+=0.016; const {l,m,h}=getBands(); lvl.style.width=(l*60+m*40+h*40)+'%';
+ helix.rotation.y=t*0.15 + m*0.2; rock.rotation.y+=0.008+h*0.02; rock.scale.setScalar(1+l*0.2);
+ // DNA morph
+ strand1.material.emissiveIntensity=0.2+l*0.8+h*0.5; strand1.material.color.setHSL(0.12+h*0.1,0.8,0.6+l*0.2);
+ strand2.material.emissiveIntensity=0.2+m*0.8; if(analyser){points.rotation.y=t*0.2; const p=points.geometry.attributes.position; for(let i=0;i<partCount;i++){p.array[i*3+1]+=0.01+h*0.04; if(p.array[i*3+1]>3) p.array[i*3+1]=-2.5;} p.needsUpdate=true; partMat.opacity=0.3+l+h;}
+ composer.render();
+} anim();
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth,innerHeight); composer.setSize(innerWidth,innerHeight);});
+</script></body></html>

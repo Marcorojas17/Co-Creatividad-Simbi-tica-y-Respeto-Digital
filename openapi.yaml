@@ -1,0 +1,33 @@
+openapi: 3.0.3
+info:
+  title: KRONOS-28-ITZA API
+  version: 0.4.1
+  contact:
+    name: KRONOS-28-ITZA
+    email: kronosproyecto@hotmail.com
+paths:
+  /api/audit/event:
+    post:
+      summary: Registrar evento de auditoría
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Evento registrado
+  /api/cymatic/sample:
+    get:
+      summary: Muestra cimática
+      parameters:
+        - name: x
+          in: query
+          schema: { type: number, default: 0.5 }
+        - name: y
+          in: query
+          schema: { type: number, default: 0.5 }
+      responses:
+        '200':
+          description: Valor calculado
