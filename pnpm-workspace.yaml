@@ -1,9 +1,0 @@
-packages:
-    - 'apps/*'
-    - 'core-dsp'
-publicHoistPattern:
-    - '*eslint*'
-    - '*prettier*'
-    - '@types*'
-linkWorkspacePackages: true
-preferWorkspacePackages: true
