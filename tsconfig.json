@@ -4,6 +4,7 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
     "strict": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -17,9 +18,8 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./packages/dsp/src/*", "./apps/web/src/*"],
-      "@kronos/*": ["./core-dsp/*"],
-      "@design/*": ["./design-system/src/*"]
+      "@/*": ["./apps/web/src/*"],
+      "@kronos/*": ["./core-dsp/src/*"]
     },
     "types": ["node"]
   },
