@@ -1,82 +1,45 @@
-# KRONOS CYMATIC GOLD — Pricing
+# KRONOS / LEGADO 2099 - Pricing Matrix
 
-> Secure • Encrypted Payments
-> Live • All systems operational
+## B2C - Para Humanos (Cobro inmediato - michis)
+1. **Certificado Anti-IA Único** - $499 MXN
+   Archivo: certificado.html + steganography.js + gpg_sign_engine.sh
+   Stripe: Downloadable Software - personal use | Único
+   Entrega: PDF + audio con marca de agua Chladni inviolable
 
-Choose the perfect tier for your business. Powered by KRONOS Cymatic Gold payment infrastructure.
+2. **Booth Totem - Pase Experiencia** - $350 MXN
+   Archivo: booth.html + tribu.html (4 voces)
+   Stripe: Ticket digital | Único
+   Entrega: Sesión 20min cymatic3d.html + certificado
 
----
+3. **Dashboard 440Hz** - $199 MXN/mes
+   Archivo: index.html + legacy2099.html + cymaticFrequency.js + sw.js
+   Stripe: SaaS Recurrente
+   Entrega: PWA offline, 260 partículas, 432/440/528Hz
 
-## 🔥 Planes disponibles
+## B2D - Para Devs (Ticket alto)
+4. **Monorepo Completo** - $299 USD pago único
+   Archivo: turbo.json + pnpm-workspace.yaml + devcontainer + influx.py
+   Stripe: Webhook -> invite a GitHub private repo
+   Entrega: Acceso lectura + 1h onboarding
 
-<div class="kronos-carousel-wrapper">
-  <button class="carousel-btn prev" aria-label="Previous slide">‹</button>
-  <div class="carousel-track" id="kronosTrack">
-    <!-- STARTER 001-047 -->
-    <div class="card glass" data-tier="starter">
-      <h3>Starter</h3>
-      <p class="tier-desc">For individuals & small projects</p>
-      <div class="price">$29<span>/mo</span></div>
-      <ul>
-        <li>✅ Up to 1,000 transactions/mo</li>
-        <li>✅ Standard Cymatic Processing</li>
-        <li>✅ Basic Analytics Dashboard</li>
-        <li>✅ Email Support</li>
-        <li>✅ Standard API Access</li>
-        <li><strong>📁 001-047: Core + Shaders + Design System</strong><br><span class="small">.devcontainer/devcontainer.json,.editorconfig, Dockerfile, gold.vert, gold.frag, glass.css, tokens.json</span></li>
-      </ul>
-      <a href="{{STRIPE_LINK_STARTER}}" class="btn">Get Started</a>
-    </div>
+5. **API Cimática** - $0.02 USD / validación
+   Archivo: SecureAudioIngest + gen_tokens.py + openapi.yaml + timeseries.py
+   Stripe: Metered Billing
+   Entrega: API key + dashboard InfluxDB
 
-    <!-- PRO 048-104 -->
-    <div class="card glass popular" data-tier="pro">
-      <span class="badge">Most Popular</span>
-      <h3>Pro</h3>
-      <p class="tier-desc">For growing businesses & teams</p>
-      <div class="price">$99<span>/mo</span></div>
-      <ul>
-        <li>✅ Up to 10,000 transactions/mo</li>
-        <li>✅ Advanced Cymatic Processing</li>
-        <li>✅ Real-time Analytics & Insights</li>
-        <li>✅ Priority 24/7 Support</li>
-        <li>✅ Full API + Webhooks</li>
-        <li>✅ Custom Integration Support</li>
-        <li><strong>📁 048-104: API + Worker + Tests</strong><br><span class="small">apps/api/src/modules/audit/*, apps/worker/src/batch-worker.js, k8s-*.yaml,.github/workflows/*.yml</span></li>
-      </ul>
-      <a href="{{STRIPE_LINK_PRO}}" class="btn gold">Upgrade to Pro</a>
-    </div>
+## B2B - Para Empresas (Recurrente grande)
+6. **Licencia Médica NOM-024** - $2,500 MXN/mes
+   Archivo: MATRIZ_CUMPLIMIENTO.md + AVISO_PRIVACIDAD.md + ISO 27001
+   Stripe: Invoicing
+   Entrega: Clon legal + auditoría
 
-    <!-- ENTERPRISE 105-147 -->
-    <div class="card glass" data-tier="enterprise">
-      <h3>Enterprise</h3>
-      <p class="tier-desc">For large-scale & enterprise use</p>
-      <div class="price">$299<span>/mo</span></div>
-      <ul>
-        <li>✅ Unlimited transactions</li>
-        <li>✅ Custom Cymatic Algorithms</li>
-        <li>✅ Dedicated Account Manager</li>
-        <li>✅ SLA 99.9% Uptime Guarantee</li>
-        <li>✅ Custom API & On-prem Deployment</li>
-        <li>✅ White-label Options</li>
-        <li><strong>📁 105-147: Data + Docs + Live 3D</strong><br><span class="small">docs/architecture/architecture.svg, 00_MANIFIESTO a 09_MATEMATICAS, live3d.html, manifest.webmanifest</span></li>
-      </ul>
-      <a href="{{STRIPE_LINK_ENTERPRISE}}" class="btn">Contact Sales</a>
-    </div>
-  </div>
-  <button class="carousel-btn next" aria-label="Next slide">›</button>
-</div>
+7. **Marca de Agua Steganográfica** - $1,200 USD/año
+   Archivo: steganography.js + KRONOS_LICENSE_SC.sol
+   Stripe: Licencia corporativa
+   Entrega: SDK + smart contract license
 
----
-
-## 🔐 All plans include
-- Bank-level encryption
-- PCI DSS Compliant
-- NOM-024 + ISO27001 compliant (ver compliance/MATRIZ_CUMPLIMIENTO.md)
-- Cancel anytime
-- SBOM.json + SBOM.sig firmado GPG
-
-> 💳 Reemplaza {{STRIPE_LINK_*}} con tus links live de Stripe Dashboard > Payment Links
-> 📁 Mapeo exacto de los 147 archivos del repositorio
-
-<script src="/apps/web/security/trace.js"></script>
-<script src="/theme.js"></script>
+### Orden de lanzamiento para flujo de caja
+Semana 1: #1 + #2 (cobran mañana)
+Semana 2: #3 (MRR)
+Semana 3: #4 + #5 (ticket $299 + $0.02)
+Mes 2: #6 + #7 (enterprise)
