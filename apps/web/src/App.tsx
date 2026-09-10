@@ -20,3 +20,4 @@ export default function App(){
   </div>
  )
 }
+import { ChladniVerifier } from './components/ChladniVerifier'

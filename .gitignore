@@ -86,3 +86,4 @@ secrets/
 tokens.json
 .env
 audit_ed25519.key
+.vercel
