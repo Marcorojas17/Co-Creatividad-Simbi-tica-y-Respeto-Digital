@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Protocolo Kronos • Toluca Digital</title>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}</script>
+<style>
+body{margin:0;background:#02030a;color:#00ff88;font-family:monospace;overflow:hidden}
+.city{position:fixed;inset:0;background:radial-gradient(ellipse at 50% 0%,#0a1a3a 0%,#02030a 70%)}
+.hud{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:360px;background:rgba(0,20,40,0.85);border:2px solid #00ff88;border-radius:16px;padding:20px;box-shadow:0 0 40px rgba(0,255,136,0.4);backdrop-filter:blur(12px);text-align:center;z-index:10}
+.status{font-size:42px;font-weight:900;letter-spacing:2px;margin:12px 0}
+.verde{color:#00ff88;text-shadow:0 0 20px #00ff88}
+.rojo{color:#ff2244;text-shadow:0 0 20px #ff2244}
+.hash{font-size:9px;color:#00ccff;text-align:left;background:rgba(0,0,0,0.5);padding:8px;border-radius:6px;margin:8px 0;word-break:break-all}
+.btn{width:100%;padding:10px;background:#00ff88;color:#000;border:none;border-radius:20px;font-weight:800;cursor:pointer;margin-top:10px}
+.top{position:fixed;top:0;left:0;right:0;padding:10px 16px;display:flex;justify-content:space-between;z-index:10;background:linear-gradient(180deg,rgba(0,0,0,0.8),transparent)}
+</style></head><body>
+<div class="city"></div>
+<div class="top">
+<div style="color:#D4AF37;letter-spacing:2px">Co-Creatividad • Toluca</div>
+<div style="color:#00ff88;border:1px solid #00ff88;padding:4px 10px;border-radius:20px;font-size:10px">● PROTOCOLO KRONOS LIVE</div>
+</div>
+
+<div class="hud" id="hud">
+<div style="font-size:11px;letter-spacing:3px;color:#00ccff">Protocolo Kronos</div>
+<div style="font-size:10px;color:#888">STATUS:</div>
+<div class="status verde" id="status">VERDE // 1</div>
+<div style="display:flex;justify-content:center;gap:20px;margin:12px 0">
+<div style="text-align:center"><div style="font-size:30px">⬢</div><div style="font-size:8px">ETH</div></div>
+<div style="text-align:center"><div style="font-size:10px;color:#00ccff">●—●<br>| \ |</div><div style="font-size:8px">BLOCKCHAIN</div></div>
+</div>
+<div class="hash" id="hashes">
+SHA 228 : 1110101011111111<br>
+SHA 228 : 1110101011111111<br>
+SHA 228 : 1110101111111111<br>
+</div>
+<div style="font-size:10px;color:#aaa" id="msg">Verifica la autenticidad de los sistemas mediante blockchain Ethereum y hashes SHA 256</div>
+<button class="btn" id="testBtn">SIMULAR PIRATERÍA</button>
+<div style="font-size:8px;color:#555;margin-top:8px">En un futuro donde las leyes de IA no existen, Kronos protege la integridad digital en Toluca</div>
+</div>
+
+<script>
+let isVerde=true;
+const statusEl=document.getElementById('status');
+const hashesEl=document.getElementById('hashes');
+const msgEl=document.getElementById('msg');
+const hud=document.getElementById('hud');
+
+function setVerde(){
+ isVerde=true; statusEl.textContent='VERDE // 1'; statusEl.className='status verde';
+ hud.style.borderColor='#00ff88'; hud.style.boxShadow='0 0 40px rgba(0,255,136,0.4)';
+ hashesEl.innerHTML='SHA 228 : 1110101011111111<br>SHA 228 : 1110101011111111<br>SHA 228 : 1110101111111111<br>SHA 223 : 1101010111111111';
+ msgEl.textContent='Sistema verificado. Gracias a su sistema de verificación avanzada, el protocolo Kronos restablece la seguridad digital.';
+}
+
+function setRojo(){
+ isVerde=false; statusEl.textContent='ROJO 228'; statusEl.className='status rojo';
+ statusEl.innerHTML='ROJO 228<br><span style="font-size:12px">Revocado - Piratería</span>';
+ hud.style.borderColor='#ff2244'; hud.style.boxShadow='0 0 40px rgba(255,34,68,0.6)';
+ hashesEl.innerHTML='SHA-256 <span style="color:#ff2244">MISMATCH</span><br>0xE325... INVALID<br>0xE325... REVOKED<br><span style="color:#ff2244">SAF100 PIRATERIA DETECTADA</span>';
+ msgEl.textContent='Cuando detecta piratería, el Estado cambia a ROJO 0, alertando sobre la manipulación de IA.';
+ // glitch effect
+ document.body.style.animation='shake 0.2s';
+ setTimeout(()=>document.body.style.animation='',200);
+}
+
+document.getElementById('testBtn').onclick=()=>{
+ if(isVerde){ setRojo(); document.getElementById('testBtn').textContent='RESTABLECER SEGURIDAD'; }
+ else { setVerde(); document.getElementById('testBtn').textContent='SIMULAR PIRATERÍA'; }
+};
+
+// Auto demo like your video
+setTimeout(()=>setRojo(), 8000);
+setTimeout(()=>setVerde(), 12000);
+</script>
+</body></html>
