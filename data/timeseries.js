@@ -1,18 +1,5 @@
-export const timeseries = [];
-
-export function pushMetric(name, value, tags = {}) {
-  const point = {
-    measurement: name,
-    fields: { value },
-    tags: { ...tags, version: "KRONOS-289-PLATINUM", mandala: "04:40" },
-    timestamp: Date.now(),
-    iso: new Date().toISOString()
-  };
-  timeseries.push(point);
-  if (timeseries.length > 1000) timeseries.shift();
-  return point;
-}
-
-export function trackFrame(durationMs) {
-  pushMetric("gpu_frame_ms", durationMs, { target: 12.3, status: durationMs <= 12.3 ? "OK" : "SLOW" });
-}
+export const timeseries = {
+  freq: 440,
+  getData: (points=60) => Array.from({length:points},(_,i)=>({t: Date.now()-i*1000, v: 440 + Math.sin(i*0.2)*0.5 + (Math.random()-0.5)*0.2})),
+  influxQuery: `from(bucket:"kronos") |> range(start:-1h) |> filter(fn:(r)=>r._field=="freq")`
+};
