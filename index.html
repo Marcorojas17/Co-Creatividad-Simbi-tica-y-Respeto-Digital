@@ -5,43 +5,63 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CYMATIC // CONTROL - ELITE PLATINUM</title>
 <style>
-:root{--gold:#D4AF37;--gold2:#F5D76E;--bg:#080808;--glass:rgba(255,255,255,0.06)}
+:root{--gold:#D4AF37;--gold2:#F5D76E;--bg:#080808}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#080808;color:#e8dcc0;font-family:'Inter',system-ui;overflow-x:hidden;min-height:100vh}
-body::before{content:'';position:fixed;inset:0;background:repeating-radial-gradient(circle at 50% 50%, transparent 0 40px, rgba(212,175,55,0.03) 41px, transparent 42px);pointer-events:none}
-.top{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;border-bottom:1px solid rgba(212,175,55,0.15);background:rgba(0,0,0,0.6);backdrop-filter:blur(12px)}
-.brand{color:var(--gold);letter-spacing:3px;font-weight:600} .brand b{border:1px solid var(--gold);padding:2px 10px;border-radius:20px;font-size:12px;margin-left:10px}
-nav a{margin:0 16px;color:#888;letter-spacing:2px;font-size:13px;cursor:pointer} nav a.active{color:var(--gold);border-bottom:2px solid var(--gold);padding-bottom:4px}
-.wrap{max-width:1280px;margin:40px auto;padding:0 20px}
-.hero{border:1px solid rgba(212,175,55,0.3);background:var(--glass);backdrop-filter:blur(24px);border-radius:16px;padding:20px 28px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 0 60px rgba(212,175,55,0.12)}
-.hero h1{color:var(--gold2);letter-spacing:2px}
-.online{color:#7CFC8A;display:flex;align-items:center;gap:8px} .dot{width:8px;height:8px;background:#7CFC8A;border-radius:50%;box-shadow:0 0 8px #7CFC8A;animation:pulse 1.5s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.grid{margin-top:24px;display:grid;grid-template-columns:1.2fr 0.8fr;gap:24px}
-.card{border:1px solid rgba(212,175,55,0.25);background:rgba(20,20,20,0.7);backdrop-filter:blur(20px);border-radius:16px;padding:22px;box-shadow:0 0 40px rgba(0,0,0,0.6)}
-.card h3{color:var(--gold);letter-spacing:1.5px;margin-bottom:16px;font-size:14px}
-.term{background:#0a0a0a;border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:16px;font-family:monospace;font-size:13px;line-height:22px;color:#A8F0B8}
-.bar{height:6px;background:rgba(255,255,255,0.08);border-radius:3px;margin-top:8px} .bar div{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:3px}
-.metrics div.row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
-.bottom{margin:40px auto 0;max-width:900px;border:1px solid rgba(212,175,55,0.25);background:rgba(20,20,20,0.7);border-radius:14px;padding:16px 20px;display:flex;justify-content:space-around}
-.bottom button{background:transparent;border:1px solid var(--gold);color:#e8dcc0;padding:10px 26px;border-radius:10px;letter-spacing:1px;cursor:pointer} .bottom button.gold{background:linear-gradient(90deg,var(--gold),var(--gold2));color:#000;font-weight:700}
-#wave{width:100%;height:60px;margin-top:10px}
+body{background:#080808;color:#e8dcc0;font-family:Inter,system-ui;min-height:100vh}
+.top{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(0,0,0,0.6);border-bottom:1px solid rgba(212,175,55,0.15)}
+.brand{color:#D4AF37;letter-spacing:3px;font-weight:600}
+nav a{margin:0 12px;color:#888;letter-spacing:2px;font-size:13px}
+nav a.active{color:#D4AF37;border-bottom:2px solid #D4AF37;padding-bottom:4px}
+.wrap{max-width:1200px;margin:30px auto;padding:0 20px}
+.monitor{border:1px solid rgba(212,175,55,0.3);background:rgba(255,255,255,0.06);backdrop-filter:blur(24px);border-radius:20px;padding:24px;box-shadow:0 0 80px rgba(212,175,55,0.15)}
+.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.head h1{letter-spacing:2px}
+.status{color:#7CFC8A;display:flex;align-items:center;gap:10px}
+.dot{width:8px;height:8px;background:#7CFC8A;border-radius:50%;box-shadow:0 0 8px #7CFC8A}
+.grid{display:grid;grid-template-columns:1.4fr 0.8fr;gap:20px}
+.card{background:rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px}
+.card h3{color:#D4AF37;font-size:12px;letter-spacing:1.5px;margin-bottom:12px}
+.term{font-family:monospace;font-size:12px;line-height:22px;color:#c8c8c8}
+.term .green{color:#7CFC8A}
+.bar{height:4px;background:rgba(255,255,255,0.1);border-radius:2px;margin:6px 0}
+.bar div{height:100%;background:#D4AF37}
+#wave{width:100%;height:50px;margin-top:10px}
+.bottom{margin-top:20px;display:flex;gap:12px;justify-content:center}
+.bottom button{background:transparent;border:1px solid #D4AF37;color:#e8dcc0;padding:10px 22px;border-radius:8px}
+.bottom button.gold{background:linear-gradient(90deg,#D4AF37,#F5D76E);color:#000;font-weight:700}
 </style>
 </head>
 <body>
-<div class="top"><div class="brand">CYMATIC // CONTROL <b>ELITE PLATINUM</b></div><nav><a>OVERVIEW</a><a class="active">LIVE</a><a>HISTORY</a><a>NODES</a><a>ANALYSIS</a></nav></div>
+<div class="top"><div class="brand">CYMATIC // CONTROL</div><nav><a>OVERVIEW</a><a class="active">LIVE</a><a>HISTORY</a><a>NODES</a><a>ANALYSIS</a></nav><div>ELITE • SESSION JD</div></div>
 <div class="wrap">
-<div class="hero"><h1>LIVE • STREAM MONITOR</h1><div class="online"><span class="dot"></span>ONLINE</div><div>LIVE SINCE 00:14:32</div></div>
+<div class="monitor">
+<div class="head"><h1>LIVE • STREAM MONITOR</h1><div class="status"><span class="dot"></span> ONLINE <span style="color:#888;margin-left:10px">LIVE SINCE 00:14:22</span></div></div>
 <div class="grid">
-<div class="card"><h3>LOG TERMINAL</h3><div class="term" id="logs">[00:14:28] SIGNAL: Stable<br>[00:14:29] SNR 42.3dB<br>[00:14:30] NODE_HANDSHAKE: OK - node-07 connected<br>[00:14:31] DATA PACKET: 128KB received<br>[00:14:32] INTEGRITY CHECK: passed</div></div>
-<div class="card"><h3>SIGNAL METRICS</h3><div class="row"><span>STRENGTH</span><b style="color:var(--gold)">94%</b></div><div class="bar"><div style="width:94%"></div></div><div class="row"><span>STATUS</span><b style="color:#7CFC8A">STABLE</b></div><div class="row"><span>LATENCY</span><b style="color:var(--gold)">12ms</b></div><div class="row"><span>REALTIME WAVEFORM</span></div><canvas id="wave"></canvas></div>
+<div class="card"><h3>LOG TERMINAL</h3><div class="term" id="logs">
+[2025-11-22 14:03:12] INIT: Sensor array online<br>
+[2025-11-22 14:03:13] CAL: Calibration complete - bias null<br>
+<span class="green">[2025-11-22 14:03:14] SIGNAL: Stable</span><br>
+[2025-11-22 14:03:15] SNR: 42.3dB • Noise floor -96dB<br>
+[2025-11-22 14:03:16] PATH: Node-07 → Node-12 active<br>
+<span class="green">[2025-11-22 14:03:17] SIGNAL: Stable</span>
+</div></div>
+<div class="card"><h3>SIGNAL METRICS</h3>
+<div>SIGNAL STRENGTH <b style="color:#D4AF37;float:right">94%</b><div class="bar"><div style="width:94%"></div></div></div><br>
+<div>STABILITY <b style="color:#7CFC8A;float:right">STABLE</b><div class="bar"><div style="width:100%"></div></div></div><br>
+<div>LATENCY <b style="float:right">12ms</b> <span style="color:#7CFC8A;font-size:11px">— optimal</span></div><br>
+<div style="font-size:10px;color:#888">WAVEFORM • REALTIME</div>
+<canvas id="wave"></canvas>
 </div>
 </div>
-<div class="bottom"><button>⏸ PAUSE</button><button class="gold">◉ RECORD</button><button>⬇ EXPORT LOGS</button><button>⚙ SETTINGS</button></div>
+</div>
+<div class="bottom"><button>PAUSE</button><button class="gold">RECORD</button><button>EXPORT LOGS</button><button>SETTINGS</button></div>
+</div>
 <script>
-const ctx=document.getElementById('wave').getContext('2d'); let t=0;
-function draw(){ctx.clearRect(0,0,600,60);ctx.beginPath();ctx.strokeStyle='#D4AF37';ctx.lineWidth=1.2;for(let i=0;i<600;i++){ctx.lineTo(i,30+Math.sin((i+t)/18)*12+Math.sin((i+t)/7)*4)}ctx.stroke();t+=2;requestAnimationFrame(draw)}draw();
-const logs=document.getElementById('logs'); setInterval(()=>{const d=new Date();const s=`[${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}:${String(d.getSeconds()).padStart(2,'0')}] SIGNAL: Stable - ${ (40+Math.random()*5).toFixed(1)}dB`;logs.innerHTML+=`<br>${s}`;logs.scrollTop=logs.scrollHeight},2500)
+const c=document.getElementById('wave').getContext('2d'); let x=0;
+setInterval(()=>{c.clearRect(0,0,400,50); c.beginPath(); c.strokeStyle='#D4AF37'; c.lineWidth=1;
+for(let i=0;i<400;i++){c.lineTo(i,25+Math.sin((i+x)/12)*10+Math.random()*3)} c.stroke(); x+=2;},40);
+const logs=document.getElementById('logs');
+setInterval(()=>{const n=new Date(); const t=n.toLocaleTimeString(); logs.innerHTML+=`<br>[${t}] SIGNAL: Stable`; logs.scrollTop=logs.scrollHeight;},3000);
 </script>
 </body>
 </html>
