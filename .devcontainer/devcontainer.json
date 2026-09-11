@@ -1,1 +1,0 @@
-{"name":"KRONOS 2099 PLATINUM 89MB","image":"mcr.microsoft.com/devcontainers/javascript-node:20","features":{"ghcr.io/devcontainers/features/github-cli:1":{}},"customizations":{"vscode":{"extensions":["dbaeumer.vscode-eslint","esbenp.prettier-vscode"]}},"postStartCommand":"pnpm install"}
