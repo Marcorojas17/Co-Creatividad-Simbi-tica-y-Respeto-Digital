@@ -1,0 +1,6 @@
+dd33546c64ae911868e807b1ab09153019051c15dc8bc67de7958804dce6e492  apps/web/dist/index.html
+6e7e78cb3f5174b5dd8011fde87eac81a01f3d455c8b125314b75328e7b274ee  apps/web/dist/kronos-matrix.svg
+d9ae94aaec73326918cb0778a4e63a1e576185ab04f77ea391f7656f85d97f2c  apps/web/dist/live3d.html
+42b50957632ac8a81a8669c3e6bf63ba743b355a5249620c3989035f08cb6417  apps/web/dist/manifest.json
+f11acebbd668ebc64ce84d08f4f55044d2fa0e794378e981bd9212d61adecf74  apps/web/dist/og.png.txt
+KRONOS SOBERANO - UNICOS PARA AUDITAR - Fri Sep 11 00:16:05 UTC 2026
