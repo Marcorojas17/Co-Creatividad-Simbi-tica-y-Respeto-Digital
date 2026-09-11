@@ -1,2 +1,0 @@
-Esto es placeholder - Vercel generará OG dinámico
-Pero usa este SVG como imagen si quieres:
