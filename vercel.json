@@ -1,6 +1,12 @@
 {
-  "buildCommand": "pnpm --filter web build",
-  "outputDirectory": "apps/web/dist",
-  "framework": "vite",
-  "installCommand": "pnpm install"
+  "headers": [{
+    "source": "/(.*)",
+    "headers": [
+      {"key":"X-KRONOS-SEAL","value":"2607086319439-2036-GPG"},
+      {"key":"X-KRONOS-AUTHORITY","value":"Marcorojas17 - SOBERANO AUDIT ROOT"},
+      {"key":"X-KRONOS-NOM-151","value":"VIGENTE 2036"},
+      {"key":"X-KRONOS-SLSA","value":"L3"}
+    ]
+  }],
+  "rewrites": [{"source":"/(.*)","destination":"/index.html"}]
 }
