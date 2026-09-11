@@ -1,0 +1,20 @@
+<svg width="1200" height="400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#000000"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#fde68a" stroke-opacity="0.1" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#g)"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <!-- matrix rain -->
+  <text x="20" y="30" font-family="monospace" font-size="14" fill="#fde68a" opacity="0.3">101010 KRONOS 2099 440Hz 101010</text>
+  <text x="20" y="60" font-family="monospace" font-size="14" fill="#fde68a" opacity="0.2">Cymatic Proof GPG Seal 2607086319439</text>
+  <text x="20" y="90" font-family="monospace" font-size="14" fill="#fde68a" opacity="0.15">⬢ KRONOS 2099 EL SSL DE LA VOZ HUMANA</text>
+  <!-- glow -->
+  <circle cx="600" cy="200" r="180" fill="#fde68a" opacity="0.05" />
+  <text x="50%" y="55%" text-anchor="middle" font-family="monospace" font-size="48" font-weight="bold" fill="#fde68a" letter-spacing="8">KRONOS 2099</text>
+</svg>
