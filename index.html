@@ -6,56 +6,48 @@
 <title>KRONOS 2099 - El SSL de la Voz Humana | Sello 2607086319439</title>
 <meta name="description" content="Verificación de voz humana con 440Hz Cymatic + GPG + NOM-151 vigente 2036. 10 años adelante. LEGACY 0." />
 <meta name="theme-color" content="#fde68a" />
-
-<!-- OG PLATINUM VIRAL -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="KRONOS 2099 - El SSL de la Voz Humana - VERIFIED ✓" />
 <meta property="og:description" content="Sello 2607086319439-2036-GPG | 440Hz Verified | NOM-151 | ISO27001 | 149kb Platinum" />
 <meta property="og:image" content="https://co-creatividad-simbi-tica-y-respeto-digital.vercel.app/og.png" />
 <meta property="og:url" content="https://co-creatividad-simbi-tica-y-respeto-digital.vercel.app/" />
-
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="⬢ KRONOS 2099 VERIFIED - 10 AÑOS ADELANTO" />
 <meta name="twitter:description" content="Soy KRONOS VERIFIED 2036 - Sello 2607086319439 - 440Hz + GPG" />
 <meta name="twitter:image" content="https://co-creatividad-simbi-tica-y-respeto-digital.vercel.app/og.png" />
-
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⬢</text></svg>" />
-  <script type="module" crossorigin src="/Co-Creatividad-Simbi-tica-y-Respeto-Digital/assets/index-BuxR6Xe_.js"></script>
-  <link rel="stylesheet" crossorigin href="/Co-Creatividad-Simbi-tica-y-Respeto-Digital/assets/index-BBhjkqE1.css">
-<script>
-// KRONOS SOBERANO - MODO HIBRIDO - BYPASS IFRAME DENEGADO
-(function(){
-  const isIframe = window.top !== window.self;
-  const banner = document.createElement('div');
-  banner.id = 'kronos-hibrido-banner';
-  banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;background:#FFD60A;color:#000;padding:8px 12px;font-family:monospace;font-size:12px;text-align:center;border-bottom:2px solid #000;display:none;';
-  banner.innerHTML = '⚠️ ORIGEN NO AUTORIZADO - Valide sello oficial: <a href=\"https://marcorojas17.github.io/Co-Creatividad-Simbi-tica-y-Respeto-Digital/SEAL.txt\" target=\"_blank\" style=\"color:#000;font-weight:900;text-decoration:underline\">SEAL: 2607086319439-2036-GPG</a> | <a href=\"https://marcorojas17.github.io/Co-Creatividad-Simbi-tica-y-Respeto-Digital/\" target=\"_top\" style=\"color:#000\">Abrir en dominio oficial</a>';
 
-  // Espera a que cargue tu mensaje de ACCESO DENEGADO y lo convierte en banner
-  const observer = new MutationObserver(()=>{
-    const bodyText = document.body.innerText || '';
-    if(bodyText.includes('ACCESO DENEGADO') || bodyText.includes('ORIGEN NO AUTORIZADO')){
-      if(!document.getElementById('kronos-hibrido-banner')){
-        document.body.prepend(banner);
-        banner.style.display = 'block';
-        // No borra tu mensaje, lo convierte en aviso y deja ver la app de fondo
-        document.body.style.background = '#000';
-        // Si hay un div negro tapando todo, lo hacemos transparente
-        const blackScreen = document.querySelector('div[style*=\"black\"]');
-        if(blackScreen) blackScreen.style.display = 'none';
+<script>
+// ANTIDOTO SOBERANO - Debe ir ANTES del bundle - Bloquea pantalla negra KRONOS 2099
+(function(){
+  const BLOCK_KEYWORDS = ['KRONOS 2099', 'ACCESO DENEGADO', 'ORIGEN NO AUTORIZADO'];
+  const originalSet = Object.getOwnPropertyDescriptor(Element.prototype, 'innerHTML').set;
+  const shouldBlock = (val) => typeof val === 'string' && BLOCK_KEYWORDS.some(k => val.includes(k)) && val.length > 200;
+
+  Object.defineProperty(Element.prototype, 'innerHTML', {
+    set: function(v){
+      if(this === document.body && shouldBlock(v)){
+        console.warn('[KRONOS HIBRIDO] Pantalla negra bloqueada, activando banner');
+        // No pintamos negro, mostramos banner
+        if(!document.getElementById('kronos-hibrido-banner')){
+          const banner = document.createElement('div');
+          banner.id = 'kronos-hibrido-banner';
+          banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;background:#FFD60A;color:#000;padding:10px;text-align:center;font-family:monospace;font-size:12px;border-bottom:2px solid #000;';
+          banner.innerHTML = '⚠️ ORIGEN EXTERNO - Valide sello oficial: <a href="https://marcorojas17.github.io/Co-Creatividad-Simbi-tica-y-Respeto-Digital/SEAL.txt" target="_blank" style="color:#000;font-weight:900">SEAL 2607086319439-2036-GPG</a> | <a href="https://marcorojas17.github.io/Co-Creatividad-Simbi-tica-y-Respeto-Digital/" target="_top" style="color:#000">Abrir oficial</a>';
+          document.addEventListener('DOMContentLoaded', ()=>{ document.body.prepend(banner); });
+        }
+        return; // Bloquea el borrado
       }
-      // Fuerza que el contenido real de KRONOS se vea
-      const root = document.getElementById('root');
-      if(root){ root.style.display = 'block'; root.style.visibility = 'visible'; }
-    }
-  });
-  observer.observe(document.body, {childList:true, subtree:true, characterData:true});
-  window.addEventListener('load', ()=>{ 
-    if(isIframe) banner.style.display='block'; 
-    document.body.prepend(banner);
+      return originalSet.call(this, v);
+    },
+    get: Object.getOwnPropertyDescriptor(Element.prototype, 'innerHTML').get,
+    configurable: true
   });
 })();
 </script>
+
+  <script type="module" crossorigin src="/Co-Creatividad-Simbi-tica-y-Respeto-Digital/assets/index-BuxR6Xe_.js"></script>
+  <link rel="stylesheet" crossorigin href="/Co-Creatividad-Simbi-tica-y-Respeto-Digital/assets/index-BBhjkqE1.css">
 </head>
 <body>
 <div id="root"></div>
