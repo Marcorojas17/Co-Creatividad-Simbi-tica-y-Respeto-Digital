@@ -1,0 +1,150 @@
+{
+  "name": "KRONOS 28 ITZA - 289 PLATINUM - LEGADO ETERNO",
+  "short_name": "KRONOS 289",
+  "description": "Tu familia no muere, se mintéa. Roca madre + ADN dorado + SHA-256 real + 100 años IPFS. BANAMEX CLABE 002438701524066473. SafeCreative 2607086319439. 432Hz | 528Hz | 963Hz",
+  "start_url": "/?source=pwa&utm_source=pwa_289_platinum",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#040a14",
+  "theme_color": "#D4AF37",
+  "scope": "/",
+  "id": "kronos-289-platinum-41a3683b",
+  "lang": "es-MX",
+  "dir": "ltr",
+  "categories": ["art", "lifestyle", "utilities", "business"],
+  "screenshots": [
+    {
+      "src": "/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Diamante Eterno HD 8K - CAP 6"
+    },
+    {
+      "src": "/screenshot-narrow.png",
+      "sizes": "720x1280",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Nexo Primordial 432Hz - CAP 1"
+    }
+  ],
+  "icons": [
+    {
+      "src": "/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Resguardar Legado $150K - BANAMEX",
+      "short_name": "Pagar $150K",
+      "description": "Transferencia BANAMEX CLABE 002438701524066473 - WhatsApp 7225862335",
+      "url": "/?action=pay_banamex&utm_source=pwa_shortcut",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Diamante Eterno CAP 6",
+      "short_name": "Diamante",
+      "description": "CAP 6 - Diamante Eterno SHA-256 REAL 41a3683b",
+      "url": "/diamante?source=pwa",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Nexo Primordial CAP 1",
+      "short_name": "Nexo",
+      "description": "CAP 1 - Nexo Primordial 432Hz - Círculo de la Vida",
+      "url": "/nexo?source=pwa",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "WhatsApp Marco 7225862335",
+      "short_name": "WhatsApp",
+      "description": "Contacta directo - BANAMEX 002438701524066473",
+      "url": "https://wa.me/527225862335?text=Hola%20Marco%20desde%20mi%20PWA%20KRONOS%20289",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "handle_links": "preferred",
+  "edge_side_panel": {
+    "preferred_width": 480
+  },
+  "file_handlers": [
+    {
+      "action": "/?action=open_audio",
+      "accept": {
+        "audio/*": [".mp3", ".wav", ".flac", ".m4a"]
+      }
+    }
+  ],
+  "protocol_handlers": [
+    {
+      "protocol": "web+kronos",
+      "url": "/?protocol=%s"
+    }
+  ],
+  "share_target": {
+    "action": "/?action=share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url",
+      "files": [
+        {
+          "name": "audio",
+          "accept": ["audio/*", "video/*", "image/*"]
+        }
+      ]
+    }
+  }
+}
